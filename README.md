@@ -1,4 +1,4 @@
 # NJC
-Not 
+Not for
 Joy and 
 Comedy
