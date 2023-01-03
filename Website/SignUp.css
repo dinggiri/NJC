@@ -1,0 +1,30 @@
+.text{
+    background-color:aliceblue;
+    border: 0px solid black;
+    border-radius: 5px;
+    height: 35px;
+    width: 330px;
+}
+.name{
+    font-size: 80%;
+    position: relative;
+}
+
+h1{
+    font-size: 24px;
+    margin-bottom: 0px;
+}
+
+.sign_up{
+    width: 330px;
+    height: 40px;
+    background: #6A24FE;
+    border: 1px solid green;
+    border-radius: 5px;
+    transition: 0.25s;
+    color: #fff;
+}
+
+div{
+    text-align: center;
+}

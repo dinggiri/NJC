@@ -1,17 +1,25 @@
 *{
     padding: 0;
     margin: 0;
-    border: none;
+    border: 0;
 }
 body{
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
 }
+
+.welcome{
+    margin: 350px 310px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
 .login-wrapper{
-    width: 400px;
-    height: 350px;
-    padding: 40px;
+    width: 600px;
+    height: 300px;
+    padding: 0px;
     box-sizing: border-box;
+    margin: -500px 900px;
 }
 
 .login-wrapper > h2{
@@ -28,21 +36,32 @@ body{
     border-radius: 6px;
     background-color: #F8F8F8;
 }
+
 #login-form > input::placeholder{
     color: #D2D2D2;
 }
+
 #login-form > input[type="submit"]{
     color: #fff;
     font-size: 16px;
     background-color: #6A24FE;
-    margin-top: 20px;
+    margin-top: 5px;
 }
-#login-form > input[type="checkbox"]{
-    display: none;
+
+#login-form > button[type="button"] {
+	background-color: #6A24FE;
+	border-radius: 6px;
+	cursor: pointer;
+	color: #ffffff;
+	font-size: 16px;
+    width: 100%;
+    height: 42px;
 }
+
 #login-form > label{
     color: #999999;
 }
+
 #login-form input[type="checkbox"] + label{
     cursor: pointer;
     padding-left: 26px;
@@ -50,6 +69,7 @@ body{
     background-repeat: no-repeat;
     background-size: contain;
 }
+
 #login-form input[type="checkbox"]:checked + label{
     background-image: url("checkbox-active.png");
     background-repeat: no-repeat;
