@@ -10,6 +10,7 @@ body{
 
 .welcome{
     margin: 330px 280px;
+    margin-left: 150px;
     font-size: 30px;
     font-weight: bold;
 }
