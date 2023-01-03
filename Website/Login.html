@@ -1,21 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>K99</title>
-    <link rel="stylesheet" type="text/css" href="Login.css">
-</head>
-<body>
-    <div class="login-wrapper">
-        <h2>Login</h2>
-        <form method="post" action="서버의url" id="login-form">
-            <input type="text" name="userName" placeholder="Email">
-            <input type="password" name="userPassword" placeholder="Password">
-            <label for="remember-check">
-                <input type="checkbox" id="remember-check">아이디 저장하기
-            </label>
-            <input type="submit" value="Login">
-        </form>
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Login</title>
+        <link rel="stylesheet" href="Login.css">
+    </head>
+    <body>
+        <div class="welcome">안녕하세요</div>
+        <div class="login-wrapper">
+            <h2>로그인</h2>
+            <form method="post" action="서버의url" id="login-form">
+                <input type="text" name="userName" placeholder="아이디">
+                <input type="password" name="userPassword" placeholder="비밀번호">
+                <input type="submit" value="로그인">
+                <button type="button" class="SignUp" onclick="location.href='SignUp.html'">회원가입</button>
+            </form>
+        </div>
+    </body>
 </html>
