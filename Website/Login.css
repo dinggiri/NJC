@@ -9,8 +9,8 @@ body{
 }
 
 .welcome{
-    margin: 350px 310px;
-    font-size: 50px;
+    margin: 330px 280px;
+    font-size: 30px;
     font-weight: bold;
 }
 
@@ -24,11 +24,11 @@ body{
 
 .login-wrapper > h2{
     font-size: 24px;
-    color: #6A24FE;
+    color: black;
     margin-bottom: 20px;
 }
 #login-form > input{
-    width: 100%;
+    width: 50%;
     height: 48px;
     padding: 0 10px;
     box-sizing: border-box;
@@ -46,6 +46,7 @@ body{
     font-size: 16px;
     background-color: #6A24FE;
     margin-top: 5px;
+    cursor: pointer
 }
 
 #login-form > button[type="button"] {
@@ -54,7 +55,7 @@ body{
 	cursor: pointer;
 	color: #ffffff;
 	font-size: 16px;
-    width: 100%;
+    width: 50%;
     height: 42px;
 }
 
