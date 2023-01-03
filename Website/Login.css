@@ -46,7 +46,7 @@ body{
     font-size: 16px;
     background-color: #6A24FE;
     margin-top: 5px;
-    cursor: pointer
+    cursor: pointer;
 }
 
 #login-form > button[type="button"] {
