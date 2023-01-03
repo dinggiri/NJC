@@ -1,3 +1,7 @@
+.line{
+    margin-bottom: 100px;
+}
+
 .text{
     background-color:aliceblue;
     border: 0px solid black;
@@ -23,6 +27,7 @@ h1{
     border-radius: 5px;
     transition: 0.25s;
     color: #fff;
+    cursor: pointer
 }
 
 div{
