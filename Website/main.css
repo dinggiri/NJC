@@ -4,9 +4,14 @@
     border: 0;
 }
 
+img {
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
 h1 {
     text-align: center;
-    margin-top: 180px;
+    margin-top: 160px;
     margin-bottom: 20px;
 }
 
@@ -15,7 +20,7 @@ h3 {
 }
 
 #main-form > div > button {
-    background-color: #6A24FE;
+    background-color: #0B6DB7;
 	border-radius: 6px;
 	cursor: pointer;
 	color: #ffffff;
@@ -29,7 +34,14 @@ div {
     text-align: center;
 }
 
-img {
-    margin-top: 20px;
-    margin-left: 30px;
+.Logout {
+    text-align: center;
+    background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: #ffffff;
+	font-size: 14px;
+    width: 80px;
+    height: 30px;
+    margin-left: 47.5%;
 }
