@@ -45,13 +45,13 @@ body{
 #login-form > input[type="submit"]{
     color: #fff;
     font-size: 16px;
-    background-color: #6A24FE;
+    background-color: #0B6DB7;
     margin-top: 5px;
     cursor: pointer;
 }
 
 #login-form > button[type="button"] {
-	background-color: #6A24FE;
+	background-color: #0B6DB7;
 	border-radius: 6px;
 	cursor: pointer;
 	color: #ffffff;
@@ -62,18 +62,4 @@ body{
 
 #login-form > label{
     color: #999999;
-}
-
-#login-form input[type="checkbox"] + label{
-    cursor: pointer;
-    padding-left: 26px;
-    background-image: url("checkbox.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-}
-
-#login-form input[type="checkbox"]:checked + label{
-    background-image: url("checkbox-active.png");
-    background-repeat: no-repeat;
-    background-size: contain;
 }
