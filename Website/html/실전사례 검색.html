@@ -17,18 +17,90 @@
             <button class="logout" type="button" onclick="location.href='Login.html'">로그아웃</button>
         </div>
     </div>
-    <p>검색하고자 하는 사례의 키워드를 체크해주세요.</p>
+    <p>검색하고자 하는 사례의 키워드를 체크해주세요. (세탁사유, 소재, 세탁물 종류는 중복체크가 가능합니다.)</p>
     <div class="checkbox">
         <div class="혼합세탁">
-            혼합세탁
-            <label>예 <input type="radio" name="white" value="yes" unchecked></label>
+            <div>혼합세탁</div>
+            <label>&emsp;&emsp;예 <input type="radio" name="white" value="yes" unchecked></label>&nbsp;
             <details>
                 <summary>흰색유무</summary>
                 흰색포함<br>
                 흰색미포함
             </details>
-            <label>아니오 <input type="radio" name="white" value="no" unchecked></label>
+            <label>&emsp;&emsp;아니오 <input type="radio" name="white" value="no" unchecked></label>
         </div>
-    </div>
+        <div class="세탁사유">
+            <div>세탁사유</div>
+            <label>&emsp;&emsp;이염 <input type="checkbox" name="reason" value="이염" unchecked></label>
+            <label>&emsp;유색오염 <input type="checkbox" name="reason" value="유색오염" unchecked></label>&nbsp;
+            <details>
+                <summary>세부사유</summary>
+                잉크<br>흰색미포함<br>화장품<br>페인트<br>그을음<br>염색약<br>기타유색오염
+            </details>
+            <label>&emsp;음식물 <input type="checkbox" name="reason" value="음식물" unchecked></label>
+            <label>&emsp;황변 <input type="checkbox" name="reason" value="황변" unchecked></label>
+            <label>&emsp;곰팡이 <input type="checkbox" name="reason" value="곰팡이" unchecked></label>
+            <label>&emsp;기름 <input type="checkbox" name="reason" value="기름" unchecked></label>
+            <label>&emsp;찌든 때 <input type="checkbox" name="reason" value="찌든 때" unchecked></label>
+            <label>&emsp;생활얼룩 <input type="checkbox" name="reason" value="황변" unchecked></label>&nbsp;
+            <details>
+                <summary>세부사유</summary>
+                체액(구토포함)<br>빗물(흙탕물)<br>녹물<br>접착제<br>세제자국<br>기타생활얼룩
+            </details>
+            <label>&emsp;변색 <input type="checkbox" name="reason" value="변색" unchecked></label>
+            <label>&emsp;탈색 <input type="checkbox" name="reason" value="탈색" unchecked></label>
+            <label>&emsp;기타 <input type="checkbox" name="reason" value="기타" unchecked></label>&nbsp;
+            <details>
+                <summary>세부사유</summary>
+                냄새<br>복원<br>기타
+            </details>
+        </div>
+        <div class="소재">
+            <div>소재</div>
+            <label>&emsp;&emsp;면 <input type="checkbox" name="material" value="면" unchecked></label>
+            <label>&emsp;린넨 <input type="checkbox" name="material" value="린넨" unchecked></label>
+            <label>&emsp;마(삼베, 모시) <input type="checkbox" name="material" value="마" unchecked></label>
+            <label>&emsp;(비스코스)레이온 <input type="checkbox" name="material" value="레이온" unchecked></label>
+            <label>&emsp;모달(텐벨, 리오셀, 뉴달레이온) <input type="checkbox" name="material" value="모달" unchecked></label>
+            <label>&emsp;모(울, 울론) <input type="checkbox" name="material" value="모" unchecked></label>
+            <label>&emsp;실크(견) <input type="checkbox" name="material" value="실크" unchecked></label>
+            <label>&emsp;나일론 <input type="checkbox" name="material" value="나일론" unchecked></label>
+            <label>&emsp;폴리에스테르 <input type="checkbox" name="material" value="폴리에스테르" unchecked></label>
+            <label>&emsp;아크릴 <input type="checkbox" name="material" value="아크릴" unchecked></label>
+            <label>&emsp;아세테이트 <input type="checkbox" name="material" value="아세테이트" unchecked></label><br>
+            <label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;모피 <input type="checkbox" name="material" value="모피" unchecked></label>
+            <label>&emsp;스웨이드(세무) <input type="checkbox" name="material" value="스웨이드" unchecked></label>
+            <label>&emsp;동물털(앙고라) <input type="checkbox" name="material" value="동물털" unchecked></label>
+            <label>&emsp;인조가죽 <input type="checkbox" name="material" value="인조가죽" unchecked></label>
+            <label>&emsp;폴리우레탄(엘라스탄, 스판덱스) <input type="checkbox" name="material" value="폴리우레탄" unchecked></label>
+            <label>&emsp;솜 <input type="checkbox" name="material" value="솜" unchecked></label>
+            <label>&emsp;모름 <input type="checkbox" name="material" value="NaN" unchecked></label>
+        </div>
+        <div class="색상">
+            <div>색상</div>
+            <label>&emsp;&emsp;유색 <input type="radio" name="color" value="유색" unchecked></label>
+            <label>&emsp;흰색 <input type="radio" name="color" value="흰색" unchecked></label>
+            <label>&emsp;배색 <input type="checkbox" name="color" value="배색" unchecked></label>
+            <label>&emsp;프린팅 <input type="checkbox" name="color" value="프린팅" unchecked></label>
+        </div>
+        <div class="세탁물종류">
+            <div>세탁물 종류</div>
+            <label>&emsp;&emsp;상의 <input type="checkbox" name="type" value="상의" unchecked></label>
+            <label>&emsp;하의 <input type="checkbox" name="type" value="하의" unchecked></label>
+            <label>&emsp;&emsp;원피스 <input type="checkbox" name="type" value="원피스" unchecked></label>
+            <label>&emsp;&emsp;겉옷 <input type="checkbox" name="type" value="겉옷" unchecked></label>
+            <label>&emsp;&emsp;패딩 <input type="checkbox" name="type" value="패딩" unchecked></label>
+            <label>&emsp;&emsp;가방 <input type="checkbox" name="type" value="가방" unchecked></label>
+            <label>&emsp;&emsp;신발 <input type="checkbox" name="type" value="신발" unchecked></label>
+            <label>&emsp;&emsp;모자 <input type="checkbox" name="type" value="모자" unchecked></label>
+            <label>&emsp;&emsp;한복 <input type="checkbox" name="type" value="한복" unchecked></label>
+            <label>&emsp;&emsp;기타 <input type="checkbox" name="type" value="기타" unchecked></label>
+        </div>
+        <div class="명품">
+            <div>명품</div>
+            <label>&emsp;&emsp;예 <input type="radio" name="named" value=yes unchecked></label>
+            <label>&emsp;아니오 <input type="radio" name="named" value=no unchecked></label>
+        </div>
+        <button class="search" type="button" onclick="location.href='실전사례.html'">조회</button>
   </body>
 </html>
