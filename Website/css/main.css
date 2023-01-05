@@ -30,6 +30,10 @@ h3 {
     margin: 25px;
 }
 
+#main-form > div > button:hover {
+    background-color: rebeccapurple;
+}
+
 div {
     text-align: center;
 }
@@ -44,4 +48,8 @@ div {
     width: 80px;
     height: 30px;
     margin-left: 47.5%;
+}
+
+.logout:hover {
+    background-color: rebeccapurple;
 }

@@ -13,8 +13,12 @@ img {
     margin-top: 10px;
 }
 
+.menu > button:hover {
+    font-weight: bold;
+}
+
 .실전사례 {
-    background-color: #0B6DB7;
+    background-color: #7a08a3;
 	border-radius: 6px;
 	cursor: pointer;
 	color: white;
@@ -35,13 +39,13 @@ img {
     margin-left: 10px;
 }
 
+.질문답변:hover {
+    background-color: rebeccapurple;
+}
+
 .menu > div { 
     display: inline;
     float: right;
-}
-
-.menu > button:hover {
-    font-weight: bold;
 }
 
 .logout {
