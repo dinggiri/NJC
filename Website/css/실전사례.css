@@ -1,0 +1,61 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+img {
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.menu {
+    margin-top: 10px;
+}
+
+.실전사례 {
+    background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 20px;
+    width: 110px;
+    height: 30px;
+    margin-left: 25px;
+}
+
+.질문답변 {
+    background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 20px;
+    width: 110px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+.menu > div {
+    display: inline;
+    float: right;
+}
+
+.menu > button:hover {
+    font-weight: bold;
+}
+
+.logout {
+    background-color: white;
+	border-radius: 6px;
+	cursor: pointer;
+	color: black;
+	font-size: 16px;
+    width: 70px;
+    height: 30px;
+    margin-right: 70px;
+    margin-left: 20px;
+}
+
+.logout:hover {
+    font-weight: bold;
+}
