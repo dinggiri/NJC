@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6c9bebf-fc46-4390-974e-c7ebaa5df953" name="Changes" comment="폴더생성">
-      <change afterPath="$PROJECT_DIR$/Website/css/실전사례.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/Website/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/html/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/html/실전사례.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/실전사례.html" afterDir="false" />
-    </list>
+    <list default="true" id="b6c9bebf-fc46-4390-974e-c7ebaa5df953" name="Changes" comment="폴더생성" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -234,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672905749438</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="폴더생성">
+      <created>1672907362061</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1672907362061</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
