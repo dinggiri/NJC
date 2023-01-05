@@ -28,6 +28,7 @@ body{
     color: black;
     margin-bottom: 20px;
 }
+
 #login-form > input{
     width: 50%;
     height: 48px;
