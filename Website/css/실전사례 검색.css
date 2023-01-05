@@ -35,8 +35,13 @@ img {
     margin-left: 10px;
 }
 
-.menu > div {
-    margin-left: 70%
+.menu > div { 
+    display: inline;
+    float: right;
+}
+
+.menu > button:hover {
+    font-weight: bold;
 }
 
 .logout {
@@ -47,11 +52,11 @@ img {
 	font-size: 16px;
     width: 70px;
     height: 30px;
-    float: right;
     margin-right: 70px;
+    margin-left: 20px;
 }
 
-.menu > button:hover {
+.logout:hover {
     font-weight: bold;
 }
 
@@ -62,6 +67,102 @@ p {
     font-weight: bold;
 }
 
+.checkbox {
+    margin: 10px 25px 10px 25px;
+    border:2px solid; 
+    padding:10px;
+}
+
 .혼합세탁 > details {
     display:inline-block;
+    border: 1px solid;
+    padding: 2px;
+}
+
+.혼합세탁 > div {
+    background-color: rgb(1, 44, 124);
+    color: white;
+    text-align: center;
+    width: 90px;
+    display: inline-block;
+    padding: 2px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.세탁사유 > div {
+    background-color: rgb(1, 44, 124);
+    color: white;
+    text-align: center;
+    width: 90px;
+    display: inline-block;
+    padding: 2px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.세탁사유 > details {
+    display:inline-block;
+    border: 1px solid;
+    padding: 2px;
+}
+
+.소재 > div {
+    background-color: rgb(1, 44, 124);
+    color: white;
+    text-align: center;
+    width: 90px;
+    display: inline-block;
+    padding: 2px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.색상 > div {
+    background-color: rgb(1, 44, 124);
+    color: white;
+    text-align: center;
+    width: 90px;
+    display: inline-block;
+    padding: 2px;
+    border-radius: 4px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.세탁물종류 > div {
+    background-color: rgb(1, 44, 124);
+    color: white;
+    text-align: center;
+    width: 90px;
+    display: inline-block;
+    padding: 2px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.명품 > div {
+    background-color: rgb(1, 44, 124);
+    color: white;
+    text-align: center;
+    width: 90px;
+    display: inline-block;
+    padding: 2px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.search {
+    background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 20px;
+    width: 80px;
+    height: 30px;
+    margin-left: 94%;
+}
+
+.serach:hover {
+    font-weight: bold;
 }
