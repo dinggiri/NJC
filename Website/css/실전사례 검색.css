@@ -71,19 +71,13 @@ p {
     font-weight: bold;
 }
 
-details {
-    display:inline-block;
-    border: 1px solid;
-    padding: 2px;
-}
-
 .checkbox {
     margin: 10px 25px 10px 25px;
     border:2px solid; 
     padding:10px;
 }
 
-.혼합세탁 > div {
+.혼합세탁 > .ans {
     background-color: rgb(1, 44, 124);
     color: white;
     text-align: center;
@@ -91,17 +85,27 @@ details {
     display: inline-block;
     padding: 2px;
     border-radius: 4px;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 
-.혼합세탁 #details_item {
-    width: 100px;
-    font-size: 15px;
+.혼합세탁 > .white_item > span {
+    background-color: #87CEFA;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    padding: 2px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.혼합세탁 > .white_item {
+    width: 1000px;
+    margin-bottom: 15px;
     display: none;
 }
 
-
-.세탁사유 > div {
+.세탁사유 > .ans {
     background-color: rgb(1, 44, 124);
     color: white;
     text-align: center;
@@ -109,7 +113,58 @@ details {
     display: inline-block;
     padding: 2px;
     border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.세탁사유 > .col_reason_item > span {
+    background-color: #87CEFA;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    padding: 2px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.세탁사유 > .col_reason_item {
+    width: 1000px;
+    margin-bottom: 8px;
+    display: none;
+}
+
+.세탁사유 > .blemish_item > span {
+    background-color: #87CEFA;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    padding: 2px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.세탁사유 > .blemish_item {
+    width: 1000px;
+    margin-bottom: 8px;
+    display: none;
+}
+
+.세탁사유 > .etc_item > span {
+    background-color: #87CEFA;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    padding: 2px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.세탁사유 > .etc_item {
+    width: 1000px;
     margin-bottom: 15px;
+    display: none;
 }
 
 .소재 > div {
