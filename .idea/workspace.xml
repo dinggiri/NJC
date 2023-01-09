@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6c9bebf-fc46-4390-974e-c7ebaa5df953" name="Changes" comment="1/9">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-01-02__3_40__Changes_.xml" beforeDir="false" />
+    <list default="true" id="b6c9bebf-fc46-4390-974e-c7ebaa5df953" name="Changes" comment="토글 완성">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/css/실전사례 검색.css" beforeDir="false" afterPath="$PROJECT_DIR$/Website/css/실전사례 검색.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Website/html/실전사례 검색.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/실전사례 검색.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/js/실전사례 검색.js" beforeDir="false" afterPath="$PROJECT_DIR$/Website/js/실전사례 검색.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673248444037</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="토글 완성">
+      <created>1673260677604</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1673260677604</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -280,6 +284,7 @@
     <MESSAGE value="빈 페이지" />
     <MESSAGE value="폴더생성" />
     <MESSAGE value="1/9" />
-    <option name="LAST_COMMIT_MESSAGE" value="1/9" />
+    <MESSAGE value="토글 완성" />
+    <option name="LAST_COMMIT_MESSAGE" value="토글 완성" />
   </component>
 </project>
