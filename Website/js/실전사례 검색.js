@@ -28,5 +28,11 @@ $(function (){
         }else{$('#etc_item').css('display','none');
         }
     });
+    $('input[type="reset"][name="init"]').on('click', function(){
+        $('#white_item').css('display','none');
+        $('#col_reason_item').css('display','none');
+        $('#blemish_item').css('display','none');
+        $('#etc_item').css('display','none');
+    });
 });
      

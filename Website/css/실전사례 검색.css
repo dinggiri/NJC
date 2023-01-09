@@ -217,6 +217,7 @@ p {
 }
 
 .init {
+    float: left;
     background-color: #0B6DB7;
 	border-radius: 6px;
 	cursor: pointer;
@@ -238,6 +239,7 @@ p {
 	font-size: 20px;
     width: 80px;
     height: 30px;
+    margin-left: 5px;
 }
 
 .search:hover {

@@ -19,7 +19,7 @@
         </div>
     </div>
     <p>검색하고자 하는 사례의 키워드를 체크해주세요. (세탁사유, 소재, 세탁물 종류는 중복체크가 가능합니다.)</p>
-    <div class="checkbox">
+    <form class="checkbox">
         <div class="혼합세탁">
             <div class="ans">혼합세탁</div>
             <label>&emsp;&emsp;예 <input type="radio" name="mix" value="yes" unchecked onclick='itmes(event)'></label>
@@ -116,10 +116,10 @@
             <label>&emsp;아니오 <input type="radio" name="named" value=no unchecked></label>
         </div>
         <div class="init_search">
-            <button class="init" type="button">초기화</button>
+            <div><input type="reset" class="init" name="init"></div>
             <button class="search" type="button" onclick="location.href='실전사례.html'">조회</button>
         </div>
-        <script type="text/javascript" src="../js/실전사례 검색.js"></script>
-    </div>
+    </form>
+    <script type="text/javascript" src="../js/실전사례 검색.js"></script>
   </body>
 </html>
