@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>실전사례 검색</title>
     <link rel="stylesheet" href="../css/실전사례 검색.css">
-    <script src="실전사레 검색.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
   <body>
     <a href="main.html">
@@ -22,13 +22,12 @@
     <div class="checkbox">
         <div class="혼합세탁">
             <div>혼합세탁</div>
-            <label>&emsp;&emsp;예 <input type="radio" name="white" value="yes" unchecked></label>&nbsp;
-            <details>
-                <summary>흰색유무</summary>
-                흰색포함<br>
-                흰색미포함
-            </details>
-            <label>&emsp;&emsp;아니오 <input type="radio" name="white" value="no" unchecked></label>
+            <label>&emsp;&emsp;예 <input type="radio" name="mix" value="yes" unchecked onclick='itmes(event)'></label>
+            <label>&emsp;아니오 <input type="radio" name="mix" value="no" unchecked></label>
+            <div id="details_item">
+                <label>흰색포함<input type="radio" name="흰색유무" value="white"></label>
+                <label>흰색미포함<input type="radio" name="흰색유무" value="non_white"></label>
+            </div>
         </div>
         <div class="세탁사유">
             <div>세탁사유</div>
@@ -104,6 +103,7 @@
             <label>&emsp;아니오 <input type="radio" name="named" value=no unchecked></label>
         </div>
         <button class="search" type="button" onclick="location.href='실전사례.html'">조회</button>
+        <script type="text/javascript" src="../js/실전사례 검색.js"></script>
     </div>
   </body>
 </html>
