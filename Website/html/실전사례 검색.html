@@ -21,40 +21,53 @@
     <p>검색하고자 하는 사례의 키워드를 체크해주세요. (세탁사유, 소재, 세탁물 종류는 중복체크가 가능합니다.)</p>
     <div class="checkbox">
         <div class="혼합세탁">
-            <div>혼합세탁</div>
+            <div class="ans">혼합세탁</div>
             <label>&emsp;&emsp;예 <input type="radio" name="mix" value="yes" unchecked onclick='itmes(event)'></label>
             <label>&emsp;아니오 <input type="radio" name="mix" value="no" unchecked></label>
-            <div id="details_item">
-                <label>흰색포함<input type="radio" name="흰색유무" value="white"></label>
-                <label>흰색미포함<input type="radio" name="흰색유무" value="non_white"></label>
+            <div class="white_item" id="white_item">
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span>흰색 포함 여부</span>
+                <label>&emsp;흰색 포함 <input type="radio" name="흰색유무" value="white"></label>
+                <label>&emsp;흰색 미포함 <input type="radio" name="흰색유무" value="no_white"></label>
             </div>
         </div>
         <div class="세탁사유">
-            <div>세탁사유</div>
+            <div class="ans">세탁사유</div>
             <label>&emsp;&emsp;이염 <input type="checkbox" name="reason" value="이염" unchecked></label>
-            <label>&emsp;유색오염 <input type="checkbox" name="reason" value="유색오염" unchecked></label>&nbsp;
-            <details>
-                <summary>세부사유</summary>
-                잉크<br>흰색미포함<br>화장품<br>페인트<br>그을음<br>염색약<br>기타유색오염
-            </details>
+            <label>&emsp;유색오염 <input type="checkbox" name="reason" value="유색오염" unchecked></label>
             <label>&emsp;음식물 <input type="checkbox" name="reason" value="음식물" unchecked></label>
             <label>&emsp;황변 <input type="checkbox" name="reason" value="황변" unchecked></label>
             <label>&emsp;곰팡이 <input type="checkbox" name="reason" value="곰팡이" unchecked></label>
             <label>&emsp;기름 <input type="checkbox" name="reason" value="기름" unchecked></label>
             <label>&emsp;찌든 때 <input type="checkbox" name="reason" value="찌든 때" unchecked></label>
-            <label>&emsp;생활얼룩 <input type="checkbox" name="reason" value="황변" unchecked></label>&nbsp;
-            <details>
-                <summary>세부사유</summary>
-                체액(구토포함)<br>빗물(흙탕물)<br>녹물<br>접착제<br>세제자국<br>기타생활얼룩
-            </details>
+            <label>&emsp;생활얼룩 <input type="checkbox" name="reason" value="생활얼룩" unchecked></label>
             <label>&emsp;변색 <input type="checkbox" name="reason" value="변색" unchecked></label>
             <label>&emsp;탈색 <input type="checkbox" name="reason" value="탈색" unchecked></label>
-            <label>&emsp;기타 <input type="checkbox" name="reason" value="기타" unchecked></label>&nbsp;
-            <details>
-                <summary>세부사유</summary>
-                냄새<br>복원<br>기타
-            </details>
+            <label>&emsp;기타 <input type="checkbox" name="reason" value="기타" unchecked></label>
             <label>&emsp;모름 <input type="checkbox" name="reason" value="NaN" unchecked></label>
+            <div class="col_reason_item" id="col_reason_item">
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span>유색오염 세부사유</span>
+                <label>&emsp;잉크 <input type="checkbox" name="유색오염" value="ink"></label>
+                <label>&emsp;화장품 <input type="checkbox" name="유색오염" value="cosmetic"></label>
+                <label>&emsp;페인트 <input type="checkbox" name="유색오염" value="paint"></label>
+                <label>&emsp;그을음 <input type="checkbox" name="유색오염" value="soot"></label>
+                <label>&emsp;염색약 <input type="checkbox" name="유색오염" value="dye"></label>
+                <label>&emsp;기타 유색 오염 <input type="checkbox" name="유색오염" value="cor_etc"></label>
+            </div>
+            <div class="blemish_item" id="blemish_item">
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span>생활얼룩 세부사유</span>
+                <label>&emsp;체액(구토 포함) <input type="checkbox" name="생활얼룩" value="secretion"></label>
+                <label>&emsp;빗물(흙탕물) <input type="checkbox" name="생활얼룩" value="rain"></label>
+                <label>&emsp;녹물 <input type="checkbox" name="생활얼룩" value="rust"></label>
+                <label>&emsp;접착제 <input type="checkbox" name="생활얼룩" value="bond"></label>
+                <label>&emsp;세제 자국 <input type="checkbox" name="생활얼룩" value="detergent"></label>
+                <label>&emsp;기타 생활 얼룩 <input type="checkbox" name="생활얼룩" value="blemish_etc"></label>
+            </div>
+            <div class="etc_item" id="etc_item">
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span>기타 세부사유</span>
+                <label>&emsp;냄새 <input type="checkbox" name="기타" value="smell"></label>
+                <label>&emsp;복원 <input type="checkbox" name="기타" value="restoring"></label>
+                <label>&emsp;기타 <input type="checkbox" name="기타" value="etc_etc"></label>
+            </div>
         </div>
         <div class="소재">
             <div>소재</div>
