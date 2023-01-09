@@ -71,16 +71,16 @@ p {
     font-weight: bold;
 }
 
+details {
+    display:inline-block;
+    border: 1px solid;
+    padding: 2px;
+}
+
 .checkbox {
     margin: 10px 25px 10px 25px;
     border:2px solid; 
     padding:10px;
-}
-
-.혼합세탁 > details {
-    display:inline-block;
-    border: 1px solid;
-    padding: 2px;
 }
 
 .혼합세탁 > div {
@@ -94,6 +94,13 @@ p {
     margin-bottom: 15px;
 }
 
+.혼합세탁 #details_item {
+    width: 100px;
+    font-size: 15px;
+    display: none;
+}
+
+
 .세탁사유 > div {
     background-color: rgb(1, 44, 124);
     color: white;
@@ -103,12 +110,6 @@ p {
     padding: 2px;
     border-radius: 4px;
     margin-bottom: 15px;
-}
-
-.세탁사유 > details {
-    display:inline-block;
-    border: 1px solid;
-    padding: 2px;
 }
 
 .소재 > div {
