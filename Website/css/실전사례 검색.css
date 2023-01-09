@@ -213,11 +213,10 @@ p {
 }
 
 .init_search {
-    display: inline;
+    margin-left: 87.5%;
 }
 
 .init {
-    float: left;
     background-color: #0B6DB7;
 	border-radius: 6px;
 	cursor: pointer;
@@ -225,9 +224,10 @@ p {
 	font-size: 20px;
     width: 80px;
     height: 30px;
+    margin-right: 10px;
 }
 
-.init:hover {
+.init:hover, search:hover {
     font-weight: bold;
 }
 
@@ -239,7 +239,6 @@ p {
 	font-size: 20px;
     width: 80px;
     height: 30px;
-    margin-left: 5px;
 }
 
 .search:hover {
