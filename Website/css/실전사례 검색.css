@@ -212,6 +212,24 @@ p {
     margin-bottom: 15px;
 }
 
+.init_search {
+    display: inline;
+}
+
+.init {
+    background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 20px;
+    width: 80px;
+    height: 30px;
+}
+
+.init:hover {
+    font-weight: bold;
+}
+
 .search {
     background-color: #0B6DB7;
 	border-radius: 6px;
@@ -220,7 +238,6 @@ p {
 	font-size: 20px;
     width: 80px;
     height: 30px;
-    margin-left: 94%;
 }
 
 .search:hover {
