@@ -32,6 +32,7 @@ h3 {
 
 #main-form > div > button:hover {
     background-color: rebeccapurple;
+    font-weight: bold;
 }
 
 div {
@@ -52,4 +53,5 @@ div {
 
 .logout:hover {
     background-color: rebeccapurple;
+    font-weight: bold;
 }
