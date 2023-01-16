@@ -10,9 +10,10 @@
     position: relative;
 }
 
-h1{
+.sing_up_title{
     font-size: 24px;
     margin-bottom: 0px;
+    text-align: center;
 }
 
 .sign_up{
@@ -26,6 +27,6 @@ h1{
     cursor: pointer
 }
 
-div{
+.회원가입{
     text-align: center;
 }

@@ -7,10 +7,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
   <body>
-    <a href="main.html">
-        <img src="../img/K99.jpg" width="90" height="65">
-    </a>
-    <div class="menu">
+    <div class="menu_top">
+        <a href="main.html">
+            <img class="img" src="../img/K99.jpg" >
+        </a><br>
         <button class="실전사례" type="button" onclick="location.href='실전사례 검색.html'">세탁방법</button>
         <button class="질문답변" type="button" onclick="location.href='질문답변.html'">Q & A</button>
         <div>
@@ -19,7 +19,7 @@
         </div>
     </div>
     <p>검색하고자 하는 사례의 키워드를 체크해주세요. (세탁사유, 소재, 세탁물 종류는 중복체크가 가능합니다.)</p>
-    <form class="checkbox">
+    <form class="search_checkbox">
         <div class="혼합세탁">
             <div class="ans">혼합세탁</div>
             <label>&emsp;&emsp;예 <input type="radio" name="mix" value="yes" unchecked onclick='itmes(event)'></label>

@@ -3,7 +3,8 @@
     margin: 0;
     border: 0;
 }
-body{
+
+.login{
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
 }

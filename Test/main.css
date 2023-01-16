@@ -9,13 +9,13 @@ img {
     margin-left: 30px;
 }
 
-h1 {
+.main > h1 {
     text-align: center;
     margin-top: 160px;
     margin-bottom: 20px;
 }
 
-h3 {
+.main > h3 {
     text-align: center;
 }
 

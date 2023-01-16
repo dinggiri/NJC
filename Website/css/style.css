@@ -4,77 +4,293 @@
     border: 0;
 }
 
-img {
-    margin-top: 20px;
-    margin-left: 30px;
-    width: 25%;
-    height: 20%;
+/* 로그인 */
+.login{
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
 }
 
-.menu {
-    margin-top: 3%;
-}
-
-.menu > button:hover {
+.welcome{
+    margin: 330px 280px;
+    margin-left: 150px;
+    font-size: 30px;
     font-weight: bold;
 }
 
-.실전사례 {
-    background-color: #7a08a3;
-	border-radius: 6px;
-	cursor: pointer;
-	color: white;
-	font-size: 50px;
-    width: 230px;
-    height: 70px;
-    margin-left: 25px;
+.login-wrapper{
+    width: 600px;
+    height: 300px;
+    padding: 0px;
+    box-sizing: border-box;
+    margin: -500px 900px;
 }
 
-.질문답변 {
+.login-wrapper > h2{
+    font-size: 24px;
+    color: black;
+    margin-bottom: 20px;
+}
+
+#login-form > input{
+    width: 50%;
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: #F8F8F8;
+}
+
+#login-form > input::placeholder{
+    color: #D2D2D2;
+}
+
+#login-form > input[type="submit"]{
+    color: #fff;
+    font-size: 16px;
+    background-color: #0B6DB7;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+#login-form > button[type="button"] {
+	background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: #ffffff;
+	font-size: 16px;
+    width: 50%;
+    height: 42px;
+}
+
+#login-form > label{
+    color: #999999;
+}
+
+/* K99 로고 */
+.img {
+    margin-top: 20px;
+    margin-left: 30px;
+    width: 12%;
+    height: 10%;
+}
+
+.img:hover {
+    cursor: pointer;
+}
+
+/* hr */
+hr {
+    border: 1px #dee2e6 solid;
+}
+
+/* 회원가입 */
+.text{
+    background-color:aliceblue;
+    border: 0px solid black;
+    border-radius: 5px;
+    height: 35px;
+    width: 330px;
+}
+.name{
+    font-size: 80%;
+    position: relative;
+}
+
+.sing_up_title{
+    font-size: 24px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+.sign_up{
+    width: 330px;
+    height: 40px;
+    background: #0B6DB7;
+    border: 1px solid green;
+    border-radius: 5px;
+    transition: 0.25s;
+    color: #fff;
+    cursor: pointer
+}
+
+.회원가입{
+    text-align: center;
+}
+
+/* 메인화면 */
+.main > h1 {
+    text-align: center;
+    margin-top: 160px;
+    margin-bottom: 20px;
+}
+
+.main > h3 {
+    text-align: center;
+}
+
+#main-form > div > button {
     background-color: #0B6DB7;
 	border-radius: 6px;
 	cursor: pointer;
-	color: white;
-	font-size: 50px;
-    width: 230px;
-    height: 70px;
-    padding: 10px;
-    margin-left: 10px;
+	color: #ffffff;
+	font-size: 30px;
+    width: 180px;
+    height: 50px;
 }
 
-.질문답변:hover {
+#main-form > div > button:hover {
     background-color: rebeccapurple;
+    font-weight: bold;
 }
 
-.intro > div { 
-    margin-top: -7%;
+#main-form > div {
+    text-align: center;
     margin-right: 3%;
-    text-align: right;
+    margin-top: 2%;
+}
+
+.main_logout {
+    text-align: center;
+    background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: #ffffff;
+	font-size: 14px;
+    width: 80px;
+    height: 30px;
+    margin-left: 47%;
+    margin-top: 1%;
+}
+
+.main_logout:hover {
+    background-color: rebeccapurple;
+    font-weight: bold;
+}
+
+/* 메뉴 */
+.menu_top {
+    margin-top: 3%;
+}
+
+.menu_top > button:hover {
+    font-weight: bold;
 }
 
 .hello {
     background-color: white;
 	border-radius: 6px;
-	cursor: pointer;
 	color: black;
 	font-size: 30px;
     width: 100px;
     margin-bottom: 5%;
-    margin-right: 2%;
 }
-.logout {
+
+
+/* 실전사례 포스트 */
+.menu_top .img {
+    width: 12%;
+    height: 10%;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.menu_top {
+    margin-top: 10px;
+}
+
+.menu_top .실전사례 {
+    float: left;
+    background-color: rebeccapurple;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 20px;
+    width: 110px;
+    height: 40px;
+    margin-left: 25px;
+}
+
+.menu_top .질문답변 {
+    background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 20px;
+    width: 110px;
+    height: 40px;
+    margin-left: 10px;   
+}
+
+.menu_top .질문답변:hover {
+    background-color: rebeccapurple;
+}
+
+.menu_top > div { 
+    display: inline;
+    float: right;
+}
+
+.menu_top > button:hover {
+    font-weight: bold;
+}
+
+.menu_top .logout {
     background-color: white;
 	border-radius: 6px;
 	cursor: pointer;
 	color: black;
 	font-size: 30px;
     width: 120px;
+    height: 30px;
+    margin-right: 70px;
+    margin-left: 20px;
 }
 
-.logout:hover {
+.menu_top .logout:hover {
     font-weight: bold;
 }
 
+.article {
+    width: 500px;
+    border: 1px solid #0B6DB7;
+    margin-top: 30px;
+    margin-left: 50%;
+    margin-bottom: 50px;
+    transform: translateX(-50%);
+}
+
+.article .post_img {
+    width: 100%;
+}   
+
+.pagination {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 50%;
+    transform: translateX(-30%);
+}
+
+.pagination > li {    
+    font-size: 20px;
+    list-style: none;
+    margin-bottom: 5px;
+    padding: 3px 10px;
+    border: 1px solid #dee2e6;
+    display: inline-block;
+}
+
+.page-link {
+    text-decoration: none;
+}
+
+.page-nav {
+    width: 98%;
+    padding: 1px;
+}
+
+
+/* 실전사례 검색 공통 */
 .category {
     background-color: rgb(1, 44, 124);
     color: white;
@@ -142,6 +358,7 @@ img {
     font-weight: bold;
 }
 
+/* 혼합세탁 */
 .checkbox1 > label {
     font-size: 350%;
     font-weight: bold;
@@ -188,6 +405,7 @@ img {
     height: 2em;
 }
 
+/* 세탁물종류 */
 .checkbox2  {
     margin-top: 3%;
     margin-left: 30%;
@@ -204,6 +422,7 @@ img {
     height: 3em;
 }
 
+/* 소재 */
 .checkbox3 > li {
     text-align: center;
 }
@@ -219,6 +438,7 @@ img {
     height: 3em;
 }
 
+/* 색상 */
 .checkbox4 > li {
     margin-top: 3%;
     margin-left: 30%;
@@ -235,6 +455,7 @@ img {
     height: 3em;
 }
 
+/* 세탁사유 */
 .checkbox5  {
     margin-top: 3%;
     margin-left: 30%;
@@ -251,6 +472,7 @@ img {
     height: 3em;
 }
 
+/* 명품 */
 .checkbox6 > label {
     font-size: 350%;
     font-weight: bold;
@@ -267,28 +489,31 @@ img {
     text-align: center;
 }
 
+/* 세부사유 */
 .col_reason_item { 
     display: none;
+    text-align: center;
 }
 
 .col_reason_item > span{
     background-color: #87CEFA;
     color: black;
     text-align: center;
-    width: 65%;
+    width: 40%;
     display: block;
     padding: 1%;
     border-radius: 10px;
-    font-size: 250%;
+    font-size: 40px;
     margin-top: 5%;
-    margin-left: -3%;
+    margin-left: 30%;
     margin-bottom: 2%;
     font-weight: bold;
 }
 
 .col_reason_item > label {
-    font-size: 180%;
+    font-size: 35px;
     font-weight: bold;
+    text-size-adjust: 100%;
 }
 
 .col_reason_item > label > input {
@@ -299,59 +524,137 @@ img {
 
 .blemish_item { 
     display: none;
+    text-align: center;
 }
 
 .blemish_item > span{
     background-color: #87CEFA;
     color: black;
     text-align: center;
-    width: 65%;
+    width: 40%;
     display: block;
     padding: 1%;
     border-radius: 10px;
-    font-size: 250%;
+    font-size: 40px;
     margin-top: 5%;
-    margin-left: -3%;
+    margin-left: 30%;
     margin-bottom: 2%;
     font-weight: bold;
 }
 
 .blemish_item> label {
-    font-size: 180%;
+    font-size: 35px;
     font-weight: bold;
+    text-size-adjust: 100%;
 }
 
 .blemish_item > label > input {
     border-radius: 50%;
-    width: 3em;
-    height: 3em;
+    width: 2em;
+    height: 2em;
 }
 .etc_item { 
     display: none;
+    text-align: center;
 }
 
 .etc_item > span{
     background-color: #87CEFA;
     color: black;
     text-align: center;
-    width: 65%;
+    width: 40%;
     display: block;
     padding: 1%;
     border-radius: 10px;
-    font-size: 250%;
+    font-size: 40px;
     margin-top: 5%;
-    margin-left: -3%;
+    margin-left: 30%;
     margin-bottom: 2%;
     font-weight: bold;
 }
 
 .etc_item > label {
-    font-size: 180%;
+    font-size: 35px;
     font-weight: bold;
+    text-size-adjust: 100%;
 }
 
 .etc_item > label > input {
     border-radius: 50%;
     width: 2em;
     height: 2em;
+}
+
+
+
+
+/* 질문답변 Q & A 페이지 */
+.search-wrapper{
+    width: 750px;
+    height: 500px;
+    padding: 0;
+    box-sizing: border-box;
+    margin: 6% auto;
+}
+
+.search:hover {
+    font-weight: bold;
+}
+
+#search-form > input{
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: #F8F8F8;
+    float: left;
+}
+
+#search-form > input::placeholder{
+    color: #aeadad;
+    font-size: 16px;
+}
+
+#search-form > input[type="text"]{
+    width: 80%;
+    margin-top: 5px;
+}
+
+#search-form > input[type="submit"]{
+    color: #fff;
+    font-size: 18px;
+    background-color: #0B6DB7;
+    margin-top: 5px;
+    margin-left: 7px;
+    cursor: pointer;
+    width: 13%;
+}
+
+.QA .실전사례 {
+    float: left;
+    background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 20px;
+    width: 110px;
+    height: 40px;
+    margin-left: 25px;
+}
+
+.QA .질문답변 {
+    background-color: rebeccapurple;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 20px;
+    width: 110px;
+    height: 40px;
+    margin-left: 10px;   
+}
+
+.QA .실전사례:hover {
+    background-color: rebeccapurple;
 }

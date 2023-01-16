@@ -4,18 +4,19 @@
     border: 0;
 }
 
-
-
-.logo {
+/* 실전사례 포스트 */
+.menu_top .img {
+    width: 12%;
+    height: 10%;
     margin-top: 20px;
     margin-left: 30px;
 }
 
-.menu {
+.menu_top {
     margin-top: 10px;
 }
 
-.실전사례 {
+.menu_top .실전사례 {
     background-color: rebeccapurple;
 	border-radius: 6px;
 	cursor: pointer;
@@ -26,7 +27,7 @@
     margin-left: 25px;
 }
 
-.질문답변 {
+.menu_top .질문답변 {
     background-color: #0B6DB7;
 	border-radius: 6px;
 	cursor: pointer;
@@ -37,11 +38,11 @@
     margin-left: 10px;
 }
 
-.질문답변:hover {
+.menu_top .질문답변:hover {
     background-color: rebeccapurple;
 }
 
-.menu > div {
+.menu_top > div { 
     display: inline;
     float: right;
 }
@@ -50,7 +51,7 @@
     font-weight: bold;
 }
 
-.logout {
+.menu_top .logout {
     background-color: white;
 	border-radius: 6px;
 	cursor: pointer;
@@ -62,7 +63,7 @@
     margin-left: 20px;
 }
 
-.logout:hover {
+.menu_top .logout:hover {
     font-weight: bold;
 }
 
