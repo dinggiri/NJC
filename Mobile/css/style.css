@@ -1,0 +1,357 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+img {
+    margin-top: 20px;
+    margin-left: 30px;
+    width: 25%;
+    height: 20%;
+}
+
+.menu {
+    margin-top: 3%;
+}
+
+.menu > button:hover {
+    font-weight: bold;
+}
+
+.실전사례 {
+    background-color: #7a08a3;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 50px;
+    width: 230px;
+    height: 70px;
+    margin-left: 25px;
+}
+
+.질문답변 {
+    background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 50px;
+    width: 230px;
+    height: 70px;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.질문답변:hover {
+    background-color: rebeccapurple;
+}
+
+.intro > div { 
+    margin-top: -7%;
+    margin-right: 3%;
+    text-align: right;
+}
+
+.hello {
+    background-color: white;
+	border-radius: 6px;
+	cursor: pointer;
+	color: black;
+	font-size: 30px;
+    width: 100px;
+    margin-bottom: 5%;
+    margin-right: 2%;
+}
+.logout {
+    background-color: white;
+	border-radius: 6px;
+	cursor: pointer;
+	color: black;
+	font-size: 30px;
+    width: 120px;
+}
+
+.logout:hover {
+    font-weight: bold;
+}
+
+.category {
+    background-color: rgb(1, 44, 124);
+    color: white;
+    text-align: center;
+    width: 40%;
+    display: block;
+    padding: 1%;
+    border-radius: 10px;
+    font-size: 50px;
+    margin-top: 5%;
+    margin-left: 30%;
+}
+
+.next {
+    background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 250%;
+    width: 10%;
+    height: 20%;
+    float: right;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.next:hover {
+    font-weight: bold;
+}
+
+.prev {
+    background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 250%;
+    width: 10%;
+    height: 20%;
+    float: left;
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.prev:hover {
+    font-weight: bold;
+}
+
+.search {
+    background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 250%;
+    width: 10%;
+    height: 20%;
+    float: right;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.search:hover {
+    font-weight: bold;
+}
+
+.checkbox1 > label {
+    font-size: 350%;
+    font-weight: bold;
+}
+
+.checkbox1 > label > input {
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+}
+
+.checkbox1 {
+    margin-top: 3%;
+    text-align: center;
+}
+
+.white_item { 
+    display: none;
+}
+
+.white_item > span{
+    background-color: #87CEFA;
+    color: black;
+    text-align: center;
+    width: 30%;
+    display: block;
+    padding: 1%;
+    border-radius: 10px;
+    font-size: 40px;
+    margin-top: 5%;
+    margin-left: 35%;
+    margin-bottom: 3%;
+    font-weight: bold;
+}
+
+.white_item > label {
+    font-size: 200%;
+    font-weight: bold;
+}
+
+.white_item > label > input {
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+}
+
+.checkbox2  {
+    margin-top: 3%;
+    margin-left: 30%;
+}
+
+.checkbox2 > li > label {
+    font-size: 350%;
+    font-weight: bold;
+}
+
+.checkbox2 > li > label > input {
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+}
+
+.checkbox3 > li {
+    text-align: center;
+}
+
+.checkbox3 > li> label {
+    font-size: 300%;
+    font-weight: bold;
+}
+
+.checkbox3 > li > label > input {
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+}
+
+.checkbox4 > li {
+    margin-top: 3%;
+    margin-left: 30%;
+}
+
+.checkbox4 > li> label {
+    font-size: 300%;
+    font-weight: bold;
+}
+
+.checkbox4 > li > label > input {
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+}
+
+.checkbox5  {
+    margin-top: 3%;
+    margin-left: 30%;
+}
+
+.checkbox5 > li > label {
+    font-size: 350%;
+    font-weight: bold;
+}
+
+.checkbox5 > li > label > input {
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+}
+
+.checkbox6 > label {
+    font-size: 350%;
+    font-weight: bold;
+}
+
+.checkbox6 > label > input {
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+}
+
+.checkbox6 {
+    margin-top: 3%;
+    text-align: center;
+}
+
+.col_reason_item { 
+    display: none;
+}
+
+.col_reason_item > span{
+    background-color: #87CEFA;
+    color: black;
+    text-align: center;
+    width: 65%;
+    display: block;
+    padding: 1%;
+    border-radius: 10px;
+    font-size: 250%;
+    margin-top: 5%;
+    margin-left: -3%;
+    margin-bottom: 2%;
+    font-weight: bold;
+}
+
+.col_reason_item > label {
+    font-size: 180%;
+    font-weight: bold;
+}
+
+.col_reason_item > label > input {
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+}
+
+.blemish_item { 
+    display: none;
+}
+
+.blemish_item > span{
+    background-color: #87CEFA;
+    color: black;
+    text-align: center;
+    width: 65%;
+    display: block;
+    padding: 1%;
+    border-radius: 10px;
+    font-size: 250%;
+    margin-top: 5%;
+    margin-left: -3%;
+    margin-bottom: 2%;
+    font-weight: bold;
+}
+
+.blemish_item> label {
+    font-size: 180%;
+    font-weight: bold;
+}
+
+.blemish_item > label > input {
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+}
+.etc_item { 
+    display: none;
+}
+
+.etc_item > span{
+    background-color: #87CEFA;
+    color: black;
+    text-align: center;
+    width: 65%;
+    display: block;
+    padding: 1%;
+    border-radius: 10px;
+    font-size: 250%;
+    margin-top: 5%;
+    margin-left: -3%;
+    margin-bottom: 2%;
+    font-weight: bold;
+}
+
+.etc_item > label {
+    font-size: 180%;
+    font-weight: bold;
+}
+
+.etc_item > label > input {
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+}

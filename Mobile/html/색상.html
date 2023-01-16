@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>색상</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="intro">
+        <img src="../img/K99.jpg" onclick="location.href='main.html'">
+        <div>
+            <span class="hello">(회원이름)님 안녕하세요!</span>
+            <button class="logout" type="button" onclick="location.href='Login.html'">로그아웃</button>
+        </div>
+    </div>
+    <div class="menu">
+        <button class="실전사례" type="button" onclick="location.href='혼합세탁.html'">세탁방법</button>
+        <button class="질문답변" type="button" onclick="location.href='질문답변.html'">Q & A</button>
+    </div>
+    
+    <div class="category">색상</div>
+    <form class="checkbox4">
+        <li class="color"><label>유색 <input type="radio" name="color" value="유색" unchecked></label>
+        <label>&emsp;&emsp;흰색 <input type="radio" name="color" value="흰색" unchecked></label></li>
+        <li class="color"><label>배색 <input type="checkbox" name="color" value="배색" unchecked></label>
+        <label>&emsp;프린팅 <input type="checkbox" name="color" value="프린팅" unchecked></label></li>
+    </form>
+    <div class="move">
+        <button class="prev" type="button" onclick="location.href='소재.html'">이전</button>
+        <button class="next" type="button" onclick="location.href='세탁 사유.html'">다음</button>
+    </div>
+
+
+
+    <script type="text/javascript" src="../js/색상.js"></script>
+</body>
