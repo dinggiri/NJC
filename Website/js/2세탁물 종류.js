@@ -1,27 +1,26 @@
 $(function (){
-    $('input[type="checkbox"][name="type"]').on('click', function(){
-        var chkValue = $('input[type=checkbox][name="type"]:checked').val();
-        if(chkValue == '신발'){
-            $('.next').attr('href','3.1신발.html');
-        }
-    });
-    $('input[type="checkbox"][name="type"]').on('click', function(){
+    $('input[type="checkbox"][name="type"][value="가방"]').on('click', function(){
         var chkValue = $('input[type=checkbox][name="type"]:checked').val();
         if(chkValue == '가방'){
-            $('.next').attr('href','4색상.html');
-        }
-    });
-});
-
-
-
-$(document).ready(function() {
-    $('input[type=checkbox][name=type][value=신발]').change(function() {
-        if (this.checked) {
-            $('.next').attr('href','3.1신발.html');
+            $('.next').attr('onclick',"location.href='4색상.html'");
         }
         else {
-            alert(`${this.value} is unchecked`);
+            $('.next').attr('onclick',"location.href='3소재.html'");
+        }
+    });
+    $('input[type="checkbox"][name="type"][value="신발"]').on('click', function(){
+        var chkValue = $('input[type=checkbox][name="type"]:checked').val();
+        if(chkValue == '신발'){
+            $('.next').attr('onclick',"location.href='3.1신발.html'");
+        }
+        else {
+            $('.next').attr('onclick',"location.href='3소재.html'");
+        }
+    });
+    $('input[type="checkbox"][name="type"]').on('click', function(){
+        var chkLength = $('input[type=checkbox][name="type"]:checked').length;
+        if(chkLength > 1){
+            $('.next').attr('onclick',"location.href='3소재.html'");
         }
     });
 });

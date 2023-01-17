@@ -31,6 +31,26 @@
     margin-bottom: 20px;
 }
 
+#login-form > input[type="text"]{
+    width: 40%;
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: #F8F8F8;
+}
+
+#login-form > input[type="password"]{
+    width: 40%;
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: #F8F8F8;
+}
+
 #login-form > input{
     width: 50%;
     height: 48px;
@@ -251,6 +271,12 @@ hr {
     font-weight: bold;
 }
 
+.num_post {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-weight: bold;
+}
+
 .article {
     width: 500px;
     border: 1px solid #0B6DB7;
@@ -267,7 +293,7 @@ hr {
 .pagination {
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 50%;
+    margin-left: 45%;
     transform: translateX(-30%);
 }
 

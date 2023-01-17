@@ -13,12 +13,11 @@
         <div class="login-wrapper">
             <h2>로그인</h2>
             <form method="post" action="서버의url" id="login-form">
-                <input type="text" name="userName" placeholder="아이디" id="userid">
-                <input type="password" name="userPassword" placeholder="비밀번호" id="userpw">
-                <input type="submit" value="로그인" id="signinbtn" onclick="popup()">
+                <label for="username">사용자ID </label><input type="text" name="userName" placeholder="아이디" id="username"><br>
+                <label for="password">비밀번호 </label><input type="password" name="userPassword" placeholder="비밀번호" id="password">
+                <input type="submit" value="로그인" id="signinbtn">
                 <button type="button" class="SignUp" onclick="location.href='SignUp.html'">회원가입</button>
             </form>
         </div>
-        <script type="text/javascript" src="../js/Login.js"></script>
     </body>
 </html>
