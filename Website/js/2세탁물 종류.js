@@ -3,9 +3,11 @@ $(function (){
         var chkValue = $('input[type=checkbox][name="type"]:checked').val();
         if(chkValue == '가방'){
             $('.next').attr('onclick',"location.href='4색상.html'");
+            $('.prev1').attr('onclick',"location.href='2세탁물 종류.html'");
         }
-        else {
+        else{
             $('.next').attr('onclick',"location.href='3소재.html'");
+            
         }
     });
     $('input[type="checkbox"][name="type"][value="신발"]').on('click', function(){
@@ -23,4 +25,5 @@ $(function (){
             $('.next').attr('onclick',"location.href='3소재.html'");
         }
     });
+    
 });

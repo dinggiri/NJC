@@ -277,6 +277,13 @@ hr {
     font-weight: bold;
 }
 
+.mid-num_post {
+    margin-left: 82%;
+    margin-bottom: -1%;
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .article {
     width: 500px;
     border: 1px solid #0B6DB7;
@@ -366,8 +373,44 @@ hr {
     font-weight: bold;
 }
 
-.search {
+.prev1 {
     background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 250%;
+    width: 10%;
+    height: 20%;
+    float: left;
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.prev1:hover {
+    font-weight: bold;
+}
+
+.mid-search {
+    background-color: rebeccapurple;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 250%;
+    width: 10%;
+    height: 20%;
+    float: right;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.mid-search:hover {
+    font-weight: bold;
+}
+
+.search {
+    background-color: rebeccapurple;
 	border-radius: 6px;
 	cursor: pointer;
 	color: white;
