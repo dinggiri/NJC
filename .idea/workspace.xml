@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6c9bebf-fc46-4390-974e-c7ebaa5df953" name="Changes" comment="1/16" />
+    <list default="true" id="b6c9bebf-fc46-4390-974e-c7ebaa5df953" name="Changes" comment="1/19">
+      <change afterPath="$PROJECT_DIR$/Website/html/4.1색상.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Website/html/4색상.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/4색상.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Website/js/2세탁물 종류.js" beforeDir="false" afterPath="$PROJECT_DIR$/Website/js/2세탁물 종류.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Website/js/4색상.js" beforeDir="false" afterPath="$PROJECT_DIR$/Website/js/4색상.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,17 +37,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Desktop/한양대학교/k99/NJC/Test&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/user/Desktop/한양대학교/k99/NJC/Website/html"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\user\Desktop\한양대학교\k99\NJC\Website\html" />
       <recent name="C:\Users\user\Desktop\한양대학교\k99\NJC\Test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -327,7 +334,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673960326952</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="1/19">
+      <created>1674114101834</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1674114101834</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -350,6 +364,7 @@
     <MESSAGE value="0112" />
     <MESSAGE value="1/12" />
     <MESSAGE value="1/16" />
-    <option name="LAST_COMMIT_MESSAGE" value="1/16" />
+    <MESSAGE value="1/19" />
+    <option name="LAST_COMMIT_MESSAGE" value="1/19" />
   </component>
 </project>
