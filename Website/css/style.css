@@ -684,3 +684,53 @@ hr {
 .QA .실전사례:hover {
     background-color: rebeccapurple;
 }
+
+.search_wrapper {
+    height: 45px;
+    width: 600px;
+    border: 2px solid #0B6DB7;
+    margin-top: 5%;
+    margin-left: 25%;
+}
+
+.search_box {
+    font-size: 20px;
+    width: 325px;
+    border: 0px;
+    outline: none;
+    padding: 10px;
+    float: left;
+}
+
+.search_btn {
+    width: 100px;
+    height: 100%;
+    border: 0px;
+    background: #0B6DB7;
+    outline: none;
+    float: right;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.search_btn:hover {
+    font-weight: bold;
+}
+
+.QA_category {
+    margin-left: 40%;
+}
+
+.QA_category > button {
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 20px;
+    width: 110px;
+    height: 40px;
+    margin-left: 1%;
+}
+
+.QA_category > button:hover{
+    font-weight: bold
+}
