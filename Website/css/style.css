@@ -335,6 +335,7 @@ hr {
     font-size: 50px;
     margin-top: 5%;
     margin-left: 30%;
+    font-weight: bold;
 }
 
 .next {
@@ -475,7 +476,7 @@ hr {
 }
 
 /* 세탁물종류 */
-.checkbox2  {
+.checkbox2 {
     margin-top: 3%;
     margin-left: 30%;
 }
@@ -492,8 +493,9 @@ hr {
 }
 
 /* 소재 */
-.checkbox3 > li {
-    text-align: center;
+.checkbox3 {
+    margin-top: 3%;
+    margin-left: 30%;
 }
 
 .checkbox3 > li> label {
@@ -508,13 +510,13 @@ hr {
 }
 
 /* 색상 */
-.checkbox4 > li {
+.checkbox4 {
     margin-top: 3%;
-    margin-left: 30%;
+    margin-left: 37%;
 }
 
 .checkbox4 > li> label {
-    font-size: 300%;
+    font-size: 350%;
     font-weight: bold;
 }
 
@@ -549,8 +551,8 @@ hr {
 
 .checkbox6 > label > input {
     border-radius: 50%;
-    width: 2em;
-    height: 2em;
+    width: 3em;
+    height: 3em;
 }
 
 .checkbox6 {
