@@ -273,7 +273,9 @@ hr {
 
 .num_post {
     margin-top: 1%;
-    margin-left: 2%;
+    margin-left: 44%;
+    margin-bottom: -1%;
+    font-size: 25px;
     font-weight: bold;
 }
 
@@ -300,7 +302,7 @@ hr {
 .pagination {
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 45%;
+    margin-left: 44%;
     transform: translateX(-30%);
 }
 
@@ -322,6 +324,17 @@ hr {
     padding: 1px;
 }
 
+.nickname {
+    font-size: 20px;
+}
+
+.post {
+    font-size: 25px;
+}
+
+.url {
+    font-size: 17px;
+}
 
 /* 실전사례 검색 공통 */
 .category {
