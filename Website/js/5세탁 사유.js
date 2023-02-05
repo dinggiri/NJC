@@ -20,4 +20,10 @@ $(function (){
         }else{$('#etc_item').css('display','none');
         }
     });
+    $('.next').on('click', function(){
+        var chkLength = $('input[type=checkbox][name="reason"]:checked').length;
+        if(chkLength < 1){
+            alert("하나 이상 체크해주세요");
+        }
+    });
 });

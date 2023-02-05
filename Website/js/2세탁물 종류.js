@@ -23,5 +23,10 @@ $(function (){
             $('.next').attr('onclick',"location.href='3소재.html'");
         }
     });
-    
+    $('.next').on('click', function(){
+        var chkLength = $('input[type=checkbox][name="type"]:checked').length;
+        if(chkLength < 1){
+            alert("하나 이상 체크해주세요");
+        }
+    });
 });
