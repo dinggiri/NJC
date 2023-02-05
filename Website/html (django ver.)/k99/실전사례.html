@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>실전사례 포스트</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="menu_top">
+      <a href="{% url 'k99:main' %}">
+        <img class="img" src="{% static 'K99.jpg' %}" >
+      </a><br>
+        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
+        <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
+      <div>
+        <span class="hello">(회원이름)님 안녕하세요!</span>
+          <button class="logout" type="button" onclick="window.open('{% url 'k99:main' %}', '_self')">로그아웃</button>
+      </div>
+    </div>
+    <p class="num_post">총 {{ count }}건의 검색결과</p>
+    <section>
+        <article class="article">
+            <p class="nickname">밴드 닉네임</p>
+            <img class="post_img" src="{% static 'test_img.jpg' %}" alt="" />
+            <p class="post">
+                (본문 글)
+            </p>
+            <hr>
+            <p class="url">
+                더 자세한 내용을 확인하고 싶다면 아래 링크를 클릭해 주세요.<br>
+                해당 게시물 밴드 주소
+            </p>
+        </article>
+    </section>
+    <hr>
+    <div class="page-nav">
+        <nav>
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">«</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><a class="page-link" href="#">6</a></li>
+            <li class="page-item"><a class="page-link" href="#">7</a></li>
+            <li class="page-item"><a class="page-link" href="#">8</a></li>
+            <li class="page-item"><a class="page-link" href="#">9</a></li>
+            <li class="page-item"><a class="page-link" href="#">10</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">»</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+    </div>
+</body>
+</html>

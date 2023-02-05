@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>질문답변</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="QA">
+    <div class="menu_top">
+        <a href="main.html">
+          <img class="img" src="../img/K99.jpg" >
+        </a><br>
+        <button class="실전사례" type="button" onclick="location.href='1혼합세탁.html'">세탁방법</button>
+        <button class="질문답변" type="button" onclick="location.href='질문답변.html'">Q & A</button>
+        <div>
+          <span class="hello">(회원이름)님 안녕하세요!</span>
+          <button class="logout" type="button" onclick="location.href='Login.html'">로그아웃</button>
+        </div>
+    </div>
+    <div>
+        <form method="post" action="서버의url" id="search-form">
+            <div class="search_wrapper">
+                <input class="search_box" type="text" placeholder=" 검색어 입력">
+                <button class="search_btn" type="submit">검색</button>
+            </div><br>
+            <div class="QA_category">
+                <button type="button">#세탁방법</button>
+                <button type="button">#세탁약품</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
