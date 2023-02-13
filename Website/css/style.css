@@ -4,6 +4,21 @@
     border: 0;
 }
 
+/* 인트로 */
+.intro {
+    text-align: center;
+}
+
+.introimg {
+    width: 12%;
+    height: 10%;
+    align-items: center;
+}
+
+.vid {
+    width: 70%;
+}
+
 /* 로그인 */
 .login{
     font-size: 14px;
@@ -287,7 +302,7 @@ hr {
 }
 
 .article {
-    width: 500px;
+    width: 1000px;
     border: 1px solid #0B6DB7;
     margin-top: 30px;
     margin-left: 50%;
@@ -295,8 +310,12 @@ hr {
     transform: translateX(-50%);
 }
 
-.article .post_img {
-    width: 100%;
+.article .post_img_wrapper {
+    text-align: center;
+}
+
+.article .post_img_wrapper .post_img {
+    width: 40%;
 }   
 
 .pagination {
