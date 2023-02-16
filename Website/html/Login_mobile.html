@@ -7,9 +7,13 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>모바일로그인</title>
         <link rel="stylesheet" href="../css/Login_mobile.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
     <body class="login">
-        <img class="welcome" src="../img/K99.jpg">
+        <div class="intro_top">
+            <img class="welcome" src="../img/K99.jpg"><br>
+            <button class="show_info">회원가입/로그인 안내</button>
+        </div>
         <div class="login-wrapper">
             <h2>로그인</h2>
             <form method="post" action="서버의url" id="login-form">
@@ -20,10 +24,13 @@
             </form>
         </div>
 
-    <section class="info">
-        <img src="../img/infoimg1.png" alt="회원가입 안내1">
-        <img src="../img/infoimg2.png" alt="회원가입 안내2">
-        <img src="../img/infoimg3.png" alt="로그인 안내">
-    </section>
+        <section class="info_page">
+            <div class="info_wrapper">
+                <img class="info_img" src="../img/infoimg1.png" alt="회원가입 안내1">
+                <img class="info_img" src="../img/infoimg2.png" alt="회원가입 안내2">
+                <img class="info_img" src="../img/infoimg3.png" alt="로그인 안내">
+            </div>
+        </section>
+        <script type="text/javascript" src="../js/Login_mobile.js"></script>
     </body>
 </html>
