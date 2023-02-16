@@ -1,0 +1,88 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+/* 로그인 */
+.login{
+    width: 100%;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+.welcome{
+    margin: 50px 0px 30px 0px;
+    width: 20%;
+    height: 15%;
+}
+
+.login-wrapper{
+    height: 300px;
+    padding: 0px;
+    box-sizing: border-box;
+    margin: 0px 0px;
+}
+
+.login-wrapper > h2{
+    font-size: 24px;
+    color: black;
+    margin-bottom: 20px;
+}
+
+#login-form > input[type="text"]{
+    width: 60%;
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: #F8F8F8;
+}
+
+#login-form > input[type="password"]{
+    width: 60%;
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: #F8F8F8;
+}
+
+#login-form > input{
+    width: 70%;
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: #F8F8F8;
+}
+
+#login-form > input::placeholder{
+    color: #D2D2D2;
+}
+
+#login-form > input[type="submit"]{
+    color: #fff;
+    font-size: 16px;
+    background-color: #0B6DB7;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+#login-form > button[type="button"] {
+	background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: #ffffff;
+	font-size: 16px;
+    width: 70%;
+    height: 42px;
+}
+
+#login-form > label{
+    color: #999999;
+}
