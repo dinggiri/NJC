@@ -289,7 +289,7 @@ hr {
 
 .num_post {
     margin-top: 1%;
-    margin-left: 44%;
+    text-align: center;
     margin-bottom: -1%;
     font-size: 25px;
     font-weight: bold;
@@ -303,33 +303,42 @@ hr {
 }
 
 .article {
-    width: 100%;
-    border: 1px solid #0B6DB7;
-    margin-top: 30px;
+    width: 80%;
+    border: 3px solid #0B6DB7;
+    margin-top: 50px;
     margin-left: 50%;
     margin-bottom: 50px;
     transform: translateX(-50%);
 }
+
 .article .post_img_wrapper {
     text-align: center;
+    margin-top: 1%;
 }
 
 .article .post_img_wrapper .post_img {
     width: 40%;
 }
 
+.article > h3 {
+    text-align: center;
+    font-size: 25px;
+}
+
 .post {
-    margin-left: 5%;
+    margin-left: 2%;
     width: 90%;
     font-size: 25px;
     line-height: 70px;
 }
 
 .url {
-    margin-left: 5%;
+    margin-left: 2%;
     width: 93%;
     font-size: 17px;
-    line-height: 50px;
+    line-height: 180%;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 .pagination {
@@ -795,4 +804,13 @@ hr {
 .QA_category > button:hover{
     font-weight: bold;
     background-color: #A9A9A9;
+}
+
+/* 회원가입안내 */
+.QA > p {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 180%;
+    margin-top: 15%;
 }

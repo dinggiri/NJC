@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입안내</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="QA">
     <div class="menu_top">
@@ -17,6 +17,7 @@
           <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
         </div>
     </div>
-    <p><b>더 이용할라면 회원이 되셔야 합니다.</b>></p>
+    <p> 준회원 홈페이지 사용은 여기까지 제한됩니다.<br>
+        더 많은 검색을 원하신다면 정회원 승인을 받은 후 이용해 주십시오.</p>
 </body>
 </html>

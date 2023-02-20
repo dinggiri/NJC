@@ -4,27 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6c9bebf-fc46-4390-974e-c7ebaa5df953" name="Changes" comment="실전사례 css 약간 수정">
-      <change afterPath="$PROJECT_DIR$/Website/html/0회원가입안내.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Website/html/2세탁물 종류(중복).html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Website/html/질문답변_detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Website/html/질문답변_카테고리.html" afterDir="false" />
+    <list default="true" id="b6c9bebf-fc46-4390-974e-c7ebaa5df953" name="Changes" comment="css 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Website/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Website/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/html (django ver.)/k99/2세탁물 종류(중복).html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html (django ver.)/k99/2세탁물 종류(중복).html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/html/1혼합세탁.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/1혼합세탁.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/html/2세탁물 종류.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/2세탁물 종류.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/html/3.1신발.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/3.1신발.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/html/3소재.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/3소재.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/html/3안감.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/html/4.1색상.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/4.1색상.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/html/4색상.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/4색상.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/html/5세탁 사유.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/5세탁 사유.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/html/6명품.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/6명품.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/html/Posttest.html" beforeDir="false" afterPath="$PROJECT_DIR$/Test/Posttest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/html/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/html/실전사례.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/실전사례.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/html/질문답변.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/질문답변.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Website/html/0회원가입안내.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/0회원가입안내.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,15 +48,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/user/Desktop/한양대학교/K99/NJC/Website/html"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Desktop/한양대학교/K99/NJC/Website/html&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\user\Desktop\한양대학교\K99\NJC\Website\html" />
@@ -405,7 +388,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675061889991</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="css 수정">
+      <created>1676878073717</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1676878073717</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -433,6 +423,7 @@
     <MESSAGE value="1/26" />
     <MESSAGE value="1/29" />
     <MESSAGE value="검색건수 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="검색건수 수정" />
+    <MESSAGE value="css 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="css 수정" />
   </component>
 </project>
