@@ -254,14 +254,14 @@ hr {
 	font-size: 20px;
     width: 110px;
     height: 40px;
-    margin-left: 10px;   
+    margin-left: 10px;
 }
 
 .menu_top .질문답변:hover {
     background-color: rebeccapurple;
 }
 
-.menu_top > div { 
+.menu_top > div {
     display: inline;
     float: right;
 }
@@ -315,7 +315,7 @@ hr {
 
 .article .post_img_wrapper .post_img {
     width: 40%;
-}   
+}
 
 .post {
     margin-left: 5%;
@@ -339,7 +339,7 @@ hr {
     transform: translateX(-30%);
 }
 
-.pagination > li {    
+.pagination > li {
     font-size: 20px;
     list-style: none;
     margin-bottom: 5px;
@@ -483,7 +483,7 @@ hr {
     text-align: center;
 }
 
-.white_item { 
+.white_item {
     display: none;
 }
 
@@ -599,7 +599,7 @@ hr {
 }
 
 /* 세부사유 */
-.col_reason_item { 
+.col_reason_item {
     display: none;
     text-align: center;
 }
@@ -631,7 +631,7 @@ hr {
     height: 2em;
 }
 
-.blemish_item { 
+.blemish_item {
     display: none;
     text-align: center;
 }
@@ -662,7 +662,7 @@ hr {
     width: 2em;
     height: 2em;
 }
-.etc_item { 
+.etc_item {
     display: none;
     text-align: center;
 }
