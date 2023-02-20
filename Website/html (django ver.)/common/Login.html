@@ -20,7 +20,6 @@
                 <label for="username">사용자ID </label><input type="text" name="username" placeholder="아이디" id="username" value="{{ form.username.value|default_if_none:'' }}"><br>
                 <label for="password">비밀번호 </label><input type="password" name="password" placeholder="비밀번호" id="password" value="{{ form.password.value|default_if_none:'' }}">
                 <input type="submit" value="로그인" id="signinbtn">
-                <button type="button" class="SignUp" onclick="location.href='SignUp.html'">회원가입</button>
             </form>
         </div>
     </body>

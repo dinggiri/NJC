@@ -15,8 +15,8 @@
         <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
         <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
         <div>
-            <span class="hello">(회원이름)님 안녕하세요!</span>
-          <button class="logout" type="button" onclick="window.open('{% url 'k99:main' %}', '_self')">로그아웃</button>
+            <span class="hello">{{ username }}님 안녕하세요!</span>
+          <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
         </div>
     </div>
     <p class="mid-num_post">총 {{ count }}건의 검색결과</p>
@@ -33,11 +33,11 @@
         </li>
         <div class="move">
             <button class="prev" type="submit" name="prev" formaction="{% url 'k99:clothes' %}">이전</button>
-            <button class="mid-search" type="submit" onclick="window.open('{% url 'k99:recipe' %}','_self')">조회</button>
+            <button class="mid-search" name="mid-search" type="submit">조회</button>
             <button class="next" type="submit" name="next" formaction="{% url 'k99:color' %}">다음</button>
         </div>
     </form>
 
-    <script type="text/javascript" src="{% static '4색상.js' %}"></script>
+    <script type="text/javascript" src="{% static '4 색상.js' %}"></script>
 </body>
 </html>

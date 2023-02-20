@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Intro</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="intro">
+        <a href="main.html">
+            <img class="introimg" src="{% static 'K99.jpg' %}" >
+        </a><br>
+        <video class="vid" muted controls autoplay>
+        <source src="{% static 'intro.mp4' %}" type="video/mp4">
+        <strong>Your browser does not support the video tag.</strong>
+        </video>
+    </div>
+
+
+
+
+
+
+
+    <script type="text/javascript" src="{% static '0인트로.js' %}"></script>
+</body>
+</html>

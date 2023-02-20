@@ -15,8 +15,8 @@
             <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
             <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
             <div>
-                <span class="hello">(회원이름)님 안녕하세요!</span>
-              <button class="logout" type="button" onclick="window.open('{% url 'k99:main' %}', '_self')">로그아웃</button>
+                <span class="hello">{{ username }}님 안녕하세요!</span>
+              <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
             </div>
         </div>
         <div class="category">혼합세탁</div>
@@ -30,10 +30,10 @@
                 <label>&emsp;흰색 미포함 <input type="radio" name="mix_white" value="false"></label>
             </div>
             <div class="move">
-                <button class="mid-search" type="submit" onclick="window.open('{% url 'k99:recipe' %}', '_self')">조회</button>
+                <button class="mid-search" name="mid-search" type="submit">조회</button>
                 <button class="next" name="next" type="submit">다음</button>
             </div>
         </form>
-        <script type="text/javascript" src="{% static '1 혼합세탁.js' %}"></script>
+        <script type="text/javascript" src="{% static '1혼합세탁.js' %}"></script>
     </body>
 </html>
