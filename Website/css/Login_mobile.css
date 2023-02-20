@@ -13,13 +13,18 @@
 
 .show_info {
     background-color: #0B6DB7;
-	border-radius: 6px;
+	border-radius: 4px;
 	cursor: pointer;
 	color: white;
 	width: 170px;
-    height: 30%;
+    height: 25px;
     margin-left: 50%;
     font-size: 15px;
+}
+
+.show_info:hover {
+    font-weight: bold;
+    background-color: rebeccapurple;
 }
 
 .info_page {
@@ -114,6 +119,11 @@
     cursor: pointer;
 }
 
+#login-form > input[type="submit"]:hover{
+    font-weight: bold;
+    background-color: rebeccapurple;
+}
+
 #login-form > button[type="button"] {
 	background-color: #0B6DB7;
 	border-radius: 6px;
@@ -122,6 +132,11 @@
 	font-size: 16px;
     width: 70%;
     height: 42px;
+}
+
+#login-form > button[type="button"]:hover{
+    font-weight: bold;
+    background-color: rebeccapurple;
 }
 
 #login-form > label{
