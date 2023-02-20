@@ -9,6 +9,7 @@
     width: 100%;
     float: left;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .show_info {
@@ -113,7 +114,7 @@
 
 #login-form > input[type="submit"]{
     color: #fff;
-    font-size: 16px;
+    font-size: 20px;
     background-color: #0B6DB7;
     margin-top: 5px;
     cursor: pointer;
@@ -129,7 +130,7 @@
 	border-radius: 6px;
 	cursor: pointer;
 	color: #ffffff;
-	font-size: 16px;
+	font-size: 20px;
     width: 70%;
     height: 42px;
 }
