@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입안내</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body class="QA">
+    <div class="menu_top">
+        <a href="{% url 'k99:main' %}">
+          <img class="img" src="{% static 'K99.jpg' %}" >
+        </a><br>
+        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
+        <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
+        <div>
+          <span class="hello">{{ username }}님 안녕하세요!</span>
+          <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
+        </div>
+    </div>
+    <p><b>더 이용할라면 회원이 되셔야 합니다.</b>></p>
+</body>
+</html>

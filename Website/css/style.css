@@ -181,8 +181,8 @@ hr {
 
 #main-form > div {
     text-align: center;
-    margin-right: 3%;
-    margin-top: 2%;
+    margin: auto;
+    display: block;
 }
 
 .main_logout {
@@ -194,8 +194,9 @@ hr {
 	font-size: 14px;
     width: 80px;
     height: 30px;
-    margin-left: 47%;
+    margin: auto;
     margin-top: 1%;
+    display: block;
 }
 
 .main_logout:hover {
@@ -516,6 +517,9 @@ hr {
 /* 세탁물종류 */
 .checkbox2 {
     margin-top: 3%;
+}
+
+.checkbox2 > li {
     margin-left: 30%;
 }
 
@@ -533,6 +537,9 @@ hr {
 /* 소재 */
 .checkbox3 {
     margin-top: 3%;
+}
+
+.checkbox3 > li {
     margin-left: 30%;
 }
 
@@ -550,7 +557,10 @@ hr {
 /* 색상 */
 .checkbox4 {
     margin-top: 3%;
-    margin-left: 37%;
+}
+
+.checkbox4> li {
+    margin-left: 30%;
 }
 
 .checkbox4 > li> label {
@@ -565,8 +575,11 @@ hr {
 }
 
 /* 세탁사유 */
-.checkbox5  {
+.checkbox5 {
     margin-top: 3%;
+}
+
+.checkbox5 > li {
     margin-left: 30%;
 }
 
@@ -759,18 +772,27 @@ hr {
 }
 
 .QA_category {
-    margin-left: 40%;
+    margin-top: 6%;
+}
+
+.QA_category > p {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .QA_category > button {
 	border-radius: 6px;
+    background-color: #DCDCDC;
 	cursor: pointer;
-	font-size: 20px;
-    width: 110px;
-    height: 40px;
-    margin-left: 1%;
+	font-size: 30px;
+    width: 220px;
+    height: 60px;
+    margin: auto;
+    display: block;
 }
 
 .QA_category > button:hover{
-    font-weight: bold
+    font-weight: bold;
+    background-color: #A9A9A9;
 }

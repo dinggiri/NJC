@@ -9,73 +9,84 @@
 </head>
 <body>
     <div class="menu_top">
-      <a href="main.html">
-        <img class="img" src="../img/K99.jpg" >
+      <a href="{% url 'k99:main' %}">
+        <img class="img" src="{% static 'K99.jpg' %}" >
       </a><br>
-      <button class="실전사례" type="button" onclick="location.href='1혼합세탁.html'">세탁방법</button>
-      <button class="질문답변" type="button" onclick="location.href='질문답변.html'">Q & A</button>
+        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
+        <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
       <div>
-        <span class="hello">(회원이름)님 안녕하세요!</span>
-        <button class="logout" type="button" onclick="location.href='Login.html'">로그아웃</button>
+        <span class="hello">{{ username }}님 안녕하세요!</span>
+          <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
       </div>
     </div>
-    <p class="num_post">총 10건의 검색결과</p>
-    <section>
-        <article class="article">
-            <div class="post_img_wrapper">
-                <a href="../img/test_img1.jpg" data-fancybox data-caption="1/6">
-                    <img class="post_img" src="../img/test_img1.jpg" alt="" />
-                </a>
-                <a href="../img/test_img2.jpg" data-fancybox data-caption="2/6">
-                    <img class="post_img" src="../img/test_img2.jpg" alt="" />
-                </a>
-                <a href="../img/test_img3.jpg" data-fancybox data-caption="3/6">
-                    <img class="post_img" src="../img/test_img3.jpg" alt="" />
-                </a>
-                <a href="../img/test_img4.jpg" data-fancybox data-caption="4/6">
-                    <img class="post_img" src="../img/test_img4.jpg" alt="" />
-                </a>
-                <a href="../img/test_img5.jpg" data-fancybox data-caption="5/6">
-                    <img class="post_img" src="../img/test_img5.jpg" alt="" />
-                </a>
-                <a href="../img/test_img6.jpg" data-fancybox data-caption="6/6">
-                    <img class="post_img" src="../img/test_img6.jpg" alt="" />
-                </a>
-            </div>
-            <p class="post">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </p>
-            <hr>
-            <p class="url">
-                더 자세한 내용을 확인하고 싶다면 아래 링크를 클릭해 주세요.<br>
-                해당 게시물 밴드 주소
-            </p>
-        </article>
-    </section>
+    <p class="num_post">총 {{ count }}건의 검색결과</p>
+
+    {% if post_list %}
+    {% for post in post_list %}
+        <section>
+            <article class="article">
+                <div class="post_img_wrapper">
+                    {% for img in post.1 %}
+                        <a href="{{ img }}" data-fancybox data-caption="{{ forloop.counter }}/{{ post.1|length }}">
+                            <img class="post_img" src="{{ img }}" alt="" />
+                        </a>
+                    {% endfor %}
+                </div>
+                <p class="post">
+                    {{ post.0.content }}
+                </p>
+                <hr>
+                <p class="url">
+                    더 자세한 내용을 확인하고 싶다면 아래 링크를 클릭해 주세요.<br>
+                    <a href="https://band.us/band/86069680/post/{{ post.0.pid }}">https://band.us/band/86069680/post/{{ post.0.pid }}</a>
+                </p>
+            </article>
+        </section>
+    {% endfor %}
+    {% else %}
+    <tr>
+        <td colspan="3">검색결과가 없습니다.</td>
+    </tr>
+    {% endif %}
+
     <hr>
     <div class="page-nav">
         <nav>
-          <ul class="pagination">
+          <ul class="pagination justify-content-center">
+            <!-- 이전페이지 -->
+            {% if post_list.has_previous %}
             <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">«</span>
-              </a>
+              <a class="page-link" href="?page={{ post_list.previous_page_number }}" aria-label="Previous">«</a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item"><a class="page-link" href="#">6</a></li>
-            <li class="page-item"><a class="page-link" href="#">7</a></li>
-            <li class="page-item"><a class="page-link" href="#">8</a></li>
-            <li class="page-item"><a class="page-link" href="#">9</a></li>
-            <li class="page-item"><a class="page-link" href="#">10</a></li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" aria-label="Previous" href="#">«</a>
+            </li>
+            {% endif %}
+            <!-- 페이지리스트 -->
+            {% for page_number in post_list.paginator.page_range %}
+            {% if page_number >= post_list.number|add:-5 and page_number <= post_list.number|add:5 %}
+            {% if page_number == post_list.number %}
+            <li class="page-item active" aria-current="page">
+                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% else %}
             <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">»</span>
-              </a>
+                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
             </li>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            <!-- 다음페이지 -->
+            {% if post_list.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ post_list.next_page_number }}" aria-label="Next">»</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" aria-label="Next" href="#">»</a>
+            </li>
+            {% endif %}
           </ul>
         </nav>
     </div>

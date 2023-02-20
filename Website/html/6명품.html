@@ -8,30 +8,31 @@
 </head>
 <body>
     <div class="menu_top">
-        <a href="main.html">
-          <img class="img" src="../img/K99.jpg" >
+        <a href="{% url 'k99:main' %}">
+          <img class="img" src="{% static 'K99.jpg' %}" >
         </a><br>
-        <button class="실전사례" type="button" onclick="location.href='1혼합세탁.html'">세탁방법</button>
-        <button class="질문답변" type="button" onclick="location.href='질문답변.html'">Q & A</button>
+        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
+        <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
         <div>
-            <span class="hello">(회원이름)님 안녕하세요!</span>
-          <button class="logout" type="button" onclick="location.href='Login.html'">로그아웃</button>
+            <span class="hello">{{ username }}님 안녕하세요!</span>
+          <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
         </div>
     </div>
-    <p class="mid-num_post">총 10건의 검색결과</p>
+    <p class="mid-num_post">총 {{ count }}건의 검색결과</p>
     <div class="category">명품</div>
-    <form class="checkbox6">
-        <label>예 <input type="radio" name="named" value="yes" unchecked></label>
-        <label>&emsp; 아니오 <input type="radio" name="named" value="no" unchecked></label>
+    <form class="checkbox6" method="post">
+        {% csrf_token %}
+        <label>예 <input type="radio" name="named" value="true" unchecked></label>
+        <label>&emsp; 아니오 <input type="radio" name="named" value="false" unchecked></label>
+        <div class="move">
+            <button class="prev" type="submit" name="prev" formaction="{% url 'k99:issue' %}">이전</button>
+            <button class="mid-search" type="submit" formaction="{% url 'k99:luxury' %}">조회</button>
+        </div>
     </form>
     </div>
-    <div class="move">
-        <button class="prev" type="button" onclick="location.href='5세탁 사유.html'">이전</button>
-        <button class="mid-search" type="button" onclick="location.href='실전사례.html'">조회</button>
-    </div>
 
 
 
-    <script type="text/javascript" src="../js/6명품.js"></script>
+    <script type="text/javascript" src="{% static '6명품.js' %}"></script>
 </body>
 </html>
