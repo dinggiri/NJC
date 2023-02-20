@@ -1,7 +1,7 @@
 $(function (){
     setInterval(function(){
         if($(".vid").prop("ended")){
-        location.href="Login.html"
+        location.href="login"
         }
     },200);
 
