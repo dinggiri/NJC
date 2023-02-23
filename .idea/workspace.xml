@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6c9bebf-fc46-4390-974e-c7ebaa5df953" name="Changes" comment="css 수정">
-      <change beforePath="$PROJECT_DIR$/Website/css/Login_mobile.css" beforeDir="false" afterPath="$PROJECT_DIR$/Website/css/Login_mobile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/html/Login_mobile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/Login_mobile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -408,7 +407,21 @@
       <option name="project" value="LOCAL" />
       <updated>1676883461009</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="css 수정">
+      <created>1676883873190</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1676883873190</updated>
+    </task>
+    <task id="LOCAL-00049" summary="css 수정">
+      <created>1677127250176</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1677127250176</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

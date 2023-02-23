@@ -12,6 +12,10 @@
     cursor: pointer;
 }
 
+.intro_img {
+    width: 200px;
+}
+
 .show_info {
     background-color: #0B6DB7;
 	border-radius: 4px;
@@ -29,7 +33,7 @@
 }
 
 .info_page {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     margin-top: 300px;

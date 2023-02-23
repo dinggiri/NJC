@@ -18,9 +18,9 @@
               <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
             </div>
         </div>
+        <button class="guide">사용법 안내</button>
         <div class="category">혼합세탁</div>
         <form class="checkbox1" method="post">
-            {% csrf_token %}
             <label>예 <input type="radio" name="mix" value="true" unchecked onclick='items(event)'></label>
             <label>&emsp;아니오 <input type="radio" name="mix" value="false" unchecked></label>
             <div class="white_item" id="white_item">
@@ -33,7 +33,12 @@
                 <button class="next" name="next" type="submit">다음</button>
             </div>
         </form>
-        <script type="text/javascript" src="{% static '1혼합세탁.js' %}"></script>
+        <script type="text/javascript" src="../js/1혼합세탁.js"></script>
+        <section class="guide_page">
+            <div class="guide_wrapper">
+                <img class="guide_img" src="../img/혼합세탁가이드.png" alt="혼합세탁 가이드">
+            </div>
+        </section>
     </body>
 </html>
 

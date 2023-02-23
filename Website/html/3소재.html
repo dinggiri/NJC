@@ -18,10 +18,10 @@
           <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
         </div>
     </div>
+    <button class="guide">사용법 안내</button>
     <p class="mid-num_post">총 {{ count }}건의 검색결과</p>
-    <div class="category">소재(겉감)</div>
+    <div class="category">소재</div>
     <form class="checkbox3" method="post">
-        {% csrf_token %}
         <li class="material"><label>&emsp;면 <input type="checkbox" name="material" value="면" unchecked></label></li>
         <li class="material"><label>&emsp;린넨 <input type="checkbox" name="material" value="린넨" unchecked></label></li>
         <li class="material"><label>&emsp;마(삼베, 모시) <input type="checkbox" name="material" value="마" unchecked></label></li>
@@ -48,6 +48,11 @@
         </div>
     </form>
 
-    <script type="text/javascript" src="{% static '3 소재.js' %}"></script>
+    <script type="text/javascript" src="../js/3소재.js"></script>
+    <section class="guide_page">
+        <div class="guide_wrapper">
+            <img class="guide_img" src="../img/소재가이드.png" alt="소재 가이드">
+        </div>
+    </section>
 </body>
 </html>

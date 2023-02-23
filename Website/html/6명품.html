@@ -18,10 +18,11 @@
           <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
         </div>
     </div>
+    <button class="guide">사용법 안내</button>
     <p class="mid-num_post">총 {{ count }}건의 검색결과</p>
     <div class="category">명품</div>
     <form class="checkbox6" method="post">
-        {% csrf_token %}
+        
         <label>예 <input type="radio" name="named" value="true" unchecked></label>
         <label>&emsp; 아니오 <input type="radio" name="named" value="false" unchecked></label>
         <div class="move">
@@ -33,6 +34,11 @@
 
 
 
-    <script type="text/javascript" src="{% static '6명품.js' %}"></script>
+    <script type="text/javascript" src="../js/6명품.js"></script>
+    <section class="guide_page">
+        <div class="guide_wrapper">
+            <img class="guide_img" src="../img/명품가이드.png" alt="명품 가이드">
+        </div>
+    </section>
 </body>
-</html>
+</html>ㄴ

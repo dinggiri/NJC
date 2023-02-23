@@ -18,10 +18,10 @@
           <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
         </div>
     </div>
+    <button class="guide">사용법 안내</button>
     <p class="mid-num_post">총 {{ count }}건의 검색결과</p>
     <div class="category">색상</div>
     <form class="checkbox4" method="post">
-        {% csrf_token %}
         <li class="color">
             <label>유색 <input type="radio" name="color" value="유색" unchecked></label>
             <label>&emsp;&emsp;흰색 <input type="radio" name="color" value="흰색" unchecked></label>
@@ -37,6 +37,12 @@
         </div>
     </form>
 
-    <script type="text/javascript" src="{% static '4 색상.js' %}"></script>
+    <script type="text/javascript" src="../js/4색상.js"></script>
+    <section class="guide_page">
+        <div class="guide_wrapper">
+            <img class="guide_img" src="../img/색상가이드.png" alt="색상 가이드">
+        </div>
+    </section>
+    
 </body>
 </html>
