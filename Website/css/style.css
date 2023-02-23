@@ -20,24 +20,75 @@
 }
 
 /* 로그인 */
+.intro_top {
+    width: 100%;
+    float: left;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.intro_img {
+    width: 200px;
+}
+
+.show_info {
+    background-color: #0B6DB7;
+	border-radius: 4px;
+	cursor: pointer;
+	color: white;
+	width: 170px;
+    height: 25px;
+    margin-left: 50%;
+    font-size: 15px;
+}
+
+.show_info:hover {
+    font-weight: bold;
+    background-color: rebeccapurple;
+}
+
+.info_page {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin-top: 300px;
+    width: 100%;
+    height: 100%;
+
+}
+
+.info_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    height: 600px;
+}
+
+.info_img {
+    width: 100%;
+    height: 100%;
+}
+
 .login{
+    width: 100%;
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
+    text-align: center;
 }
 
 .welcome{
-    margin: 330px 280px;
-    margin-left: 150px;
-    font-size: 30px;
-    font-weight: bold;
+    margin: 30px 0px 0px 0px;
+    width: 20%;
+    height: 15%;
 }
 
 .login-wrapper{
-    width: 600px;
     height: 300px;
     padding: 0px;
     box-sizing: border-box;
-    margin: -500px 900px;
+    padding-top: 100px;
 }
 
 .login-wrapper > h2{
@@ -47,7 +98,7 @@
 }
 
 #login-form > input[type="text"]{
-    width: 40%;
+    width: 60%;
     height: 48px;
     padding: 0 10px;
     box-sizing: border-box;
@@ -57,7 +108,7 @@
 }
 
 #login-form > input[type="password"]{
-    width: 40%;
+    width: 60%;
     height: 48px;
     padding: 0 10px;
     box-sizing: border-box;
@@ -67,7 +118,7 @@
 }
 
 #login-form > input{
-    width: 50%;
+    width: 70%;
     height: 48px;
     padding: 0 10px;
     box-sizing: border-box;
@@ -82,10 +133,15 @@
 
 #login-form > input[type="submit"]{
     color: #fff;
-    font-size: 16px;
+    font-size: 20px;
     background-color: #0B6DB7;
     margin-top: 5px;
     cursor: pointer;
+}
+
+#login-form > input[type="submit"]:hover{
+    font-weight: bold;
+    background-color: rebeccapurple;
 }
 
 #login-form > button[type="button"] {
@@ -93,9 +149,14 @@
 	border-radius: 6px;
 	cursor: pointer;
 	color: #ffffff;
-	font-size: 16px;
-    width: 50%;
+	font-size: 20px;
+    width: 70%;
     height: 42px;
+}
+
+#login-form > button[type="button"]:hover{
+    font-weight: bold;
+    background-color: rebeccapurple;
 }
 
 #login-form > label{

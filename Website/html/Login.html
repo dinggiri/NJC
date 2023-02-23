@@ -1,23 +1,35 @@
-<!doctype html>
+<!doctype html>info_img
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>로그인</title>
+        <title>모바일로그인</title>
         <link rel="stylesheet" href="../css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
     <body class="login">
-        <div class="welcome">K99 웹페이지를 방문해 주셔서 감사합니다.</div>
+        <div class="intro_top">
+            <img class="intro_img" src="../img/K99.jpg" href="{% url 'k99:main' %}"><br>
+            <button class="show_info">회원가입 / 로그인 안내</button>
+        </div>
         <div class="login-wrapper">
             <h2>로그인</h2>
             <form method="post" action="서버의url" id="login-form">
                 <label for="username">사용자ID </label><input type="text" name="userName" placeholder="아이디" id="username"><br>
-                <label for="password">비밀번호 </label><input type="password" name="userPassword" placeholder="비밀번호" id="password">
-                <input type="submit" value="로그인" id="signinbtn">
+                <label for="password">비밀번호 </label><input type="password" name="userPassword" placeholder="비밀번호" id="password"><br>
+                <input type="submit" value="로그인" id="signinbtn"><br>
                 <button type="button" class="SignUp" onclick="location.href='SignUp.html'">회원가입</button>
             </form>
         </div>
+        <section class="info_page">
+            <div class="info_wrapper">
+                <img class="info_img" src="../img/infoimg1.png" alt="회원가입 안내1">
+                <img class="info_img" src="../img/infoimg2.png" alt="회원가입 안내2">
+                <img class="info_img" src="../img/infoimg3.png" alt="로그인 안내">
+            </div>
+        </section>
+        <script type="text/javascript" src="../js/Login_mobile.js"></script>
     </body>
 </html>

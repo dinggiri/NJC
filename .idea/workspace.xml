@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6c9bebf-fc46-4390-974e-c7ebaa5df953" name="Changes" comment="가이드 이미지">
+    <list default="true" id="b6c9bebf-fc46-4390-974e-c7ebaa5df953" name="Changes" comment="안내문 삽입">
+      <change afterPath="$PROJECT_DIR$/Test/testt.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Website/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Website/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Website/html/6명품.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/6명품.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Website/html/Login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Website/html/Login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Website/html/Login_mobile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Website/js/testt.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,20 +82,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1672641224969</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Login initial">
-      <created>1672641757720</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1672641757720</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Login">
-      <created>1672736841457</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1672736841457</updated>
     </task>
     <task id="LOCAL-00005" summary="SignUP">
       <created>1672737769011</created>
@@ -423,12 +412,25 @@
       <option name="project" value="LOCAL" />
       <updated>1677133309275</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="가이드 css 추가">
+      <created>1677133851763</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1677133851764</updated>
+    </task>
+    <task id="LOCAL-00053" summary="안내문 삽입">
+      <created>1677133889825</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1677133889825</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Login initial" />
     <MESSAGE value="SignUP" />
     <MESSAGE value="SignUp" />
     <MESSAGE value="Login" />
@@ -451,8 +453,9 @@
     <MESSAGE value="1/29" />
     <MESSAGE value="검색건수 수정" />
     <MESSAGE value="css 수정" />
-    <MESSAGE value="안내문 삽입" />
     <MESSAGE value="가이드 이미지" />
-    <option name="LAST_COMMIT_MESSAGE" value="가이드 이미지" />
+    <MESSAGE value="가이드 css 추가" />
+    <MESSAGE value="안내문 삽입" />
+    <option name="LAST_COMMIT_MESSAGE" value="안내문 삽입" />
   </component>
 </project>
