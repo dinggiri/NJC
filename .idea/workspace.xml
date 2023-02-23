@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6c9bebf-fc46-4390-974e-c7ebaa5df953" name="Changes" comment="css 수정">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="b6c9bebf-fc46-4390-974e-c7ebaa5df953" name="Changes" comment="안내문 삽입">
+      <change afterPath="$PROJECT_DIR$/Website/img/라디오세탁물종류가이드.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Website/img/명품가이드.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Website/img/색상가이드.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Website/img/세탁사유가이드.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Website/img/소재가이드.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Website/img/신발소재가이드.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Website/img/혼합세탁가이드.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Website/img/혼합세탁물종류가이드.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,13 +84,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1672641224969</updated>
-    </task>
-    <task id="LOCAL-00001" summary="test">
-      <created>1672641269504</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1672641269504</updated>
     </task>
     <task id="LOCAL-00002" summary="test">
       <created>1672641304509</created>
@@ -421,7 +421,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677127250176</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="안내문 삽입">
+      <created>1677132969179</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1677132969180</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -450,6 +457,7 @@
     <MESSAGE value="1/29" />
     <MESSAGE value="검색건수 수정" />
     <MESSAGE value="css 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="css 수정" />
+    <MESSAGE value="안내문 삽입" />
+    <option name="LAST_COMMIT_MESSAGE" value="안내문 삽입" />
   </component>
 </project>
