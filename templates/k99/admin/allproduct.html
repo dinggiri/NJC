@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>k99 전체 상품 조회</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="menu_top">
+      <a href="{% url 'k99:main' %}">
+        <img class="img" src="{% static 'K99.jpg' %}" >
+      </a><br></div>
+    <h1>관리자님 환영합니다.</h1>
+    <h3>전체 상품 목록입니다.</h3>
+    <div class="container">
+        <table class="productsdata">
+            <tr>
+                <th>상품 id</th>
+                <th>상품 이름</th>
+                <th>상품 가격</th>
+            </tr>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.pid }}</td>
+                <td>{{ product.pname }}</td>
+                <td>{{ product.pprice }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

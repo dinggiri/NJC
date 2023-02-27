@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>메인화면</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+  </head>
+  <body class="main">
+    <a href="{% url 'k99:main' %}">
+      <img class="img" src="{% static 'K99.jpg' %}">
+    </a>
+    <h1>관리자님 반갑습니다.</h1>
+    <h3>원하시는 태그를 선택해 주세요.</h3><br>
+    <form id="main-form">
+      {% csrf_token %}
+      <div class="div">
+        <button class="등록" type="button" onclick="location.href='adding/'">사례관리</button>
+        <button class="btn" type="button" onclick="location.href='exportlog'">검색로그 다운로드</button>
+        <button class="상품조회" type="button" onclick="location.href='yearselect/'">상품조회</button>
+        <button class="회원사조회" type="button" onclick="location.href='customer/'">회원사조회</button>
+        <button class="상품및회원사관리" type="button" onclick="location.href='manage/'">상품및회원사관리</button>
+        <button class="구매내역입력" type="button" onclick="location.href='buy'">구매내역입력</button>
+        <button class="btn" type="button" onclick="location.href='export'">주문일지 다운로드</button>
+      </div>
+      <button class="main_logout" type="button" onclick="location.href={% url 'common:logout' %}">로그아웃</button>
+    </form>
+  </body>
+</html>
