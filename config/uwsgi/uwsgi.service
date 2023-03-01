@@ -12,5 +12,5 @@ StandardError=syslog
 NotifyAccess=all
 
 [Install]
-WantedBu=multi-user.target
+WantedBy=multi-user.target
 
