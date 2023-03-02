@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>색상</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="menu_top">
+        <a href="{% url 'k99:main' %}">
+          <img class="img" src="{% static 'K99.jpg' %}" >
+        </a><br>
+        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
+        <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
+        <div>
+            <span class="hello">{{ username }}님 안녕하세요!</span>
+          <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
+        </div>
+    </div>
+    <p class="mid-num_post">총 {{ count }}건의 검색결과</p>
+    <div class="category">색상</div>
+    <form class="checkbox4" method="post">
+        {% csrf_token %}
+        <li class="color">
+            <label>유색 <input type="radio" name="color" value="유색" unchecked></label>
+            <label>&emsp;&emsp;흰색 <input type="radio" name="color" value="흰색" unchecked></label>
+        </li><br>
+        <li class="color">
+            <label>배색 <input type="checkbox" name="color" value="배색" unchecked></label>
+            <label>&emsp;&emsp;프린팅 <input type="checkbox" name="color" value="프린팅" unchecked></label>
+        </li>
+        <div class="move">
+            <button class="prev" type="submit" name="prev" formaction="{% url 'k99:clothes' %}">이전</button>
+            <button class="mid-search" name="mid-search" type="submit">조회</button>
+            <button class="next" type="submit" name="next" formaction="{% url 'k99:color' %}">다음</button>
+        </div>
+    </form>
+
+    <script type="text/javascript" src="{% static '4 색상.js' %}"></script>
+</body>
+</html>

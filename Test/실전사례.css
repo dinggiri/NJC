@@ -1,0 +1,106 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+/* 실전사례 포스트 */
+.menu_top .img {
+    width: 12%;
+    height: 10%;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.menu_top {
+    margin-top: 10px;
+}
+
+.menu_top .실전사례 {
+    background-color: rebeccapurple;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 20px;
+    width: 110px;
+    height: 30px;
+    margin-left: 25px;
+}
+
+.menu_top .질문답변 {
+    background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 20px;
+    width: 110px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+.menu_top .질문답변:hover {
+    background-color: rebeccapurple;
+}
+
+.menu_top > div { 
+    display: inline;
+    float: right;
+}
+
+.menu > button:hover {
+    font-weight: bold;
+}
+
+.menu_top .logout {
+    background-color: white;
+	border-radius: 6px;
+	cursor: pointer;
+	color: black;
+	font-size: 16px;
+    width: 70px;
+    height: 30px;
+    margin-right: 70px;
+    margin-left: 20px;
+}
+
+.menu_top .logout:hover {
+    font-weight: bold;
+}
+
+.article {
+    width: 500px;
+    border: 1px solid #0B6DB7;
+    margin-top: 30px;
+    margin-left: 50%;
+    margin-bottom: 50px;
+    transform: translateX(-50%);
+}
+
+.pagination {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 50%;
+    transform: translateX(-30%);
+}
+
+.pagination > li {    
+    font-size: 20px;
+    list-style: none;
+    margin-bottom: 5px;
+    padding: 3px 10px;
+    border: 1px solid #dee2e6;
+    display: inline-block;
+}
+
+.page-link {
+    text-decoration: none;
+}
+
+hr {
+    border: 1px #dee2e6 solid;
+}
+
+.page-nav {
+    width: 98%;
+    padding: 1px;
+}

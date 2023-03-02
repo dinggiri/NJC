@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>혼합세탁</title>
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="menu_top">
+            <a href="{% url 'k99:main' %}">
+              <img class="img" src="{% static 'K99.jpg' %}" >
+            </a><br>
+            <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
+            <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
+            <div>
+                <span class="hello">{{ username }}님 안녕하세요!</span>
+              <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
+            </div>
+        </div>
+        <button class="guide">사용법 안내</button>
+        <div class="category">혼합세탁</div>
+        <form class="checkbox1" method="post">
+            <label>예 <input type="radio" name="mix" value="true" unchecked onclick='items(event)'></label>
+            <label>&emsp;아니오 <input type="radio" name="mix" value="false" unchecked></label>
+            <div class="white_item" id="white_item">
+                <span>흰색 포함 여부</span>
+                <label>흰색 포함 <input type="radio" name="mix_white" value="true"></label>
+                <label>&emsp;흰색 미포함 <input type="radio" name="mix_white" value="false"></label>
+            </div>
+            <div class="move">
+                <button class="mid-search" name="mid-search" type="submit">조회</button>
+                <button class="next" name="next" type="submit">다음</button>
+            </div>
+        </form>
+        <script type="text/javascript" src="../js/1혼합세탁.js"></script>
+        <section class="guide_page">
+            <div class="guide_wrapper">
+                <img class="guide_img" src="../img/혼합세탁가이드.png" alt="혼합세탁 가이드">
+            </div>
+        </section>
+    </body>
+</html>
+
+
+
+
+
+
+
+
