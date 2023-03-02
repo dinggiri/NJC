@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>k99 회원사 정보 수정</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    {% if error %}
+        <script type="text/javascript">
+            alert("{{ message|safe }}");
+            history.back();
+        </script>
+    {% else %}
+        <script type="text/javascript">
+        function btn(){
+            frm = document.frm;
+            if (frm.revkname.value ===""){
+                alert("회원사 이름을 입력해 주십시오.");
+                return false;
+            }
+            else {
+                alert('회원사 정보가 수정되었습니다.');
+                return true;
+            };
+        }
+
+    </script>
+        <div class="menu_top">
+      <a href="{% url 'k99:main' %}">
+        <img class="img" src="{% static 'K99.jpg' %}" >
+      </a><br></div>
+        <h1>관리자님 환영합니다.</h1>
+        <h3>{{ customer.kid }}번 회원사의 정보 변경 창입니다.</h3>
+        <h4>변경을 원하시면 id를 제외한 부분을 선택 후 변경해주십시오.</h4>
+        <form class="rev_customering" name="frm" action="{% url 'k99:revisecust' %}" method="POST">
+            {% csrf_token %}
+            <div class="appendbox">
+            <p class="rev_customer">회원 아이디 : </p><input class="productinput" type="text" name="revusername" value = "{{ customer.username }}">
+            <p class="rev_customer">회원 비밀번호 : </p><input class="productinput" id="readonly" type="text" name="revpassword" value = "{{ customer.real_pw }}">
+            <p class="rev_customer">회원 번호 : </p><input class="productinput" id="readonly" type="text" name="revkid" value = "{{ customer.kid }}" readonly/><label>번</label>
+            <p class="rev_customer">회원사 이름 : </p><input class="productinput" type="text" name="revkname" value = "{{ customer.kname }}" ><label></label>
+            <p class="rev_customer">회원사 주소(도) : </p><input class="productinput" type="text" name="revdoe" value = "{{ customer.doe }}" ><label></label>
+            <p class="rev_customer">회원사 주소(시/군/구) : </p><input class="productinput" type="text" name="revsigungu" value = "{{ customer.sigungu }}" ><label></label>
+            <p class="rev_customer">회원사 주소(동) : </p><input class="productinput" type="text" name="revdong" value = "{{ customer.dong }}" ><label></label>
+            <p class="rev_customer">회원사 주소(상세주소) : </p><input class="productinput" type="text" name="revsangse" value = "{{ customer.sangse }}" ><label></label>
+            <p class="rev_customer">회원사 상호 : </p><input class="productinput" type="text" name="revsname" value = "{{ customer.sname }}" ><label></label>
+            <p class="rev_customer">회원사 전화번호 : </p><input class="productinput" type="text" name="revcphone" value = "{{ customer.cphone }}" ><label></label>
+            <p class="rev_customer">회원사 우편번호 : </p><input class="productinput" type="text" name="revzipcode" value = "{{ customer.zipcode }}" ><label></label>
+            <p class="rev_customer">회원사 가입일 : </p><input class="productinput" id="readonly" type="text" name="revcdate" value = "{{ customer.cdate }}" readonly/><label></label>
+            <p class="rev_customer">회원사 만료일 : </p><input class="productinput" id="readonly" type="text" name="revedate_read" value = "{{ customer.edate }}" readonly/>
+                <input class="cdateinput"  type="date" name="revedate" value = "{{ customer.edate }}"><label></label>
+            <p class="rev_customer">정회원여부 : </p>
+
+            {% if customer.regular %}
+                <input name="beforerev" value="True" style="display:none">
+                <input type="radio" name="revregular" value = "True" checked><label>정회원</label>
+                <input type="radio" name="revregular" value = "False" ><label>준회원</label>
+            {% else %}
+                <input name="beforerev" value="False" style="display:none">
+                <input type="radio" name="revregular" value = "True" ><label>정회원</label>
+                <input type="radio" name="revregular" value = "False" checked><label>준회원</label>
+            {% endif %}
+            <div>
+            <button class="appendsubmit" type="submit" onclick="return btn();">회원사 수정</button>
+            </div>
+            </div>
+        </form>
+
+    {% endif %}
+</body>
+</html>

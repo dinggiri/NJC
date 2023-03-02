@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>k99 전체 회원사 조회</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<div class="menu_top">
+      <a href="{% url 'k99:main' %}">
+        <img class="img" src="{% static 'K99.jpg' %}" >
+      </a><br></div>
+    <h1>관리자님 환영합니다.</h1>
+    <h3>전체 회원사 목록입니다.</h3>
+    <div class="container">
+        <table class="customersdata">
+            <tr>
+                <th>K번호(회원id)</th>
+                <th>회원사 이름</th>
+                <th>회원사 주소(도)</th>
+                <th>회원사 주소(시/군/구)</th>
+                <th>회원사 주소(동)</th>
+                <th>회원사 주소(상세주소)</th>
+                <th>회원사 상호</th>
+                <th>회원사 전화번호</th>
+                <th>회원사 우편번호</th>
+                <th>회원사 가입일</th>
+                <th>회원사 만료일</th>
+                <th>부족량</th>
+                <th>정회원여부</th>
+            </tr>
+            {% for customer in customers %}
+
+            {% if customer.regular %}
+                {% if customer.residual < 20 and customer.residual != 0 %}
+                <tr bgcolor="#F5DCA8">
+                {% else %}
+                <tr bgcolor="#C2DFA5">
+                {% endif %}
+            {% else %}
+                <tr>
+            {% endif %}
+                <td>{{ customer.kid }}</td>
+                <td>{{ customer.kname }}</td>
+                <td>{{ customer.doe }}</td>
+                <td>{{ customer.sigungu }}</td>
+                <td>{{ customer.dong }}</td>
+                <td>{{ customer.sangse }}</td>
+                <td>{{ customer.sname }}</td>
+                <td>{{ customer.cphone }}</td>
+                <td>{{ customer.zipcode }}</td>
+                <td>{{ customer.cdate }}</td>
+                <td>{{ customer.edate }}</td>
+                <td>{{ customer.residual }}</td>
+                <td>{{ customer.regular }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

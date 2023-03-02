@@ -76,6 +76,13 @@
       <option name="presentableId" value="Default" />
       <updated>1672641224969</updated>
     </task>
+    <task id="LOCAL-00006" summary="Login">
+      <created>1672737780332</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1672737780332</updated>
+    </task>
     <task id="LOCAL-00007" summary="SignUp">
       <created>1672737808020</created>
       <option name="number" value="00007" />
@@ -412,14 +419,7 @@
       <option name="project" value="LOCAL" />
       <updated>1677136728537</updated>
     </task>
-    <task id="LOCAL-00055" summary="로그인 css 합침">
-      <created>1677136825986</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1677136825987</updated>
-    </task>
-    <option name="localTasksCounter" value="56" />
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
