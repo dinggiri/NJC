@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>메인화면</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+  </head>
+  <body class="main">
+    <a href="{% url 'k99:main' %}">
+      <img class="img" src="{% static 'K99.jpg' %}">
+    </a>
+    <h1>{{ username }} 회원님 반갑습니다.</h1>
+    <h3>원하시는 태그를 선택해 주세요.</h3>
+    <br>
+    <form id="main-form">
+      {% csrf_token %}
+      <div>
+        <button class="실전사례" type="button" onclick="location.href='mix/'">세탁방법</button>
+        <button class="질문답변" type="button" onclick="location.href='qna/'">Q & A</button>
+      </div>
+      <button class="main_logout" type="button" onclick="location.href={% url 'common:logout' %}">로그아웃</button>
+    </form>
+  </body>
+</html>
