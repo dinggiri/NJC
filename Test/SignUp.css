@@ -1,0 +1,32 @@
+.text{
+    background-color:aliceblue;
+    border: 0px solid black;
+    border-radius: 5px;
+    height: 35px;
+    width: 330px;
+}
+.name{
+    font-size: 80%;
+    position: relative;
+}
+
+.sing_up_title{
+    font-size: 24px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+.sign_up{
+    width: 330px;
+    height: 40px;
+    background: #0B6DB7;
+    border: 1px solid green;
+    border-radius: 5px;
+    transition: 0.25s;
+    color: #fff;
+    cursor: pointer
+}
+
+.회원가입{
+    text-align: center;
+}

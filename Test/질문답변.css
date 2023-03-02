@@ -1,0 +1,117 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+body{
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+
+img {
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.menu {
+    margin-top: 10px;
+}
+
+.menu > button:hover {
+    font-weight: bold;
+}
+
+.실전사례 {
+    background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 20px;
+    width: 110px;
+    height: 30px;
+    margin-left: 25px;
+}
+.실전사례:hover {
+    background-color: rebeccapurple;
+    font-weight: bold;
+}
+
+.질문답변 {
+    background-color: rebeccapurple;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 20px;
+    width: 110px;
+    height: 30px;
+    margin-left: 10px;
+}
+.질문답변:hover {
+    font-weight: bold;
+}
+
+.menu > div { 
+    display: inline;
+    float: right;
+}
+
+.logout {
+    background-color: white;
+	border-radius: 6px;
+	cursor: pointer;
+	color: black;
+	font-size: 16px;
+    width: 70px;
+    height: 30px;
+    margin-right: 70px;
+    margin-left: 20px;
+}
+
+.logout:hover {
+    font-weight: bold;
+}
+
+.search-wrapper{
+    width: 750px;
+    height: 500px;
+    padding: 0;
+    box-sizing: border-box;
+    margin: 6% auto;
+}
+
+.search:hover {
+    font-weight: bold;
+}
+
+#search-form > input{
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: #F8F8F8;
+    float: left;
+}
+
+#search-form > input::placeholder{
+    color: #aeadad;
+    font-size: 16px;
+}
+
+#search-form > input[type="text"]{
+    width: 80%;
+    margin-top: 5px;
+}
+
+#search-form > input[type="submit"]{
+    color: #fff;
+    font-size: 18px;
+    background-color: #0B6DB7;
+    margin-top: 5px;
+    margin-left: 7px;
+    cursor: pointer;
+    width: 13%;
+}
+

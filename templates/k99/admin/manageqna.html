@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}"
+</head>
+<body>
+  <a href="{% url 'k99:main' %}">
+      <img class="img" src="{% static 'K99.jpg' %}">
+    </a>
+    <h1>관리자님 반갑습니다.</h1>
+    <h3>원하시는 질문답변 관련 옵션을 선택해 주세요.</h3><br><br>
+
+    <div class="div">
+        <button class="exbutton" id="addingqna" onclick="location.href='add/'">질문답변 등록</button>
+<!--        <button class="exbutton" id="adjustingrealexample" onclick="location.href='realexamplemanage/'"></button>-->
+    </div>
+
+</body>
+</html>

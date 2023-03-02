@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>질문답변</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body class="QA">
+    <div class="menu_top">
+        <a href="{% url 'k99:main' %}">
+          <img class="img" src="{% static 'K99.jpg' %}" >
+        </a><br>
+        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
+        <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
+        <div>
+          <span class="hello">{{ username }}님 안녕하세요!</span>
+          <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
+        </div>
+    </div>
+    <button class="guide">사용법 안내</button>
+    <div>
+        <form id="search-form" method="post" action="{% url 'k99:qna_category' %}">
+            
+<!--            <div class="search_wrapper">-->
+<!--                <input class="search_box" type="text" placeholder=" 검색어 입력">-->
+<!--                <button class="search_btn" type="submit">검색</button>-->
+<!--            </div>-->
+            <div class="QA_category">
+                <p>원하시는 질문답변 종류를 선택해 주세요</p><br>
+                <button type="submit" name="recipe">#세탁방법</button><br>
+                <button type="submit" name="chemical">#세탁약품</button><br>
+                <button type="submit" name="tool">#도구사용법</button><br>
+                <button type="submit" name="problem">#문제발생원인</button><br>
+                <button type="submit" name="etc">#기타</button>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="../js/질문답변.js"></script>
+    <section class="guide_page">
+        <div class="guide_wrapper">
+            <img class="guide_img" src="../img/질문답변가이드.png" alt="질문답변 가이드">
+        </div>
+    </section>
+</body>
+</html>

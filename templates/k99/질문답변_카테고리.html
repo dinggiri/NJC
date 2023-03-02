@@ -1,0 +1,101 @@
+{% load static %}
+{% load k99_filter %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>질문답변</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body class="QA">
+    <div class="menu_top">
+        <a href="{% url 'k99:main' %}">
+          <img class="img" src="{% static 'K99.jpg' %}" >
+        </a><br>
+        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
+        <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
+        <div>
+          <span class="hello">{{ username }}님 안녕하세요!</span>
+          <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
+        </div>
+    </div>
+    <p class="num_post">총 {{ count }}건의 검색결과</p>
+
+    <div class="container my-3">
+        <table class="table">
+            <thead>
+            <tr class="table-dark">
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성일시</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if post_list %}
+            {% for post in post_list %}
+                {% if post.2 %}
+                <tr class="table-secondary text-left">
+                    <td>{{ post_list.paginator.count|sub:post_list.start_index|sub:forloop.counter0|add:1 }}</td>
+                    <td>
+                        <a href="{% url 'k99:qna_detail' post.0.pid %}"><b>&lt한양대 정재윤&gt</b> {{ post.1 }}</a>
+                    </td>
+                    <td>{{ post.0.create_date }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td>{{ post_list.paginator.count|sub:post_list.start_index|sub:forloop.counter0|add:1 }}</td>
+                    <td>
+                        <a href="{% url 'k99:qna_detail' post.0.pid %}">{{ post.1 }}</a>
+                    </td>
+                    <td>{{ post.0.create_date }}</td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="3">질문이 없습니다.</td>
+            </tr>
+            {% endif %}
+            </tbody>
+        </table>
+        <!-- 페이징처리 시작 -->
+        <ul class="pagination justify-content-center">
+            <!-- 이전페이지 -->
+            {% if post_list.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?ctgry={{ ctgry }}&page={{ post_list.previous_page_number }}">이전</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+            </li>
+            {% endif %}
+            <!-- 페이지리스트 -->
+            {% for page_number in post_list.paginator.page_range %}
+            {% if page_number >= post_list.number|add:-5 and page_number <= post_list.number|add:5 %}
+            {% if page_number == post_list.number %}
+            <li class="page-item active" aria-current="page">
+                <a class="page-link" href="?ctgry={{ ctgry }}&page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" href="?ctgry={{ ctgry }}&page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            <!-- 다음페이지 -->
+            {% if post_list.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?ctgry={{ ctgry }}&page={{ post_list.next_page_number }}">다음</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</body>
+</html>

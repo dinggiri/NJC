@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>k99 통계 연도 선택</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="menu_top">
+      <a href="{% url 'k99:main' %}">
+        <img class="img" src="{% static 'K99.jpg' %}" >
+          </a><br></div>
+    <h1>관리자님 환영합니다.</h1>
+    <h3>상품 통계 검색을 위한 연도를 선택해주세요.</h3>
+     <ul class="yearslist">
+        {% if years %}
+            {% for year in years %}
+                <li><a class="{{ year }}" href="/k99/product/{{ year }}">{{ year }}년</a></li>
+            {% endfor %}
+                <li><a class="allyears" href="/k99/product/allyear">전체 연도 통계 조회</a></li>
+        {% else %}
+            <p>연도 통계 조회가 되지 않습니다. 구매 내역을 등록해주세요.</p>
+        {% endif %}
+    </ul>
+</body>
+</html>

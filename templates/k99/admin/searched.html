@@ -1,0 +1,216 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>k99 회원사 검색 결과</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+
+    {% if error %}
+        <script type="text/javascript">
+            alert("{{ message|safe }}");
+            history.back();
+        </script>
+    {% else %}
+        <div class="menu_top">
+          <a href="{% url 'k99:main' %}">
+            <img class="img" src="{% static 'K99.jpg' %}" >
+          </a><br></div>
+        <h1>관리자님 환영합니다.</h1>
+        <h3>검색하신 {{ customer.kid }}번 {{ customer.kname }}님의 정보입니다.</h3>
+        {% if not product %}
+            <h3>전체 상품에 대한 검색 결과가 표출됩니다.</h3>
+        {% else %}
+            <h3>{{ product.pid }}번 상품인 {{ product.pname }}에 대한 정보입니다.</h3>
+        {% endif %}
+        <figure class="highcharts-figure">
+      <div id="container"></div>
+      <p class="highcharts-description">
+
+      </p>
+    </figure>
+     <script>
+        _categories = {{month_list|safe}};
+        console.log(_categories);
+        _categories_product = {{ product_list|safe }};
+        Highcharts.chart('container', {
+        chart: {
+          type: 'spline',
+          events: {
+              drillup: function (e) {
+                  var chart=this.update({
+                      type: 'spline',
+                      xAxis: {
+                              categories: _categories
+                          }
+                  });
+              },
+              drilldown: function (e) {
+                  all_cnts = {{ buy_all_cnt|safe }};
+                  if (!e.seriesOptions){
+                      this.update({
+                          type: 'column',
+                          xAxis: {
+                              categories: _categories_product
+                          }
+                          });
+                      var chart=this ,
+                          drilldowns = {
+                      {% if month_flag %}
+                              {% for month in month_list  %}
+                                  "{{ month }}" : {
+                                  yAxis: 1,
+                                  id: '구매건수',
+                                  name: '구매건수',
+                                  data: all_cnts[{{ forloop.counter0 }}]
+                              },
+                              {% endfor %}
+                          {% else %}
+                            {% for year in month_list  %}
+                                  "{{ year }}" : {
+                                  yAxis: 1,
+                                  id: '구매건수',
+                                  name: '구매건수',
+                                  data: all_cnts[{{ forloop.counter0 }}]
+                              },
+                              {% endfor %}
+                          {% endif %}
+                          },
+                          series = drilldowns[e.point.name];
+
+                              // Show the loading label
+                            chart.showLoading('로딩중입니다 ...');
+
+                            setTimeout(function () {
+                                chart.hideLoading();
+                                chart.addSeriesAsDrilldown(e.point, series);
+                            }, 1000);
+                  }
+              }
+          },
+          scrollablePlotArea: {
+             minWidth:700,
+             scrollPositionX: 1
+          }
+        },
+        title: {
+          text: '구매량 통계'
+        },
+        xAxis: {
+          categories: _categories,
+            scrollbar: {
+                enabled: true
+                },
+            labels: {
+              overflow: 'justify'
+            }
+        },
+        yAxis: [{ // First yAxis
+          title: {
+            text: '구매량'
+          },
+          labels: {
+            formatter: function () {
+              return this.value + 'kg';
+            }
+          }
+        }, { // Secondary yAxis
+        gridLineWidth: 0,
+        title: {
+          text: '구매건수',
+          style: {
+            color: Highcharts.getOptions().colors[0]
+          }
+        },
+        labels: {
+          formatter: function () {
+              return this.value + '건';
+          },
+          style: {
+            color: Highcharts.getOptions().colors[0]
+          }
+        },
+        opposite: true
+      }, { // Tertiary yAxis
+        gridLineWidth: 0,
+        title: {
+          text: '판매금액',
+          style: {
+            color: Highcharts.getOptions().colors[1]
+          }
+        },
+        labels: {
+          formatter: function () {
+              return this.value + '원';
+          },
+          style: {
+            color: Highcharts.getOptions().colors[1]
+          }
+        },
+        opposite: true
+      }],
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        plotOptions: {
+          spline: {
+            marker: {
+              radius: 4,
+              lineColor: '#666666',
+              lineWidth: 1
+            }
+          }
+        },
+        series: [{
+          name: "구매량(kg)",
+          yAxis: 0,
+          marker: {
+            symbol: 'square'
+          },
+          {#data: {{ buy_sum }}#}
+
+            data : [
+                {% for sum in buy_sum %}
+                    {
+                    name: _categories[{{ forloop.counter0 }}],
+                    y : {{ sum }},
+                    drilldown: true
+                    },
+                {% endfor %}
+                ]
+        }, {
+          name: '구매건수(건)',
+          yAxis: 1,
+          marker: {
+            symbol: 'diamond'
+          },
+          data: {{ buy_cnt }}
+        }, {
+            name: '판매금액(원)',
+            type: 'column',
+            yAxis: 2,
+            visible: false,
+            marker: {
+            symbol: 'diamond'
+          },
+          data: {{ buy_price }}
+        }],
+
+        drilldown: {
+        series: []
+        }
+      });
+    </script>
+    {% endif %}
+</body>
+</html>

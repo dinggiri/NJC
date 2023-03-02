@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>k99 고객관리 사이트</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="menu_top">
+      <a href="{% url 'k99:main' %}">
+        <img class="img" src="{% static 'K99.jpg' %}" >
+      </a><br></div>
+    <h1>관리자님 환영합니다.</h1>
+    <h3>상품 또는 회원사 관리를 선택해주세요.</h3>
+    <form id="main-form">
+        <div class="div">
+            <button class="상품관리" type="button" onclick="location.href='product'">상품관리</button>
+            <button class="회원사관리" type="button" onclick="location.href='customer'">회원사관리</button>
+        </div>
+    </form>
+</body>
+</html>
