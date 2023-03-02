@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6c9bebf-fc46-4390-974e-c7ebaa5df953" name="Changes" comment=".idea view 제외">
-      <change beforePath="$PROJECT_DIR$/전달용/html/0회원가입안내.html" beforeDir="false" afterPath="$PROJECT_DIR$/전달용/html/0회원가입안내.html" afterDir="false" />
-    </list>
+    <list default="true" id="b6c9bebf-fc46-4390-974e-c7ebaa5df953" name="Changes" comment="이전다음조회버튼수정" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,13 +75,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1672641224969</updated>
-    </task>
-    <task id="LOCAL-00011" summary="메인화면">
-      <created>1672846016776</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1672846016776</updated>
     </task>
     <task id="LOCAL-00012" summary="로그인">
       <created>1672846027396</created>
@@ -421,12 +412,18 @@
       <option name="project" value="LOCAL" />
       <updated>1677738684056</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="이전다음조회버튼수정">
+      <created>1677741075382</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1677741075382</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Initial" />
     <MESSAGE value="로그인" />
     <MESSAGE value="회원가입" />
     <MESSAGE value="메인화면" />
@@ -451,6 +448,7 @@
     <MESSAGE value="로그인 css 합침" />
     <MESSAGE value="전달용 폴더 생성" />
     <MESSAGE value=".idea view 제외" />
-    <option name="LAST_COMMIT_MESSAGE" value=".idea view 제외" />
+    <MESSAGE value="이전다음조회버튼수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="이전다음조회버튼수정" />
   </component>
 </project>
