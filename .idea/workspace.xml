@@ -78,13 +78,6 @@
       <option name="presentableId" value="Default" />
       <updated>1672641224969</updated>
     </task>
-    <task id="LOCAL-00013" summary="회원가입">
-      <created>1672846039118</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1672846039118</updated>
-    </task>
     <task id="LOCAL-00014" summary="메인화면">
       <created>1672849071921</created>
       <option name="number" value="00014" />
@@ -421,7 +414,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677741128433</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="이전다음조회버튼수정">
+      <created>1677741267012</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1677741267012</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
