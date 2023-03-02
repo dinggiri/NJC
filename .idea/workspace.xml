@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6c9bebf-fc46-4390-974e-c7ebaa5df953" name="Changes" comment="이전다음조회버튼수정" />
+    <list default="true" id="b6c9bebf-fc46-4390-974e-c7ebaa5df953" name="Changes" comment="이전다음조회버튼수정">
+      <change beforePath="$PROJECT_DIR$/.idea/NJC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NJC.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,13 +77,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1672641224969</updated>
-    </task>
-    <task id="LOCAL-00012" summary="로그인">
-      <created>1672846027396</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1672846027396</updated>
     </task>
     <task id="LOCAL-00013" summary="회원가입">
       <created>1672846039118</created>
@@ -419,7 +414,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677741075382</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="이전다음조회버튼수정">
+      <created>1677741128432</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1677741128433</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
