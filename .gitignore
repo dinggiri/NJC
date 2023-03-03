@@ -11,7 +11,12 @@ db.sqlite3
 db.sqlite3-journal
 media
 secrets.json
-
+k99/templatetages/__pycache__/
+k99/migrations/__pycache__/
+k99/__pycache__/
+config/__pycache__/
+common/__pycache__/
+common/migrations/__pycache__/
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
 # <django-project-name>/staticfiles/
