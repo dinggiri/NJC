@@ -40,6 +40,7 @@ def listOrNone(var):
     if type(var) == list:
         return var
     elif var is not None:
+        var = var.replace("''", "'")
         return ast.literal_eval(var)
     else:
         return None
@@ -360,9 +361,12 @@ def getSearchCount(stage, log):
                    '모름': []}
             for m in material:
                 if m in item:
-                    dct[m].append(criterion_2[0])
+                    if m == '모름':
+                        continue
+                    else:
+                        dct[m].append(criterion_2[0])
                 if '모름' in item:
-                    dct['모름'].append(criterion_2[0])
+                    dct['모름'].append(criterion_2[3])
 
             for it, scores in dct.items():
                 if len(dct[it]) != 0:
@@ -370,10 +374,12 @@ def getSearchCount(stage, log):
             return score
 
         df['score'] += df['material'].apply(_Material)
-        criterion += criterion_2[0] * len(material) * 0.8
+        material_cnt = len([x for x in material if x != '모름'])
+        criterion += criterion_2[0] * material_cnt * 0.8
 
         if stage == 'material':
             return _getSearchCount(df, criterion)
+
 
     ### 4. 색상
     if not mix:
@@ -407,7 +413,10 @@ def getSearchCount(stage, log):
                '없음': []}
         for i in issue:
             if i in item:
-                dct[i].append(criterion_3[0])
+                if i == '모름':
+                    continue
+                else:
+                    dct[i].append(criterion_3[0])
             if '모름' in item:
                 dct['모름'].append(criterion_3[3])
             if i == '유색오염':
@@ -438,7 +447,8 @@ def getSearchCount(stage, log):
 
     df['score'] += df['issue'].apply(_Issue)
     df['score'] += df['issue_detail'].apply(_IssueDetail)
-    criterion += (criterion_3[0]*len(issue) + criterion_4[0]*(len(issue_detail[0])+len(issue_detail[1])+len(issue_detail[2])))*0.8
+    issue_cnt = len([x for x in issue if x != '모름'])
+    criterion += (criterion_3[0]*issue_cnt + criterion_4[0]*(len(issue_detail[0])+len(issue_detail[1])+len(issue_detail[2])))*0.8
 
     if stage == 'issue':
         return _getSearchCount(df, criterion)
@@ -1535,9 +1545,8 @@ def qna(request):
         if regular:
             return render(request, 'k99/질문답변.html', {'username': username})
         else:
-            user_log = Searchlog.objects.filter(kid=kid, stage='search')
+            user_log = Searchlog.objects.filter(kid=kid, finish=True)
             user_count = user_log.count()
-            # print(user_count)
             if user_count >= 3:
                 return render(request, 'k99/0회원가입안내.html', {'username': username})
             else:
