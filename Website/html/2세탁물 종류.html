@@ -35,9 +35,9 @@
         <li class="clothe"><label>&emsp;침구류&emsp;<input type="radio" name="type" value="침구류" unchecked></label></li>
         <li class="clothe"><label>&emsp;기타&emsp;&emsp;<input type="radio" name="type" value="기타" unchecked></label></li>
         <div class="move">
-            <button class="prev" name="prev" type="submit" formaction="{% url 'k99:mix' %}">이전</button>
+            <button class="prev" name="prev" type="submit" formaction="{% url 'k99:mix' %}">이전&#9664;</button>
+            <button class="next" name="next" type="submit" formaction="{% url 'k99:clothes' %}">다음&#9654;</button>
             <button class="mid-search" name="mid-search" type="submit">조회</button>
-            <button class="next" name="next" type="submit" formaction="{% url 'k99:clothes' %}">다음</button>
         </div>
     </form>
     <script type="text/javascript" src="../js/2세탁물 종류.js"></script>
