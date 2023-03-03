@@ -231,7 +231,7 @@ hr {
 	cursor: pointer;
 	color: #ffffff;
 	font-size: 30px;
-    width: 250px;
+    width: 180px;
     height: 50px;
 }
 
@@ -403,6 +403,7 @@ hr {
 }
 
 .pagination {
+    width: 90%;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 40%;
@@ -452,34 +453,44 @@ hr {
 
 .next {
     background-color: #0B6DB7;
-	border-radius: 6px;
+	border-radius: 15px;
 	cursor: pointer;
 	color: white;
-	font-size: 250%;
-    width: 10%;
+	font-size: 700%;
+    width: 50%;
     height: 20%;
-    float: right;
-    margin-right: 2%;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    float: center;
+    margin-bottom: 7%;
 }
 
 .next:hover {
     font-weight: bold;
 }
 
-.prev {
+.혼합_next {
     background-color: #0B6DB7;
-	border-radius: 6px;
+	border-radius: 15px;
 	cursor: pointer;
 	color: white;
-	font-size: 250%;
-    width: 10%;
+	font-size: 700%;
+    width: 50%;
     height: 20%;
-    float: left;
-    margin-left: 2%;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    float: center;
+    margin-top: 15%;
+    margin-bottom: 7%;
+}
+
+.prev {
+    background-color: #0B6DB7;
+	border-radius: 15px;
+	cursor: pointer;
+	color: white;
+	font-size: 700%;
+    width: 50%;
+    height: 20%;
+    float: center;
+    margin-top: 15%;
+    margin-bottom: 7%;
 }
 
 .prev:hover {
@@ -488,16 +499,15 @@ hr {
 
 .prev1 {
     background-color: #0B6DB7;
-	border-radius: 6px;
+	border-radius: 15px;
 	cursor: pointer;
 	color: white;
-	font-size: 250%;
-    width: 10%;
+	font-size: 700%;
+    width: 50%;
     height: 20%;
-    float: left;
-    margin-left: 2%;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    float: center;
+    margin-top: 15%;
+    margin-bottom: 7%;
 }
 
 .prev1:hover {
@@ -506,16 +516,14 @@ hr {
 
 .mid-search {
     background-color: rebeccapurple;
-	border-radius: 6px;
+	border-radius: 15px;
 	cursor: pointer;
 	color: white;
-	font-size: 250%;
-    width: 10%;
+	font-size: 700%;
+    width: 50%;
     height: 20%;
-    float: right;
-    margin-right: 2%;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    float: center;
+    margin-bottom: 5%;
 }
 
 .mid-search:hover {
@@ -560,7 +568,6 @@ hr {
 .white_item {
     display: none;
 }
-
 
 .white_item > span{
     background-color: #87CEFA;
@@ -691,7 +698,6 @@ hr {
     text-align: center;
 }
 
-
 .col_reason_item > span{
     background-color: #87CEFA;
     color: black;
@@ -724,8 +730,6 @@ hr {
     text-align: center;
 }
 
-
-
 .blemish_item > span{
     background-color: #87CEFA;
     color: black;
@@ -757,7 +761,6 @@ hr {
     text-align: center;
 }
 
-
 .etc_item > span{
     background-color: #87CEFA;
     color: black;
@@ -784,23 +787,6 @@ hr {
     width: 2em;
     height: 2em;
 }
-
-/* 등록시 */
-.addwhite_item{
-    display: none;
-}
-
-.addcol_reason_item{
-    display: none;
-}
-
-.addblemish_item {
-    display: none;
-}
-.addetc_item {
-    display: none;
-}
-
 
 /* 질문답변 Q & A 페이지 */
 .QA .실전사례 {
@@ -881,7 +867,6 @@ hr {
     width: 220px;
     height: 60px;
     margin: auto;
-    margin-bottom: 10px;
     display: block;
 }
 
@@ -893,10 +878,15 @@ hr {
 /* 회원가입안내 */
 .QA > p {
     text-align: center;
-    font-size: 30px;
+    font-size: 65px;
     font-weight: bold;
     line-height: 180%;
-    margin-top: 3%;
+    margin-top: 20%;
+}
+
+.QA .second_line {
+    font-size: 35px;
+    margin-top: 4%;
 }
 
 /* 사용법 가이드*/
@@ -939,6 +929,21 @@ hr {
     height: 100%;
 }
 
+/* 등록시 */
+.addwhite_item{
+    display: none;
+}
+
+.addcol_reason_item{
+    display: none;
+}
+
+.addblemish_item {
+    display: none;
+}
+.addetc_item {
+    display: none;
+}
 
 /* admin */
 
