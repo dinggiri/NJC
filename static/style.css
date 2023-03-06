@@ -571,26 +571,24 @@ hr {
     background-color: #87CEFA;
     color: black;
     text-align: center;
-    width: 30%;
+    width: 60%;
     display: block;
     padding: 1%;
     border-radius: 10px;
-    font-size: 40px;
-    margin-top: 5%;
-    margin-left: 35%;
-    margin-bottom: 3%;
+    font-size: 80px;
+    margin: 10% auto 3% auto;
     font-weight: bold;
 }
 
 .white_item > label {
-    font-size: 200%;
+    font-size: 50px;
     font-weight: bold;
 }
 
 .white_item > label > input {
     border-radius: 50%;
-    width: 2em;
-    height: 2em;
+    width: 3em;
+    height: 3em;
 }
 
 /* 세탁물종류 */
@@ -631,6 +629,13 @@ hr {
     border-radius: 50%;
     width: 3em;
     height: 3em;
+}
+
+.dup_possible {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    
 }
 
 /* 색상 */
