@@ -40,7 +40,7 @@ def listOrNone(var):
     if type(var) == list:
         return var
     elif var is not None:
-        var = var.replace("''", "'")
+        var = var.replace("''", "'").replace('"', '').replace(' ', '')
         return ast.literal_eval(var)
     else:
         return None

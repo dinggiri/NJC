@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>질문답변</title>
     <link rel="stylesheet" href="../css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body class="QA">
     <div class="menu_top">
@@ -18,14 +17,14 @@
           <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
         </div>
     </div>
-    <button class="guide">사용법 안내</button>
     <div>
         <form id="search-form" method="post" action="{% url 'k99:qna_category' %}">
-            
+            {% csrf_token %}
 <!--            <div class="search_wrapper">-->
 <!--                <input class="search_box" type="text" placeholder=" 검색어 입력">-->
 <!--                <button class="search_btn" type="submit">검색</button>-->
 <!--            </div>-->
+            <br><br>
             <div class="QA_category">
                 <p>원하시는 질문답변 종류를 선택해 주세요</p><br>
                 <button type="submit" name="recipe">#세탁방법</button><br>
@@ -36,11 +35,5 @@
             </div>
         </form>
     </div>
-    <script type="text/javascript" src="../js/질문답변.js"></script>
-    <section class="guide_page">
-        <div class="guide_wrapper">
-            <img class="guide_img" src="../img/질문답변가이드.png" alt="질문답변 가이드">
-        </div>
-    </section>
 </body>
 </html>

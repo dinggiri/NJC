@@ -31,9 +31,9 @@
             <label>&emsp;&emsp;프린팅 <input type="checkbox" name="color" value="프린팅" unchecked></label>
         </li>
         <div class="move">
-            <button class="prev" type="submit" name="prev" formaction="{% url 'k99:material' %}">이전</button>
+            <button class="prev" name="prev" type="submit" formaction="{% url 'k99:mix' %}">이전&#9664;</button>
+            <button class="next" name="next" type="submit" formaction="{% url 'k99:clothes' %}">다음&#9654;</button>
             <button class="mid-search" name="mid-search" type="submit">조회</button>
-            <button class="next" type="submit" name="next" formaction="{% url 'k99:color' %}">다음</button>
         </div>
     </form>
 

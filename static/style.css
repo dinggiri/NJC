@@ -231,7 +231,7 @@ hr {
 	cursor: pointer;
 	color: #ffffff;
 	font-size: 30px;
-    width: 250px;
+    width: 180px;
     height: 50px;
 }
 
@@ -266,18 +266,11 @@ hr {
 }
 
 /* 메뉴 */
-.menu_top {
-    margin-top: 3%;
-}
-
-.menu_top > button:hover {
+.top > button:hover {
     font-weight: bold;
 }
 
 .hello {
-    background-color: white;
-	border-radius: 6px;
-	color: black;
 	font-size: 30px;
     width: 100px;
     margin-bottom: 5%;
@@ -285,27 +278,57 @@ hr {
 
 
 /* 실전사례 포스트 */
-.menu_top .img {
+.top .img {
     width: 12%;
     height: 10%;
     margin-top: 20px;
     margin-left: 30px;
 }
 
-.menu_top {
+.top {
     margin-top: 10px;
 }
 
+.top > div {
+    float: right;
+}
+
+.top .logout {
+    background-color: white;
+	cursor: pointer;
+	color: black;
+	font-size: 30px;
+    width: 120px;
+    height: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.top .logout:hover {
+    font-weight: bold;
+}
+
+.menu_top {
+    margin: 10% auto 1% auto;
+    text-align: center;
+}
+
+.menu_top:hover {
+    font-weight: bold;
+}
+
 .menu_top .실전사례 {
-    float: left;
     background-color: rebeccapurple;
 	border-radius: 6px;
 	cursor: pointer;
 	color: white;
-	font-size: 20px;
-    width: 110px;
-    height: 40px;
-    margin-left: 25px;
+	font-size: 50px;
+    width: 220px;
+    height: 80px;
+}
+
+.menu_top .실전사례:hover {
+    font-weight: bold;
 }
 
 .menu_top .질문답변 {
@@ -313,38 +336,13 @@ hr {
 	border-radius: 6px;
 	cursor: pointer;
 	color: white;
-	font-size: 20px;
-    width: 110px;
-    height: 40px;
-    margin-left: 10px;
+	font-size: 50px;
+    width: 220px;
+    height: 80px;
 }
 
 .menu_top .질문답변:hover {
     background-color: rebeccapurple;
-}
-
-.menu_top > div {
-    display: inline;
-    float: right;
-}
-
-.menu_top > button:hover {
-    font-weight: bold;
-}
-
-.menu_top .logout {
-    background-color: white;
-	border-radius: 6px;
-	cursor: pointer;
-	color: black;
-	font-size: 30px;
-    width: 120px;
-    height: 30px;
-    margin-right: 70px;
-    margin-left: 20px;
-}
-
-.menu_top .logout:hover {
     font-weight: bold;
 }
 
@@ -357,8 +355,7 @@ hr {
 }
 
 .mid-num_post {
-    margin-left: 46%;
-    margin-bottom: -4%;
+    text-align: center;
     font-weight: bold;
     font-size: 25px;
 }
@@ -403,6 +400,7 @@ hr {
 }
 
 .pagination {
+    width: 90%;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 40%;
@@ -427,10 +425,6 @@ hr {
     padding: 1px;
 }
 
-.nav {
-    text-align: center;
-}
-
 .nickname {
     font-size: 20px;
 }
@@ -440,46 +434,62 @@ hr {
     background-color: rgb(1, 44, 124);
     color: white;
     text-align: center;
-    width: 40%;
+    width: 60%;
     display: block;
     padding: 1%;
     border-radius: 10px;
-    font-size: 50px;
-    margin-top: 5%;
-    margin-left: 30%;
-    font-weight: bold;
+    font-size: 100px;
+    margin: 7% auto 3% auto;
+}
+
+.move {
+    text-align: center
 }
 
 .next {
     background-color: #0B6DB7;
-	border-radius: 6px;
+	border-radius: 15px;
 	cursor: pointer;
 	color: white;
-	font-size: 250%;
-    width: 10%;
+	font-size: 700%;
+    width: 50%;
     height: 20%;
-    float: right;
-    margin-right: 2%;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    float: center;
+    margin-bottom: 7%;
 }
 
 .next:hover {
     font-weight: bold;
 }
 
-.prev {
+.혼합_next {
     background-color: #0B6DB7;
-	border-radius: 6px;
+	border-radius: 15px;
 	cursor: pointer;
 	color: white;
-	font-size: 250%;
-    width: 10%;
+	font-size: 700%;
+    width: 50%;
     height: 20%;
-    float: left;
-    margin-left: 2%;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    float: center;
+    margin-top: 15%;
+    margin-bottom: 7%;
+}
+
+.혼합_next:hover {
+    font-weight: bold;
+}
+
+.prev {
+    background-color: #0B6DB7;
+	border-radius: 15px;
+	cursor: pointer;
+	color: white;
+	font-size: 700%;
+    width: 50%;
+    height: 20%;
+    float: center;
+    margin-top: 15%;
+    margin-bottom: 7%;
 }
 
 .prev:hover {
@@ -488,16 +498,15 @@ hr {
 
 .prev1 {
     background-color: #0B6DB7;
-	border-radius: 6px;
+	border-radius: 15px;
 	cursor: pointer;
 	color: white;
-	font-size: 250%;
-    width: 10%;
+	font-size: 700%;
+    width: 50%;
     height: 20%;
-    float: left;
-    margin-left: 2%;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    float: center;
+    margin-top: 15%;
+    margin-bottom: 7%;
 }
 
 .prev1:hover {
@@ -506,16 +515,14 @@ hr {
 
 .mid-search {
     background-color: rebeccapurple;
-	border-radius: 6px;
+	border-radius: 15px;
 	cursor: pointer;
 	color: white;
-	font-size: 250%;
-    width: 10%;
+	font-size: 700%;
+    width: 50%;
     height: 20%;
-    float: right;
-    margin-right: 2%;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    float: center;
+    margin-bottom: 5%;
 }
 
 .mid-search:hover {
@@ -553,14 +560,12 @@ hr {
 }
 
 .checkbox1 {
-    margin-top: 3%;
     text-align: center;
 }
 
 .white_item {
     display: none;
 }
-
 
 .white_item > span{
     background-color: #87CEFA;
@@ -691,7 +696,6 @@ hr {
     text-align: center;
 }
 
-
 .col_reason_item > span{
     background-color: #87CEFA;
     color: black;
@@ -724,8 +728,6 @@ hr {
     text-align: center;
 }
 
-
-
 .blemish_item > span{
     background-color: #87CEFA;
     color: black;
@@ -757,7 +759,6 @@ hr {
     text-align: center;
 }
 
-
 .etc_item > span{
     background-color: #87CEFA;
     color: black;
@@ -785,49 +786,43 @@ hr {
     height: 2em;
 }
 
-/* 등록시 */
-.addwhite_item{
-    display: none;
-}
-
-.addcol_reason_item{
-    display: none;
-}
-
-.addblemish_item {
-    display: none;
-}
-.addetc_item {
-    display: none;
-}
-
-
 /* 질문답변 Q & A 페이지 */
-.QA .실전사례 {
-    float: left;
+.QA .menu_top {
+    margin: 10% auto 1% auto;
+    text-align: center;
+}
+
+.QA .menu_top:hover {
+    font-weight: bold;
+}
+
+.QA .menu_top .실전사례 {
     background-color: #0B6DB7;
 	border-radius: 6px;
 	cursor: pointer;
 	color: white;
-	font-size: 20px;
-    width: 110px;
-    height: 40px;
-    margin-left: 25px;
+	font-size: 50px;
+    width: 220px;
+    height: 80px;
 }
 
-.QA .질문답변 {
+.QA .menu_top .실전사례:hover {
+    background-color: rebeccapurple;
+    font-weight: bold;
+}
+
+.QA .menu_top .질문답변 {
     background-color: rebeccapurple;
 	border-radius: 6px;
 	cursor: pointer;
 	color: white;
-	font-size: 20px;
-    width: 110px;
-    height: 40px;
-    margin-left: 10px;
+	font-size: 50px;
+    width: 220px;
+    height: 80px;
 }
 
-.QA .실전사례:hover {
-    background-color: rebeccapurple;
+.QA .menu_top .질문답변:hover {
+    font-weight: bold;
 }
 
 .search_wrapper {
@@ -869,7 +864,7 @@ hr {
 
 .QA_category > p {
     text-align: center;
-    font-size: 30px;
+    font-size: 70px;
     font-weight: bold;
 }
 
@@ -877,11 +872,10 @@ hr {
 	border-radius: 6px;
     background-color: #DCDCDC;
 	cursor: pointer;
-	font-size: 30px;
-    width: 220px;
-    height: 60px;
+	font-size: 80px;
+    width: 60%;
+    height: 180px;
     margin: auto;
-    margin-bottom: 10px;
     display: block;
 }
 
@@ -891,25 +885,68 @@ hr {
 }
 
 /* 회원가입안내 */
-.QA > p {
+.join_guide .menu_top {
+    margin: 10% auto 1% auto;
     text-align: center;
-    font-size: 30px;
+}
+
+.join_guide .menu_top:hover {
+    font-weight: bold;
+}
+
+.join_guide .menu_top .실전사례 {
+    background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 50px;
+    width: 220px;
+    height: 80px;
+}
+
+.join_guide .menu_top .실전사례:hover {
+    background-color: rebeccapurple;
+    font-weight: bold;
+}
+
+.join_guide .menu_top .질문답변 {
+    background-color: #0B6DB7;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	font-size: 50px;
+    width: 220px;
+    height: 80px;
+}
+
+.join_guide .menu_top .질문답변:hover {
+    background-color: rebeccapurple;
+    font-weight: bold;
+}
+
+.join_guide > p {
+    text-align: center;
+    font-size: 65px;
     font-weight: bold;
     line-height: 180%;
-    margin-top: 3%;
+    margin-top: 10%;
+}
+
+.join_guide .second_line {
+    font-size: 35px;
+    margin-top: 4%;
 }
 
 /* 사용법 가이드*/
 .guide {
     background-color: #0B6DB7;
-	border-radius: 4px;
+	border-radius: 10px;
 	cursor: pointer;
 	color: white;
-	width: 230px;
-    height: 35px;
-    margin-left: 25px;
-    margin-top: 0.5%;
-    font-size: 20px;
+	width:46%;
+    height: 100px;
+    font-size: 60px;
+    margin: 1% auto;
 }
 
 .guide:hover {
@@ -939,6 +976,21 @@ hr {
     height: 100%;
 }
 
+/* 등록시 */
+.addwhite_item{
+    display: none;
+}
+
+.addcol_reason_item{
+    display: none;
+}
+
+.addblemish_item {
+    display: none;
+}
+.addetc_item {
+    display: none;
+}
 
 /* admin */
 
