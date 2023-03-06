@@ -397,6 +397,7 @@ hr {
     line-height: 180%;
     margin-top: 1%;
     margin-bottom: 1%;
+    font-weight: bold;
 }
 
 .pagination {
