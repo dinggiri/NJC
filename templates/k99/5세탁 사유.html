@@ -8,22 +8,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-    <div class="menu_top">
+    <div class="top">
         <a href="{% url 'k99:main' %}">
           <img class="img" src="{% static 'K99.jpg' %}" >
         </a><br>
-        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
-        <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
         <div>
             <span class="hello">{{ username }}님 안녕하세요!</span>
           <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
         </div>
+    </div><br>
+    <div class="menu_top">
+        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
+        <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
+        <button class="guide">사용법 안내</button>
     </div>
-    <button class="guide">사용법 안내</button>
     <p class="mid-num_post">총 {{ count }}건의 검색결과</p>
     <div class="category">세탁 사유</div>
     <form class="checkbox5" method="post">
         {% csrf_token %}
+        <br>
         <li class="clothe"><label>&emsp;이염&emsp;&emsp;&nbsp;<input type="checkbox" name="reason" value="이염" unchecked></label></li>
         <li class="clothe"><label>&emsp;유색오염 <input type="checkbox" name="reason" value="유색오염" unchecked onclick='itmes(event)'></label></li>
         <li class="clothe"><label>&emsp;음식물&emsp;&nbsp;<input type="checkbox" name="reason" value="음식물" unchecked></label></li>
@@ -48,10 +51,10 @@
         <div class="blemish_item" id="blemish_item">
             <span>생활얼룩 세부 사유</span>
             <label>&emsp;체액(구토 포함) <input type="checkbox" name="생활얼룩" value="체액"></label>
-            <label>&emsp;빗물(훍탕물) <input type="checkbox" name="생활얼룩" value="빗물"></label>
-            <label>&emsp;녹물 <input type="checkbox" name="생활얼룩" value="녹물"></label><br>
+            <label>&emsp;빗물(훍탕물) <input type="checkbox" name="생활얼룩" value="빗물"></label><br>
+            <label>&emsp;녹물 <input type="checkbox" name="생활얼룩" value="녹물"></label>
             <label>&emsp;접착제 <input type="checkbox" name="생활얼룩" value="접착제"></label>
-            <label>&emsp;찌든때 <input type="checkbox" name="생활얼룩" value="찌든때"></label>
+            <label>&emsp;찌든때 <input type="checkbox" name="생활얼룩" value="찌든때"></label><br>
             <label>&emsp;세제 자국 <input type="checkbox" name="생활얼룩" value="세제자국"></label>
             <label>&emsp;기타 생활얼룩 <input type="checkbox" name="생활얼룩" value="기타생활얼룩"></label>
         </div>
@@ -78,7 +81,10 @@
 <script type="text/javascript" src="{% static '5세탁사유.js' %}"></script>
     <section class="guide_page">
         <div class="guide_wrapper">
-            <img class="guide_img" src="{% static '세탁사유가이드.png' %}" alt="세탁사유 가이드">
+            <img class="guide_img" src="{% static '세탁사유가이드1.png' %}" alt="세탁사유 가이드1">
+            <img class="guide_img" src="{% static '세탁사유가이드2.png' %}" alt="세탁사유 가이드2">
+            <img class="guide_img" src="{% static '세탁사유가이드3.png' %}" alt="세탁사유 가이드3">
+            <img class="guide_img" src="{% static '세탁사유가이드4.png' %}" alt="세탁사유 가이드4">
         </div>
     </section>
 </body>

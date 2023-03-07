@@ -8,22 +8,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-    <div class="menu_top">
+    <div class="top">
         <a href="{% url 'k99:main' %}">
           <img class="img" src="{% static 'K99.jpg' %}" >
         </a><br>
-        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
-        <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
         <div>
             <span class="hello">{{ username }}님 안녕하세요!</span>
           <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
         </div>
+    </div><br>
+    <div class="menu_top">
+        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
+        <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
+        <button class="guide">사용법 안내</button>
     </div>
-    <button class="guide">사용법 안내</button>
     <p class="mid-num_post">총 {{ count }}건의 검색결과</p>
     <div class="category">소재</div>
     <form class="checkbox3" method="post">
         {% csrf_token %}
+        <br>
         <li class="material"><label>&emsp;면 <input type="checkbox" name="material" value="면" unchecked></label></li>
         <li class="material"><label>&emsp;린넨 <input type="checkbox" name="material" value="린넨" unchecked></label></li>
         <li class="material"><label>&emsp;마(삼베, 모시) <input type="checkbox" name="material" value="마" unchecked></label></li>
@@ -54,6 +57,7 @@
     <section class="guide_page">
         <div class="guide_wrapper">
             <img class="guide_img" src="{% static '소재가이드.png' %}" alt="소재 가이드">
+            <img class="guide_img" src="{% static '소재가이드2.png' %}" alt="소재 가이드2">
         </div>
     </section>
 </body>

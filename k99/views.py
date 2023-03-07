@@ -409,7 +409,7 @@ def getSearchCount(stage, log):
 
     def _Issue(item):
         score = 0
-        dct = {'이염': [], '유색오염': [], '음식물': [], '황변': [], '곰팡이': [], '기름': [], '생활얼룩': [], '변색': [], '기타': [], '모름': [],
+        dct = {'이염': [], '유색오염': [], '음식물': [], '황변': [], '곰팡이': [], '기름': [], '생활얼룩': [], '변색': [], '탈색': [], '기타': [], '모름': [],
                '없음': []}
         for i in issue:
             if i in item:
@@ -530,19 +530,19 @@ def checkregular(customer):
             try:
                 kbuys = Buy.objects.filter(Q(kid=kid) & (Q(pid=4) | Q(pid=10))).order_by('-bdate') # 해당 번호 사람이 buy한 것들 중 마지막
                 kbuys_amount = sum([kb.bamount for kb in kbuys])
-                if kbuys_amount < 20    :
-                    customer.residual = 20 - kbuys_amount
+                if kbuys_amount < 10:
+                    customer.residual = 10 - kbuys_amount
                     customer.regular = False
                 else:
-                    plus = kbuys_amount // 20
-                    residual = kbuys_amount % 20
-                    customer.edate = customer.cdate + (1 + plus) * timedelta(days=365) # 365일 추가
+                    plus = kbuys_amount // 10
+                    residual = kbuys_amount % 10
+                    customer.edate = customer.cdate + (2 + plus) * timedelta(days=182) # 365일 추가
                     # if not residual:
                     #     residual = 20
                     customer.residual = residual
 
             except IndexError:
-                customer.residual = 20
+                customer.residual = 10
                 customer.regular = False
     ########  연장이 이미 완료된 사람 #########
     ##### 회원종료 만료일로부터 12개월 동안의 데이터를 추출
@@ -551,20 +551,20 @@ def checkregular(customer):
                 # kbuys = Buy.objects.filter(Q(kid=kid) & (Q(pid=4) | Q(pid=10)) & Q(bdate__range=[customer.edate - timedelta(days=365), customer.edate])).order_by('-bdate')
                 kbuys = Buy.objects.filter(Q(kid=kid) & (Q(pid=4) | Q(pid=10))).order_by('-bdate')
                 kbuys_amount = sum([kb.bamount for kb in kbuys])
-                if kbuys_amount < 20:
-                    customer.residual = 20 - kbuys_amount
+                if kbuys_amount < 10:
+                    customer.residual = 10 - kbuys_amount
                     customer.regular = False
                 else:
                     # customer.edate = customer.edate + timedelta(days=365) # 365일 추가
-                    plus = kbuys_amount // 20
-                    residual = kbuys_amount % 20
-                    customer.edate = customer.cdate + (1 + plus) * timedelta(days=365)  # 365일 추가
+                    plus = kbuys_amount // 10
+                    residual = kbuys_amount % 10
+                    customer.edate = customer.cdate + (2 + plus) * timedelta(days=182)  # 182일 추가
                     # if not residual:
                     #     residual = 0
                     customer.residual = residual
 
             except IndexError:
-                customer.residual = 20
+                customer.residual = 10
                 customer.regular = False
     #########################################
     ######## 2022년 1월 1일 이후 가입자 #########
@@ -576,21 +576,21 @@ def checkregular(customer):
             try:
                 kbuys = Buy.objects.filter(Q(kid=kid) & (Q(pid=4) | Q(pid=10))).order_by('-bdate') # 해당 번호 사람이 buy한 것들 중 마지막
                 kbuys_amount = sum([kb.bamount for kb in kbuys])
-                if kbuys_amount < 20:
-                    customer.residual = 20 - kbuys_amount
+                if kbuys_amount < 10:
+                    customer.residual = 10 - kbuys_amount
                     customer.regular = False
                 else:
                     # customer.edate = customer.cdate + timedelta(days=365) # 365일 추가
-                    plus = kbuys_amount // 20
-                    residual = kbuys_amount % 20
-                    customer.edate = customer.cdate + (1 + plus) * timedelta(days=365)  # 365일 추가
+                    plus = kbuys_amount // 10
+                    residual = kbuys_amount % 10
+                    customer.edate = customer.cdate + (2 + plus) * timedelta(days=182)  #182일 추가
                     # if not residual:
                     #     residual = 0
                     customer.regular = True
                     customer.residual = residual
             except IndexError:
                 customer.regular = False
-                customer.residual = 20
+                customer.residual = 10
                 # return False
                 ########  연장이 이미 완료된 사람 #########
                 ##### 회원종료 만료일로부터 12개월 동안의 데이터를 추출
@@ -599,13 +599,13 @@ def checkregular(customer):
                 # kbuys = Buy.objects.filter(Q(kid=kid) & (Q(pid=4) | Q(pid=10)) & Q(bdate__range=[customer.edate - timedelta(days=365), customer.edate])).order_by('-bdate')
                 kbuys = Buy.objects.filter(Q(kid=kid) & (Q(pid=4) | Q(pid=10))).order_by('-bdate')
                 kbuys_amount = sum([kb.bamount for kb in kbuys])
-                if kbuys_amount < 20:
-                    customer.residual = 20 - kbuys_amount
+                if kbuys_amount < 10:
+                    customer.residual = 10 - kbuys_amount
                     customer.regular = False
                 else:
-                    plus = kbuys_amount // 20
-                    residual = kbuys_amount % 20
-                    customer.edate = customer.cdate + (1 + plus) * timedelta(days=365)  # 365일 추가
+                    plus = kbuys_amount // 10
+                    residual = kbuys_amount % 10
+                    customer.edate = customer.cdate + (2 + plus) * timedelta(days=182)  # 365일 추가
                     # if not residual:
                     #     residual = 0
                     customer.residual = residual
@@ -613,7 +613,7 @@ def checkregular(customer):
             except IndexError:
 
                 customer.regular = False
-                customer.residual = 20
+                customer.residual = 10
 
         # 섬유향균제와 탈취스프레이 총양 20kg 이상이어야 정회원 자격 얻음
 
@@ -804,7 +804,7 @@ def managecustomer(request):
         return render(request, 'k99/admin/managecustomer.html', context)
     elif request.method == "POST":
         username = request.POST.get('IDinput')
-        password = request.POST.get('PWinput')
+        password = request.POST.get('PWinput').upper()
         kname = request.POST.get('knameinput')
         kid = request.POST.get('KIDinput')
         doe = request.POST.get('doeinput')
@@ -1443,18 +1443,18 @@ def issue(request):
     if request.method == 'GET':
         if log.mix:
             count = getSearchCount('clothes', log)
-            count['username'] = username
             data = {
                 'data': True, # 2
                 'count': count['count'],
+                'username': username,
             }
             return render(request, 'k99/5세탁 사유.html', data)
         else:
             count = getSearchCount('color', log)
-            count['username'] = username
             data = {
                 'data': False, # 4
                 'count': count['count'],
+                'username': username,
             }
             return render(request, 'k99/5세탁 사유.html', data)
     elif request.method == 'POST':
@@ -1476,18 +1476,18 @@ def issue(request):
         elif 'prev' in request.POST:
             if log.mix:
                 count = getSearchCount('clothes', log)
-                count['username'] = username
                 data = {
                     'data': True,  # 2
                     'count': count['count'],
+                    'username': username,
                 }
                 return render(request, 'k99/5세탁 사유.html', data)
             else:
                 count = getSearchCount('color', log)
-                count['username'] = username
                 data = {
                     'data': False,  # 4
                     'count': count['count'],
+                    'username': username,
                 }
                 return render(request, 'k99/5세탁 사유.html', data)
         else:
