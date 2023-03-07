@@ -583,7 +583,7 @@ def checkregular(customer):
                     # customer.edate = customer.cdate + timedelta(days=365) # 365일 추가
                     plus = kbuys_amount // 10
                     residual = kbuys_amount % 10
-                    customer.edate = customer.cdate + (1 + plus) * timedelta(days=182)  #182일 추가
+                    customer.edate = customer.cdate + (2 + plus) * timedelta(days=182)  #182일 추가
                     # if not residual:
                     #     residual = 0
                     customer.regular = True
@@ -605,7 +605,7 @@ def checkregular(customer):
                 else:
                     plus = kbuys_amount // 10
                     residual = kbuys_amount % 10
-                    customer.edate = customer.cdate + (1 + plus) * timedelta(days=182)  # 365일 추가
+                    customer.edate = customer.cdate + (2 + plus) * timedelta(days=182)  # 365일 추가
                     # if not residual:
                     #     residual = 0
                     customer.residual = residual
