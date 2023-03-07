@@ -36,10 +36,10 @@
 	border-radius: 4px;
 	cursor: pointer;
 	color: white;
-	width: 170px;
-    height: 25px;
+	width: 150px;
+    height: 30px;
     margin-left: 50%;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 .show_info:hover {
@@ -225,9 +225,19 @@ hr {
     text-align: center;
 }
 
-#main-form > div > button {
+#main-form .실전사례 {
     background-color: #0B6DB7;
 	border-radius: 6px;
+	cursor: pointer;
+	color: #ffffff;
+	font-size: 30px;
+    width: 180px;
+    height: 50px;
+}
+
+#main-form .질문답변 {
+    background-color: #008000;
+    border-radius: 6px;
 	cursor: pointer;
 	color: #ffffff;
 	font-size: 30px;
@@ -248,7 +258,7 @@ hr {
 
 .main_logout {
     text-align: center;
-    background-color: #0B6DB7;
+    background-color: rebeccapurple;
 	border-radius: 6px;
 	cursor: pointer;
 	color: #ffffff;
@@ -261,7 +271,6 @@ hr {
 }
 
 .main_logout:hover {
-    background-color: rebeccapurple;
     font-weight: bold;
 }
 
@@ -916,7 +925,7 @@ hr {
 }
 
 .join_guide .menu_top .질문답변 {
-    background-color: #0B6DB7;
+    background-color: #008000;
 	border-radius: 6px;
 	cursor: pointer;
 	color: white;
