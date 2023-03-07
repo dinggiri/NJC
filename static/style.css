@@ -608,36 +608,20 @@ hr {
     display: block;
     padding: 1%;
     border-radius: 10px;
-<<<<<<< HEAD
-    font-size: 100px;
-    margin-top: 5%;
-    margin-left: 20%;
-    margin-bottom: 3%;
-=======
     font-size: 80px;
     margin: 10% auto 3% auto;
->>>>>>> 0ff93a130936f3a024c05f46e27d18aacd5edd8e
     font-weight: bold;
 }
 
 .white_item > label {
-<<<<<<< HEAD
-    font-size: 65px;
-=======
     font-size: 50px;
->>>>>>> 0ff93a130936f3a024c05f46e27d18aacd5edd8e
     font-weight: bold;
 }
 
 .white_item > label > input {
     border-radius: 50%;
-<<<<<<< HEAD
-    width: 4em;
-    height: 4em;
-=======
     width: 3em;
     height: 3em;
->>>>>>> 0ff93a130936f3a024c05f46e27d18aacd5edd8e
 }
 
 /* 세탁물종류 */
