@@ -15,13 +15,13 @@
     <form id="main-form">
       {% csrf_token %}
       <div class="div">
-        <button class="등록" type="button" onclick="location.href='adding/'">사례관리</button>
-        <button class="btn" type="button" onclick="location.href='exportlog'">검색로그 다운로드</button>
-        <button class="상품조회" type="button" onclick="location.href='yearselect/'">상품조회</button>
-        <button class="회원사조회" type="button" onclick="location.href='customer/'">회원사조회</button>
-        <button class="상품및회원사관리" type="button" onclick="location.href='manage/'">상품및회원사관리</button>
-        <button class="구매내역입력" type="button" onclick="location.href='buy'">구매내역입력</button>
-        <button class="btn" type="button" onclick="location.href='export'">주문일지 다운로드</button>
+        <button class="등록" type="button" onclick="location.href='adding/'">&nbsp;&nbsp;사례관리&nbsp;&nbsp;</button><br><br>
+        <button class="btn" type="button" onclick="location.href='exportlog'">&nbsp;&nbsp;검색로그 다운로드&nbsp;&nbsp;</button><br><br>
+        <button class="상품조회" type="button" onclick="location.href='yearselect/'">&nbsp;&nbsp;상품조회&nbsp;&nbsp;</button><br><br>
+        <button class="회원사조회" type="button" onclick="location.href='customer/'">&nbsp;&nbsp;회원사조회&nbsp;&nbsp;</button><br><br>
+        <button class="상품및회원사관리" type="button" onclick="location.href='manage/'">&nbsp;&nbsp;상품및회원사관리&nbsp;&nbsp;</button><br><br>
+        <button class="구매내역입력" type="button" onclick="location.href='buy'">&nbsp;&nbsp;구매내역입력&nbsp;&nbsp;</button><br><br>
+        <button class="btn" type="button" onclick="location.href='export'">&nbsp;&nbsp;주문일지 다운로드&nbsp;&nbsp;</button><br><br>
       </div>
       <button class="main_logout" type="button" onclick="location.href={% url 'common:logout' %}">로그아웃</button>
     </form>

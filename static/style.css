@@ -239,7 +239,7 @@ hr {
 	cursor: pointer;
 	color: #ffffff;
 	font-size: 50px;
-    width: 200px;
+    width: auto;
     height: 80px;
 }
 
