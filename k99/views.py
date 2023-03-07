@@ -409,7 +409,7 @@ def getSearchCount(stage, log):
 
     def _Issue(item):
         score = 0
-        dct = {'이염': [], '유색오염': [], '음식물': [], '황변': [], '곰팡이': [], '기름': [], '생활얼룩': [], '변색': [], '기타': [], '모름': [],
+        dct = {'이염': [], '유색오염': [], '음식물': [], '황변': [], '곰팡이': [], '기름': [], '생활얼룩': [], '변색': [], '탈색': [], '기타': [], '모름': [],
                '없음': []}
         for i in issue:
             if i in item:
@@ -804,7 +804,7 @@ def managecustomer(request):
         return render(request, 'k99/admin/managecustomer.html', context)
     elif request.method == "POST":
         username = request.POST.get('IDinput')
-        password = request.POST.get('PWinput')
+        password = request.POST.get('PWinput').upper()
         kname = request.POST.get('knameinput')
         kid = request.POST.get('KIDinput')
         doe = request.POST.get('doeinput')
@@ -1443,18 +1443,18 @@ def issue(request):
     if request.method == 'GET':
         if log.mix:
             count = getSearchCount('clothes', log)
-            count['username'] = username
             data = {
                 'data': True, # 2
                 'count': count['count'],
+                'username': username,
             }
             return render(request, 'k99/5세탁 사유.html', data)
         else:
             count = getSearchCount('color', log)
-            count['username'] = username
             data = {
                 'data': False, # 4
                 'count': count['count'],
+                'username': username,
             }
             return render(request, 'k99/5세탁 사유.html', data)
     elif request.method == 'POST':
@@ -1476,18 +1476,18 @@ def issue(request):
         elif 'prev' in request.POST:
             if log.mix:
                 count = getSearchCount('clothes', log)
-                count['username'] = username
                 data = {
                     'data': True,  # 2
                     'count': count['count'],
+                    'username': username,
                 }
                 return render(request, 'k99/5세탁 사유.html', data)
             else:
                 count = getSearchCount('color', log)
-                count['username'] = username
                 data = {
                     'data': False,  # 4
                     'count': count['count'],
+                    'username': username,
                 }
                 return render(request, 'k99/5세탁 사유.html', data)
         else:

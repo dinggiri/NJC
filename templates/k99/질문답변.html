@@ -8,18 +8,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body class="QA">
-    <div class="menu_top">
+    <div class="top">
         <a href="{% url 'k99:main' %}">
           <img class="img" src="{% static 'K99.jpg' %}" >
         </a><br>
-        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
-        <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
         <div>
           <span class="hello">{{ username }}님 안녕하세요!</span>
           <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
         </div>
+    </div><br>
+    <div class="menu_top">
+        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
+        <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
+        <button class="guide">사용법 안내</button>
     </div>
-     <button class="guide">사용법 안내</button>
     <div>
         <form id="search-form" method="post" action="{% url 'k99:qna_category' %}">
             {% csrf_token %}
@@ -29,11 +31,11 @@
 <!--            </div>-->
 
             <div class="QA_category">
-                <p>원하시는 질문답변 종류를 선택해 주세요</p><br>
-                <button type="submit" name="recipe">#세탁방법</button>
-                <button type="submit" name="chemical">#세탁약품</button>
-                <button type="submit" name="tool">#도구사용법</button>
-                <button type="submit" name="problem">#문제발생원인</button>
+                <p>원하시는 질문답변 종류를<br> 선택해 주세요</p><br>
+                <button type="submit" name="recipe">#세탁방법</button><br>
+                <button type="submit" name="chemical">#세탁약품</button><br>
+                <button type="submit" name="tool">#도구사용법</button><br>
+                <button type="submit" name="problem">#문제발생원인</button><br>
                 <button type="submit" name="etc">#기타</button>
             </div>
         </form>

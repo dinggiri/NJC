@@ -22,15 +22,13 @@
                 {% csrf_token %}
                 {% include "form_errors.html" %}
                 <label for="username">사용자ID </label><input type="text" name="username" placeholder="아이디" id="username" value="{{ form.username.value|default_if_none:'' }}"><br>
-                <label for="password">비밀번호 </label><input type="password" name="password" placeholder="비밀번호" id="password" value="{{ form.password.value|default_if_none:'' }}">
+                <label for="password">비밀번호 </label><input type="password" name="password" placeholder="비밀번호" id="password" oninput="this.value = this.value.toUpperCase()" value="{{ form.password.value|default_if_none:'' }}">
                 <input type="submit" value="로그인" id="signinbtn">
             </form>
         </div>
         <section class="info_page">
             <div class="info_wrapper">
-                <img class="info_img" src="{% static 'infoimg1.png' %}" alt="회원가입 안내1">
-                <img class="info_img" src="{% static 'infoimg2.png' %}" alt="회원가입 안내2">
-                <img class="info_img" src="{% static 'infoimg3.png' %}" alt="로그인 안내">
+                <img class="info_img" src="{% static '로그인.png' %}" alt="로그인 안내">
             </div>
         </section>
     <script type="text/javascript" src="{% static 'Login.js' %}"></script>

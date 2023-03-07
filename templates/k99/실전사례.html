@@ -16,10 +16,12 @@
         <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
         <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
       <div>
+          <br>
         <span class="hello">{{ username }}님 안녕하세요!</span>
           <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
       </div>
     </div>
+    <br>
     <p class="num_post">총 {{ count }}건의 검색결과</p>
 
     {% if post_list %}
@@ -45,9 +47,11 @@
         </section>
     {% endfor %}
     {% else %}
+    <div class="search-non">
     <tr>
         <td colspan="3">검색결과가 없습니다.</td>
     </tr>
+    </div>
     {% endif %}
 
     <hr>
