@@ -1146,7 +1146,7 @@ def mix(request):
         else:
             user_log = Searchlog.objects.filter(kid=kid, finish=True)
             user_count = user_log.count()
-            if user_count >= 3:
+            if user_count >= 2:
                 return render(request, 'k99/0회원가입안내.html', {'username': username})
             else:
                 return render(request, 'k99/1혼합세탁.html', {'username': username})
