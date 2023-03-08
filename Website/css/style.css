@@ -990,3 +990,11 @@ hr {
     width: 100%;
     height: 100%;
 }
+
+td {
+    font-size: 20px;
+}
+
+th {
+    font-size: 40px;
+}
