@@ -1318,7 +1318,7 @@ table {
   }
 th {
     font-family: 'Do Hyeon', sans-serif;
-    font-size: 40px;
+    font-size: 50px;
     background-color: lavender;
 }
 th, td {
@@ -1328,7 +1328,7 @@ th, td {
   }
 
 td {
-    font-size: 30px;
+    font-size: 40px;
 }
 
 th:first-child, td:first-child {
