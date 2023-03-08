@@ -33,7 +33,7 @@
             {% for customer in customers %}
 
             {% if customer.regular %}
-                {% if customer.residual < 10 and customer.residual != 0 %}
+                {% if customer.residual <= 10 and customer.residual != 0 %}
                 <tr bgcolor="#F5DCA8">
                 {% else %}
                 <tr bgcolor="#C2DFA5">
