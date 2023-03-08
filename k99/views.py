@@ -396,8 +396,9 @@ def checkregular(customer):
                 kbuys_amount = kbuys_amount - 20
                 if kbuys_amount < 10:
                     if kbuys_amount > 0:
+                        customer.edate = datetime(2023, 12, 31)
                         customer.residual = 10 - kbuys_amount
-                        customer.regular = False
+                        # customer.regular = False
                     else:
                         customer.residual = -1 * kbuys_amount
                         customer.edate = datetime(2023, 12, 31)
