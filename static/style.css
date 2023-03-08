@@ -1335,11 +1335,11 @@ th:first-child, td:first-child {
     border-left: none;
 }
 
-div.container > table > th {
+div.container > table.customersdata > th {
     font-size: 30px;
 }
 
-div.container > table > td {
+div.container > table.customersdata > td {
     font-size: 25px;
 }
 
