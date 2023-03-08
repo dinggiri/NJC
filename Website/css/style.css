@@ -12,12 +12,11 @@ th {
     font-size: 40px;
 }
 
-div.container > table > th {
-    font-size: 30px;
-}
-
 div.container > table > td {
     font-size: 25px;
+}
+div.container > table > th {
+    font-size: 30px;
 }
 
 /* 인트로 */
