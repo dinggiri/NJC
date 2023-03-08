@@ -90,29 +90,29 @@ def QApostObjRevision(nprof, prof):
     postObj = sorted_list1 + sorted_list2
     return postObj
 
+# def _getSearchCount(results, criterion):
+#     if type(results) == pd.core.frame.DataFrame:
+#         total_df = results.sort_values(by=['score'], ascending=False)
+#         ### Set minimum(10)
+#         if len(total_df) > 10:
+#             # 역치? 설정
+#             df = total_df[total_df.score >= criterion]
+#             if len(df) <= 10:
+#                 df = total_df
+#         else:
+#             df = total_df
+#         results_pid = list(df['pid_id'])
+#         count = len(df)
+#     else:
+#         results_pid = [q.pid for q in results]
+#         count = results.count()
+#     dict = {
+#         'count': count,
+#         'pid': results_pid,
+#     }
+#     return dict
 def _getSearchCount(results, criterion):
     if type(results) == pd.core.frame.DataFrame:
-        # print(f'criterion: {criterion}')
-        total_df = results.sort_values(by=['score'], ascending=False)
-        df = total_df[total_df.score >= criterion]
-        # print(df)
-        results_pid = list(df['pid_id'])
-        count = len(df)
-    else:
-        results_pid = [q.pid for q in results]
-        count = results.count()
-    dict = {
-        'count': count,
-        'pid': results_pid,
-    }
-    return dict
-
-
-def getSearchCount(stage, log):
-    ### 중간 단계 확인!!
-    criterion_1 = [1000, 70, 40, 20, 0]  # clothes
-    criterion_2 = [2000, 140, 100, 70, 0]  # material
-
     criterion_3 = [3000, 220, 160, 100, 0]  # issue
     criterion_4 = [500, 0]  # issue_detail
     criterion_5 = [10000, 0]  # luxury
@@ -1691,6 +1691,186 @@ def log_export(request):
     # 내용 데이터 삽입
     for row_num, columns in enumerate(data):
         for col_num, cell_data in enumerate(columns):
+            if col_num != 3:
+                worksheet.write(row_num + 2, col_num, cell_data)
+            else:
+                worksheet.write_datetime(row_num + 2, col_num, cell_data, date_format)
+            worksheet.write(row_num + 2, 5, '')
+            worksheet.set_column('A:A', 8)
+            worksheet.set_column('B:B', 8)
+            worksheet.set_column('C:C', 8.3)
+            worksheet.set_column('D:D', 25, date_format)
+            worksheet.set_column('E:E', 8)
+            worksheet.set_column('F:F', 8)
+            worksheet.set_column('G:G', 25)
+            worksheet.set_column('H:H', 20)
+            worksheet.set_column('I:I', 25)
+            worksheet.set_column('J:J', 25)
+
+    # Close the workbook before sending the data.
+    workbook.close()
+
+    # Rewind the buffer.
+    output.seek(0)
+
+    # Set up the Http response.
+    today = datetime.today().strftime('%Y%m%d')
+    filename = f'검색로그(~{today}).xlsx'
+    response = HttpResponse(
+        output,
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+    response['Content-Disposition'] = "attachment; filename*=UTF-8''{}".format(
+        quote(filename.encode('utf-8')))  # 한글 제목 설정
+
+    return response
+from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
+from .models import *
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.contrib.auth import authenticate, login
+from django.db.models import Sum, Count, Q
+from django.db.models.functions import TruncMonth, TruncYear
+from django.http import Http404, HttpResponse
+from urllib.parse import quote
+import io
+import xlsxwriter
+import ast
+import pandas as pd
+from datetime import datetime, timedelta
+
+def makeBool(str):
+    if str is None:
+        return str
+    elif str.lower() == 'true':
+        return True
+    elif str.lower() == 'false':
+        return False
+    else:
+        return str
+
+def makeBoolFromYN(str):
+    if str is None:
+        return str
+    elif str.lower() == 'yes':
+        return True
+    elif str.lower() == 'no':
+        return False
+    elif str.lower() == 'no_white':
+        return False
+    else:
+        return str
+
+def listOrNone(var):
+    if type(var) == list:
+        return var
+    elif var is not None:
+        var = var.replace("''", "'").replace('"', '').replace(' ', '')
+        return ast.literal_eval(var)
+    else:
+        return None
+
+def listClean(l):
+    """
+    리스트를 받아 ,로 구분된 것으로 바꿔주는 코드
+    """
+    string = str(l)
+    string = string.replace(" ", "").replace("[", "").replace("]", "").replace("'", "").replace("None", "")
+    return string
+
+def REpostObjRevision(obj):
+    postObj = []
+    for post in obj:
+        if type(post) == int:
+            post = Posts.objects.get(pid=post)
+        pvurl = listOrNone(post.pvurl)
+        postObj.append([post, pvurl])
+    return postObj
+
+def QApostObjRevision(nprof, prof):
+    postObj = {}
+    for pid in prof:
+        tmp_obj = QnA.objects.get(pid_id=pid)
+        subject = tmp_obj.subject
+        prof = tmp_obj.prof
+        if type(pid) == int:
+            post = Posts.objects.get(pid=pid)
+        cdate = post.create_date
+        postObj[pid] = [post, cdate, subject, prof]
+    sorted_dict = sorted(postObj.items(), key=lambda item: item[1][1], reverse=True)
+    sorted_list1 = [[x[1][0], x[1][2], x[1][3]] for x in sorted_dict]  # [post object, post subject, prof bool]
+    postObj = {}
+
+    for pid in nprof:
+        tmp_obj = QnA.objects.get(pid_id=pid)
+        subject = tmp_obj.subject
+        prof = tmp_obj.prof
+        if type(pid) == int:
+            post = Posts.objects.get(pid=pid)
+        cdate = post.create_date
+        postObj[pid] = [post, cdate, subject, prof]
+    sorted_dict = sorted(postObj.items(), key=lambda item: item[1][1], reverse=True)
+    sorted_list2 = [[x[1][0], x[1][2], x[1][3]] for x in sorted_dict]  # [post object, post subject, prof bool]
+
+    postObj = sorted_list1 + sorted_list2
+    return postObj
+
+def _getSearchCount(results, criterion):
+    if type(results) == pd.core.frame.DataFrame:
+        # print(f'criterion: {criterion}')
+        total_df = results.sort_values(by=['score'], ascending=False)
+        df = total_df[total_df.score >= criterion]
+        # print(df)
+        results_pid = list(df['pid_id'])
+        count = len(df)
+    else:
+        results_pid = [q.pid for q in results]
+        count = results.count()
+    dict = {
+        'count': count,
+        'pid': results_pid,
+    }
+    return dict
+
+
+def getSearchCount(stage, log):
+    ### 중간 단계 확인!!
+    criterion_1 = [1000, 70, 40, 20, 0]  # clothes
+    criterion_2 = [2000, 140, 100, 70, 0]  # material
+
+    criterion_3 = [3000, 220, 160, 100, 0]  # issue
+    criterion_4 = [500, 0]  # issue_detail
+    criterion_5 = [10000, 0]  # luxury
+
+    criterion = 0
+
+    ### 1. 혼합세탁
+    mix = log.mix
+    mix_white = log.mix_white
+    results = Realexamples.objects.filter(mix=mix, mix_white=mix_white)
+    if stage == 'mix':
+        return _getSearchCount(results, criterion)
+
+    ### 2. 세탁물종류
+    clothes = listOrNone(log.clothes)
+    df = pd.DataFrame(list(results.values()))
+    df.insert(df.shape[1], 'score', 0)
+
+    def _Clothes(item):
+        score = 0
+        dct = {'상의': [], '하의': [], '원피스': [], '겉옷': [], '패딩': [], '가방': [], '신발': [], '모자': [], '한복': [], '침구류': [],
+               '기타': []}
+        for c in clothes:
+            if c in item:
+                dct[c].append(criterion_1[0])
+            if c == '겉옷':
+                if '패딩' in item: dct['패딩'].append(criterion_1[1])
+                if '상의' in item: dct['상의'].append(criterion_1[2])
+            elif c == '상의':
+                if '하의' in item: dct['하의'].append(criterion_1[1])
+                if '겉옷' in item: dct['겉옷'].append(criterion_1[2])
+            elif c == '하의':
             if col_num != 3:
                 worksheet.write(row_num + 2, col_num, cell_data)
             else:
