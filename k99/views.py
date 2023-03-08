@@ -367,7 +367,7 @@ def checkregular(customer):
     ####### 그리고, 연장이 되지 않은 사람 #######
     if cdate < datetime(2022, 1, 1) : # 2022년 1월 1일 전 가입자
         if not customer.edate:
-            customer.edate = cdate + timedelta(days=364) # 364일 추가
+            customer.edate = datetime(2023, 12, 31) # 364일 추가
         if customer.edate < datetime(2022, 12, 31):
             try:
                 kbuys = Buy.objects.filter(Q(kid=kid) & (Q(pid=4) | Q(pid=10))).order_by('-bdate') # 해당 번호 사람이 buy한 것들 중 마지막
@@ -393,9 +393,14 @@ def checkregular(customer):
                 # kbuys = Buy.objects.filter(Q(kid=kid) & (Q(pid=4) | Q(pid=10)) & Q(bdate__range=[customer.edate - timedelta(days=365), customer.edate])).order_by('-bdate')
                 kbuys = Buy.objects.filter(Q(kid=kid) & (Q(pid=4) | Q(pid=10))).order_by('-bdate')  # 해당 번호 사람이 buy한 것들 중 마지막
                 kbuys_amount = sum([kb.bamount for kb in kbuys])
+                kbuys_amount = kbuys_amount - 20
                 if kbuys_amount < 10:
-                    customer.residual = 10 - kbuys_amount
-                    customer.regular = False
+                    if kbuys_amount > 0:
+                        customer.residual = 10 - kbuys_amount
+                        customer.regular = False
+                    else:
+                        customer.residual = -1 * kbuys_amount
+                        customer.edate = datetime(2023, 12, 31)
                 else:
                     # customer.edate = customer.edate + timedelta(days=365) # 365일 추가
                     plus = kbuys_amount // 10
