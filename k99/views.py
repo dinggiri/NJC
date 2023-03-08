@@ -486,7 +486,7 @@ def checkregular(customer):
 @login_required(login_url='common:login')
 def main(request):
     username = request.user.username
-    admin_list = ['24566905', '40106905', '40426905']
+    admin_list = ['admin', '24566905', '40106905', '40426905']
     if username in admin_list:
         return render(request, 'k99/admin/main.html')
         #return render(request, 'k99/main.html')
