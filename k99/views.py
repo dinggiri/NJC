@@ -723,6 +723,8 @@ def revisecust(request):
     if request.method == 'POST':
         customer = Customer.objects.get(kid=int(request.POST['revkid']))
         customer.kname = request.POST['revkname']
+        customer.set_password(request.POST['revpassword'].upper())
+        customer.real_pw = request.POST['revpassword']
         customer.doe = request.POST['revdoe']
         customer.sigungu = request.POST['revsigungu']
         customer.dong = request.POST['revdong']
@@ -740,6 +742,7 @@ def revisecust(request):
             customer.edate = customer.edate + timedelta(days=365)  # 365일 추가
             customer.set_password("K" + request.POST['revpassword'][1:])
             customer.real_pw = "K" + request.POST['revpassword'][1:]
+
         customer.save()
     customers = Customer.objects.order_by('kid')
     context = {
