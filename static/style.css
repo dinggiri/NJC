@@ -1335,12 +1335,12 @@ th:first-child, td:first-child {
     border-left: none;
 }
 
-div.container > table.customersdata > th {
-    font-size: 30px;
+.container .customersdata > tbody > tr > th {
+    font-size: 20px;
 }
 
-div.container > table.customersdata > td {
-    font-size: 25px;
+.container .customersdata > tbody > tr > td {
+    font-size: 15px;
 }
 
 .rev_product {

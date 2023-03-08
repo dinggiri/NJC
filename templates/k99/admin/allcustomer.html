@@ -36,7 +36,11 @@
                 {% if customer.residual <= 10 and customer.residual != 0 %}
                 <tr bgcolor="#F5DCA8">
                 {% else %}
-                <tr bgcolor="#C2DFA5">
+                    {% if customer.residual == 15 %}
+                        <tr bgcolor="#F5DCA8">
+                    {% else %}
+                        <tr bgcolor="#C2DFA5">
+                    {% endif %}
                 {% endif %}
             {% else %}
                 <tr>
