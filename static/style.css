@@ -1318,7 +1318,7 @@ table {
   }
 th {
     font-family: 'Do Hyeon', sans-serif;
-    font-size: 30px;
+    font-size: 40px;
     background-color: lavender;
 }
 th, td {
@@ -1328,11 +1328,19 @@ th, td {
   }
 
 td {
-    font-size: 25px;
+    font-size: 30px;
 }
 
 th:first-child, td:first-child {
     border-left: none;
+}
+
+div.container > table > th {
+    font-size: 30px;
+}
+
+div.container > table > td {
+    font-size: 25px;
 }
 
 .rev_product {
