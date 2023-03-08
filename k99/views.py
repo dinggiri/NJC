@@ -416,7 +416,7 @@ def checkregular(customer):
     else:
         if not customer.edate:
             customer.edate = cdate + timedelta(days=364) # 364일 추가
-        if customer.edate < cdate + timedelta(days=365):
+        if customer.edate < cdate + timedelta(days=360):
             try:
                 kbuys = Buy.objects.filter(Q(kid=kid) & (Q(pid=4) | Q(pid=10))).order_by('-bdate') # 해당 번호 사람이 buy한 것들 중 마지막
                 kbuys_amount = sum([kb.bamount for kb in kbuys])
@@ -454,7 +454,6 @@ def checkregular(customer):
                     customer.residual = residual
                     # customer.edate = customer.edate + timedelta(days=365)  # 365일 추가
             except IndexError:
-
                 customer.regular = False
                 customer.residual = 10
 
