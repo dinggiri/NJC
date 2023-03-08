@@ -4,6 +4,22 @@
     border: 0;
 }
 
+td {
+    font-size: 30px;
+}
+
+th {
+    font-size: 40px;
+}
+
+div.container > table > th {
+    font-size: 30px;
+}
+
+div.container > table > td {
+    font-size: 25px;
+}
+
 /* 인트로 */
 .intro {
     text-align: center;
@@ -991,19 +1007,5 @@ hr {
     height: 100%;
 }
 
-td {
-    font-size: 30px;
-}
 
-th {
-    font-size: 40px;
-}
-
-div.container > table > th {
-    font-size: 30px;
-}
-
-div.container > table > td {
-    font-size: 25px;
-}
 
