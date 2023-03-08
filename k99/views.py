@@ -393,14 +393,14 @@ def checkregular(customer):
                 # kbuys = Buy.objects.filter(Q(kid=kid) & (Q(pid=4) | Q(pid=10)) & Q(bdate__range=[customer.edate - timedelta(days=365), customer.edate])).order_by('-bdate')
                 kbuys = Buy.objects.filter(Q(kid=kid) & (Q(pid=4) | Q(pid=10))).order_by('-bdate')  # 해당 번호 사람이 buy한 것들 중 마지막
                 kbuys_amount = sum([kb.bamount for kb in kbuys])
-                if kbuys_amount < 20:
-                    customer.residual = 20 - kbuys_amount
+                if kbuys_amount < 10:
+                    customer.residual = 10 - kbuys_amount
                     customer.regular = False
                 else:
                     # customer.edate = customer.edate + timedelta(days=365) # 365일 추가
-                    plus = kbuys_amount // 20
-                    residual = kbuys_amount % 20
-                    customer.edate = customer.cdate + (1 + plus) * timedelta(days=365)  # 182일 추가
+                    plus = kbuys_amount // 10
+                    residual = kbuys_amount % 10
+                    customer.edate = customer.cdate + (2 + plus) * timedelta(days=182)  # 182일 추가
                     # if not residual:
                     #     residual = 0
                     customer.regular = True
@@ -408,7 +408,7 @@ def checkregular(customer):
 
             except IndexError:
                 customer.regular = False
-                customer.residual = 20
+                customer.residual = 10
 
     #########################################
     ######## 2022년 1월 1일 이후 가입자 #########
@@ -416,7 +416,7 @@ def checkregular(customer):
     else:
         if not customer.edate:
             customer.edate = cdate + timedelta(days=364) # 364일 추가
-        if customer.edate < cdate + timedelta(days=395):
+        if customer.edate < cdate + timedelta(days=365):
             try:
                 kbuys = Buy.objects.filter(Q(kid=kid) & (Q(pid=4) | Q(pid=10))).order_by('-bdate') # 해당 번호 사람이 buy한 것들 중 마지막
                 kbuys_amount = sum([kb.bamount for kb in kbuys])
@@ -463,6 +463,7 @@ def checkregular(customer):
 
     if customer.edate < customer.cdate:
         customer.regular = False
+        customer.save()
         return False
     if customer.edate < datetime.today():
         customer.regular = False
