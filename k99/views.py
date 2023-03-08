@@ -1681,7 +1681,10 @@ def log_export(request):
         kid = searchlog.kid
         tmp.append(kid)
         # kname
-        kname = Customer.objects.get(kid=kid).kname
+        try:
+            kname = Customer.objects.get(kid=kid).kname
+        except:
+            kname = " "
         tmp.append(kname)
         # date
         # t = searchlog.date.replace(tzinfo=None)
