@@ -1,3 +1,9 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+* {
+font-family : Pretendard;
+}
+
 *{
     padding: 0;
     margin: 0;
@@ -36,10 +42,10 @@
 	border-radius: 4px;
 	cursor: pointer;
 	color: white;
-	width: 150px;
-    height: 30px;
+	width: 100px;
+    height: 25px;
     margin-left: 50%;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .show_info:hover {
@@ -68,7 +74,7 @@
 
 .info_img {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
 }
 
 .login{
@@ -217,32 +223,28 @@ hr {
 /* 메인화면 */
 .main > h1 {
     text-align: center;
+    font-size: 45px;
     margin-top: 160px;
     margin-bottom: 20px;
 }
 
 .main > h3 {
     text-align: center;
+    font-size: 65px;
 }
 
-#main-form .실전사례 {
+#main-form > div > button {
     background-color: #0B6DB7;
 	border-radius: 6px;
 	cursor: pointer;
 	color: #ffffff;
-	font-size: 30px;
-    width: 180px;
-    height: 50px;
+	font-size: 50px;
+    width: auto;
+    height: 80px;
 }
 
-#main-form .질문답변 {
-    background-color: #008000;
-    border-radius: 6px;
-	cursor: pointer;
-	color: #ffffff;
-	font-size: 30px;
-    width: 180px;
-    height: 50px;
+#main-form > div > button.질문답변 {
+    background-color: #009347;
 }
 
 #main-form > div > button:hover {
@@ -258,19 +260,21 @@ hr {
 
 .main_logout {
     text-align: center;
-    background-color: rebeccapurple;
+    background-color: #C9CBD0;
 	border-radius: 6px;
 	cursor: pointer;
-	color: #ffffff;
-	font-size: 14px;
-    width: 80px;
-    height: 30px;
+	color: black;
+	font-size: 44px;
+    width: 180px;
+    height: 70px;
     margin: auto;
     margin-top: 1%;
     display: block;
 }
 
 .main_logout:hover {
+    background-color: #3D3F49;
+    color: white;
     font-weight: bold;
 }
 
@@ -287,6 +291,18 @@ hr {
 
 
 /* 실전사례 포스트 */
+.logout {
+    background-color: white;
+	cursor: pointer;
+	color: black;
+	font-size: 30px;
+    width: 120px;
+    height: 40px;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+
 .top .img {
     width: 12%;
     height: 10%;
@@ -327,7 +343,7 @@ hr {
 }
 
 .menu_top .실전사례 {
-    background-color: rebeccapurple;
+    background-color: #0B6DB7;
 	border-radius: 6px;
 	cursor: pointer;
 	color: white;
@@ -341,7 +357,7 @@ hr {
 }
 
 .menu_top .질문답변 {
-    background-color: #0B6DB7;
+    background-color: #009347;
 	border-radius: 6px;
 	cursor: pointer;
 	color: white;
@@ -351,22 +367,31 @@ hr {
 }
 
 .menu_top .질문답변:hover {
-    background-color: rebeccapurple;
     font-weight: bold;
+}
+
+.real-title {
+    font-size: 60px;
 }
 
 .num_post {
     margin-top: 1%;
     text-align: center;
     margin-bottom: -1%;
-    font-size: 25px;
+    font-size: 80px;
     font-weight: bold;
+}
+
+.search-non {
+    text-align: center;
+    margin-top: 5%;
+    font-size: 70px;
 }
 
 .mid-num_post {
     text-align: center;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 50px;
 }
 
 .article {
@@ -395,14 +420,14 @@ hr {
 .post {
     margin-left: 2%;
     width: 90%;
-    font-size: 150%;
-    line-height: 70px;
+    font-size: 350%;
+    line-height: 90px;
 }
 
 .url {
     margin-left: 2%;
     width: 93%;
-    font-size: 17px;
+    font-size: 40px;
     line-height: 180%;
     margin-top: 1%;
     margin-bottom: 1%;
@@ -418,7 +443,7 @@ hr {
 }
 
 .pagination > li {
-    font-size: 20px;
+    font-size: 50px;
     list-style: none;
     margin-bottom: 5px;
     padding: 3px 10px;
@@ -457,10 +482,10 @@ hr {
 }
 
 .next {
-    background-color: #0B6DB7;
+    background-color: #C9CBD0; /* #0B6DB7; */
 	border-radius: 15px;
 	cursor: pointer;
-	color: white;
+	color: black;
 	font-size: 700%;
     width: 50%;
     height: 20%;
@@ -490,15 +515,15 @@ hr {
 }
 
 .prev {
-    background-color: #0B6DB7;
+    background-color: #C9CBD0;
 	border-radius: 15px;
 	cursor: pointer;
-	color: white;
+	color: black;
 	font-size: 700%;
     width: 50%;
     height: 20%;
     float: center;
-    margin-top: 15%;
+    margin-top: 10%;
     margin-bottom: 7%;
 }
 
@@ -507,10 +532,10 @@ hr {
 }
 
 .prev1 {
-    background-color: #0B6DB7;
+    background-color: #C9CBD0;
 	border-radius: 15px;
 	cursor: pointer;
-	color: white;
+	color: black;
 	font-size: 700%;
     width: 50%;
     height: 20%;
@@ -524,7 +549,7 @@ hr {
 }
 
 .mid-search {
-    background-color: rebeccapurple;
+    background-color: #3D3F49;/* rebeccapurple; */
 	border-radius: 15px;
 	cursor: pointer;
 	color: white;
@@ -559,14 +584,14 @@ hr {
 
 /* 혼합세탁 */
 .checkbox1 > label {
-    font-size: 350%;
+    font-size: 65px;
     font-weight: bold;
 }
 
 .checkbox1 > label > input {
     border-radius: 50%;
-    width: 3em;
-    height: 3em;
+    width: 4em;
+    height: 4em;
 }
 
 .checkbox1 {
@@ -575,6 +600,7 @@ hr {
 
 .white_item {
     display: none;
+    text-align: center;
 }
 
 .white_item > span{
@@ -611,14 +637,14 @@ hr {
 }
 
 .checkbox2 > li > label {
-    font-size: 350%;
+    font-size: 400%;
     font-weight: bold;
 }
 
 .checkbox2 > li > label > input {
     border-radius: 50%;
-    width: 3em;
-    height: 3em;
+    width: 4em;
+    height: 4em;
 }
 
 /* 소재 */
@@ -631,14 +657,14 @@ hr {
 }
 
 .checkbox3 > li> label {
-    font-size: 300%;
+    font-size: 400%;
     font-weight: bold;
 }
 
 .checkbox3 > li > label > input {
     border-radius: 50%;
-    width: 3em;
-    height: 3em;
+    width: 4em;
+    height: 4em;
 }
 
 .dup_possible {
@@ -658,14 +684,14 @@ hr {
 }
 
 .checkbox4 > li> label {
-    font-size: 350%;
+    font-size: 400%;
     font-weight: bold;
 }
 
 .checkbox4 > li > label > input {
     border-radius: 50%;
-    width: 3em;
-    height: 3em;
+    width: 4em;
+    height: 4em;
 }
 
 /* 세탁사유 */
@@ -684,20 +710,20 @@ hr {
 
 .checkbox5 > li > label > input {
     border-radius: 50%;
-    width: 3em;
-    height: 3em;
+    width: 4em;
+    height: 4em;
 }
 
 /* 명품 */
 .checkbox6 > label {
-    font-size: 350%;
+    font-size: 450%;
     font-weight: bold;
 }
 
 .checkbox6 > label > input {
     border-radius: 50%;
-    width: 3em;
-    height: 3em;
+    width: 4em;
+    height: 4em;
 }
 
 .checkbox6 {
@@ -715,27 +741,27 @@ hr {
     background-color: #87CEFA;
     color: black;
     text-align: center;
-    width: 40%;
+    width: 60%;
     display: block;
     padding: 1%;
     border-radius: 10px;
-    font-size: 40px;
+    font-size: 65px;
     margin-top: 5%;
-    margin-left: 30%;
+    margin-left: 20%;
     margin-bottom: 2%;
     font-weight: bold;
 }
 
 .col_reason_item > label {
-    font-size: 35px;
+    font-size: 55px;
     font-weight: bold;
     text-size-adjust: 100%;
 }
 
 .col_reason_item > label > input {
     border-radius: 50%;
-    width: 2em;
-    height: 2em;
+    width: 4em;
+    height: 4em;
 }
 
 .blemish_item {
@@ -747,27 +773,27 @@ hr {
     background-color: #87CEFA;
     color: black;
     text-align: center;
-    width: 40%;
+    width: 60%;
     display: block;
     padding: 1%;
     border-radius: 10px;
-    font-size: 40px;
+    font-size: 65px;
     margin-top: 5%;
-    margin-left: 30%;
+    margin-left: 20%;
     margin-bottom: 2%;
     font-weight: bold;
 }
 
 .blemish_item> label {
-    font-size: 35px;
+    font-size: 55px;
     font-weight: bold;
     text-size-adjust: 100%;
 }
 
 .blemish_item > label > input {
     border-radius: 50%;
-    width: 2em;
-    height: 2em;
+    width: 4em;
+    height: 4em;
 }
 .etc_item {
     display: none;
@@ -782,7 +808,7 @@ hr {
     display: block;
     padding: 1%;
     border-radius: 10px;
-    font-size: 40px;
+    font-size: 65px;
     margin-top: 5%;
     margin-left: 30%;
     margin-bottom: 2%;
@@ -790,15 +816,15 @@ hr {
 }
 
 .etc_item > label {
-    font-size: 35px;
+    font-size: 55px;
     font-weight: bold;
     text-size-adjust: 100%;
 }
 
 .etc_item > label > input {
     border-radius: 50%;
-    width: 2em;
-    height: 2em;
+    width: 4em;
+    height: 4em;
 }
 
 /* 질문답변 Q & A 페이지 */
@@ -822,12 +848,11 @@ hr {
 }
 
 .QA .menu_top .실전사례:hover {
-    background-color: rebeccapurple;
     font-weight: bold;
 }
 
 .QA .menu_top .질문답변 {
-    background-color: rebeccapurple;
+    background-color: #009347;
 	border-radius: 6px;
 	cursor: pointer;
 	color: white;
@@ -920,12 +945,11 @@ hr {
 }
 
 .join_guide .menu_top .실전사례:hover {
-    background-color: rebeccapurple;
     font-weight: bold;
 }
 
 .join_guide .menu_top .질문답변 {
-    background-color: #008000;
+    background-color: #009347;
 	border-radius: 6px;
 	cursor: pointer;
 	color: white;
@@ -935,7 +959,6 @@ hr {
 }
 
 .join_guide .menu_top .질문답변:hover {
-    background-color: rebeccapurple;
     font-weight: bold;
 }
 
@@ -954,10 +977,10 @@ hr {
 
 /* 사용법 가이드*/
 .guide {
-    background-color: #0B6DB7;
+    background-color: #C9CBD0;/* #0B6DB7; */
 	border-radius: 10px;
 	cursor: pointer;
-	color: white;
+	color: black;
 	width:46%;
     height: 100px;
     font-size: 60px;
@@ -966,7 +989,8 @@ hr {
 
 .guide:hover {
     font-weight: bold;
-    background-color: rebeccapurple;
+    color: white;
+    background-color: #3D3F49;
 }
 
 .guide_page {
@@ -1255,7 +1279,7 @@ hr {
     font-family: 'Do Hyeon', sans-serif;
     font-size: 20px;
     display: inline-block;
-    width: 120px;
+    width: 150px;
     height: 40px;
     border: 0px;
     background: #1b5ac2;
@@ -1294,7 +1318,7 @@ table {
   }
 th {
     font-family: 'Do Hyeon', sans-serif;
-    font-size: 25px;
+    font-size: 45px;
     background-color: lavender;
 }
 th, td {
@@ -1302,6 +1326,10 @@ th, td {
     border-left: 1px solid #444444;
     padding: 10px;
   }
+
+td {
+    font-size: 40px;
+}
 
 th:first-child, td:first-child {
     border-left: none;

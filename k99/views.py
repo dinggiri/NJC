@@ -113,185 +113,6 @@ def QApostObjRevision(nprof, prof):
 #     return dict
 def _getSearchCount(results, criterion):
     if type(results) == pd.core.frame.DataFrame:
-        # print(f'criterion: {criterion}')
-        total_df = results.sort_values(by=['score'], ascending=False)
-        df = total_df[total_df.score >= criterion]
-        # print(df)
-        results_pid = list(df['pid_id'])
-        count = len(df)
-    else:
-        results_pid = [q.pid for q in results]
-        count = results.count()
-    dict = {
-        'count': count,
-        'pid': results_pid,
-    }
-    return dict
-
-# def getSearchCount(stage, log):
-#     ### 중간 단계 확인!!
-#     criterion_1 = [1000, 70, 40, 20, 0]      # clothes
-#     criterion_2 = [2000, 140, 100, 70, 0]    # material
-#
-#     criterion_3 = [3000, 220, 160, 100, 0]   # issue
-#     criterion_4 = [500, 0]                   # issue_detail
-#     criterion_5 = [10000, 0]                # luxury
-#
-#     ### 1. 혼합세탁
-#     mix = log.mix
-#     mix_white = log.mix_white
-#     results = Realexamples.objects.filter(mix=mix, mix_white=mix_white)
-#     if stage == 'mix':
-#         criterion = 0 # 필요없음
-#         return _getSearchCount(results, criterion)
-#
-#
-#     ### 2. 세탁물종류
-#     clothes = listOrNone(log.clothes)
-#     df = pd.DataFrame(list(results.values()))
-#     df.insert(df.shape[1], 'score', 0)
-#
-#     def _Clothes(item):
-#         score = 0
-#         dct = {'상의': [], '하의': [], '원피스': [], '겉옷': [], '패딩': [], '가방': [], '신발': [], '모자': [], '한복': [], '침구류': [], '기타': []}
-#         for c in clothes:
-#             if c in item:
-#                 dct[c].append(criterion_1[0])
-#             if c == '겉옷':
-#                 if '패딩' in item: dct['패딩'].append(criterion_1[1])
-#                 if '상의' in item: dct['상의'].append(criterion_1[2])
-#             elif c == '상의':
-#                 if '하의' in item: dct['하의'].append(criterion_1[1])
-#                 if '겉옷' in item: dct['겉옷'].append(criterion_1[2])
-#             elif c == '하의':
-#                 if '상의' in item: dct['상의'].append(criterion_1[1])
-#             elif c == '한복':
-#                 if '원피스' in item: dct['원피스'].append(criterion_1[2])
-#                 if '상의' in item: dct['상의'].append(criterion_1[3])
-#                 if '하의' in item: dct['하의'].append(criterion_1[3])
-#             elif c == '원피스':
-#                 if '상의' in item: dct['상의'].append(criterion_1[3])
-#                 if '하의' in item: dct['하의'].append(criterion_1[3])
-#
-#         for it, scores in dct.items():
-#             if len(dct[it]) != 0:
-#                 score += max(dct[it])
-#         return score
-#
-#     df['score'] += df['clothes'].apply(_Clothes)
-#
-#     if stage == 'clothes':
-#         criterion = criterion_1[0]  # 1000
-#         return _getSearchCount(df, criterion)
-#
-#
-#     ### 3. 소재
-#     if (not mix) and (clothes[0] != '가방'):
-#         material = listOrNone(log.material)
-#         df.insert(1, 'material', 0)
-#         df['material_out'] = df['material_out'].apply(lambda x: x.split(',') if x != '없음' else [])
-#         df['material_in'] = df['material_in'].apply(lambda x: x.split(',') if x != '없음' else [])
-#         df['material'] = df['material_out'] + df['material_in']
-#         # 혼방 점수 줄거면 여기서 len() > 1 이면 혼방취급
-#         df['material'] = df['material'].apply(lambda x: list(set(x)))
-#
-#         def _Material(item):
-#             score = 0
-#             dct = {'면': [], '린넨': [], '마': [], '레이온': [], '모달': [], '모': [], '실크': [], '나일론': [], '폴리에스테르': [],
-#                    '아크릴': [], '아세테이트': [], '모피': [], '스웨이드': [], '동물털': [], '인조가죽': [], '폴리우레탄': [], '솜': [], '기타': [], '모름': []}
-#             for m in material:
-#                 if m in item:
-#                     dct[m].append(criterion_2[0])
-#                 if '모름' in item:
-#                     dct['모름'].append(criterion_2[3])
-#
-#             for it, scores in dct.items():
-#                 if len(dct[it]) != 0:
-#                     score += max(dct[it])
-#             return score
-#
-#         df['score'] += df['material'].apply(_Material)
-#
-#         if stage == 'material':
-#             criterion = criterion_1[0] + criterion_2[0]  # 3000
-#             return _getSearchCount(df, criterion)
-#
-#
-#     ### 4. 색상
-#     if not mix:
-#         total_color = listOrNone(log.color)
-#         color = total_color[0]
-#         if '배색' in total_color: comb_colors = True
-#         else: comb_colors = False
-#         if '프린팅' in total_color: printing = True
-#         else: printing = False
-#
-#         df['score'] += df['color'].apply(lambda x: criterion_1[0] if x == color else criterion_1[4])
-#         df['score'] += df['comb_colors'].apply(lambda x: criterion_1[0] if x == comb_colors else criterion_1[2])
-#         df['score'] += df['printing'].apply(lambda x: criterion_1[0] if x == printing else criterion_1[2])
-#
-#         if stage == 'color':
-#             criterion = criterion_1[0] + criterion_2[0] + criterion_1[0]  # 4000
-#             return _getSearchCount(df, criterion)
-#
-#
-#     ### 5. 세탁사유
-#     issue = listOrNone(log.issue)
-#     issue_detail = listOrNone(log.issue_detail)  # [[유색오염],[생활얼룩],[기타]]
-#
-#     def _Issue(item):
-#         score = 0
-#         dct = {'이염': [], '유색오염': [], '음식물': [], '황변': [], '곰팡이': [], '기름': [], '생활얼룩': [], '변색': [], '기타': [], '모름': [], '없음': []}
-#         for i in issue:
-#             if i in item:
-#                 dct[i].append(criterion_3[0])
-#             if '모름' in item:
-#                 dct['모름'].append(criterion_3[3])
-#             if i == '유색오염':
-#                 if '생활얼룩' in item: dct['생활얼룩'].append(criterion_3[1])
-#             elif i == '생활얼룩':
-#                 if '유색오염' in item: dct['유색오염'].append(criterion_3[1])
-#
-#         for it, scores in dct.items():
-#             if len(dct[it]) != 0:
-#                 score += max(dct[it])
-#         return score
-#     def _IssueDetail(item):
-#         score = 0
-#         dct = {'잉크': [], '화장품': [], '페인트': [], '그을음': [], '염색약': [], '기타유색오염': [], '체액': [], '빗물': [], '녹물': [],
-#                '접착제': [], '세제자국': [], '기타생활얼룩': [], '냄새': [], '복원': [], '보색': [], '기타': []}
-#         if item is not None:
-#             for iss in issue_detail:
-#                 if len(iss) != 0:
-#                     for d in iss:
-#                         if d in item:
-#                             dct[d].append(criterion_4[0])
-#
-#             for it, scores in dct.items():
-#                 if len(dct[it]) != 0:
-#                     score += max(dct[it])
-#         return score
-#
-#     df['score'] += df['issue'].apply(_Issue)
-#     df['score'] += df['issue_detail'].apply(_IssueDetail)
-#
-#     if stage == 'issue':
-#         criterion = criterion_1[0] + criterion_2[0] + criterion_1[0] + criterion_3[0]  # 9000
-#         return _getSearchCount(df, criterion)
-#
-#
-#     ### 6. 명품
-#     luxury = log.luxury
-#     df['score'] += df['luxury'].apply(lambda x: criterion_5[0] if x == luxury else criterion_5[1])
-#
-#     if stage == 'luxury':
-#         criterion = criterion_5[0] + criterion_1[0] + criterion_2[0] + criterion_3[0] # 18000
-#         return _getSearchCount(df, criterion)
-def getSearchCount(stage, log):
-    ### 중간 단계 확인!!
-    criterion_1 = [1000, 70, 40, 20, 0]  # clothes
-    criterion_2 = [2000, 140, 100, 70, 0]  # material
-
     criterion_3 = [3000, 220, 160, 100, 0]  # issue
     criterion_4 = [500, 0]  # issue_detail
     criterion_5 = [10000, 0]  # luxury
@@ -576,21 +397,20 @@ def checkregular(customer):
             try:
                 kbuys = Buy.objects.filter(Q(kid=kid) & (Q(pid=4) | Q(pid=10))).order_by('-bdate') # 해당 번호 사람이 buy한 것들 중 마지막
                 kbuys_amount = sum([kb.bamount for kb in kbuys])
-                if kbuys_amount < 10:
-                    customer.residual = 10 - kbuys_amount
+                if kbuys_amount < 20:
+                    customer.residual = 20 - kbuys_amount
                     customer.regular = False
                 else:
                     # customer.edate = customer.cdate + timedelta(days=365) # 365일 추가
-                    plus = kbuys_amount // 10
-                    residual = kbuys_amount % 10
-                    customer.edate = customer.cdate + (2 + plus) * timedelta(days=182)  #182일 추가
-                    # if not residual:
-                    #     residual = 0
+                    plus = kbuys_amount // 20
+                    residual = kbuys_amount % 20
+                    customer.edate = customer.cdate + (1 + plus) * timedelta(days=365)
                     customer.regular = True
                     customer.residual = residual
+
             except IndexError:
                 customer.regular = False
-                customer.residual = 10
+                customer.residual = 20
                 # return False
                 ########  연장이 이미 완료된 사람 #########
                 ##### 회원종료 만료일로부터 12개월 동안의 데이터를 추출
@@ -1871,6 +1691,186 @@ def log_export(request):
     # 내용 데이터 삽입
     for row_num, columns in enumerate(data):
         for col_num, cell_data in enumerate(columns):
+            if col_num != 3:
+                worksheet.write(row_num + 2, col_num, cell_data)
+            else:
+                worksheet.write_datetime(row_num + 2, col_num, cell_data, date_format)
+            worksheet.write(row_num + 2, 5, '')
+            worksheet.set_column('A:A', 8)
+            worksheet.set_column('B:B', 8)
+            worksheet.set_column('C:C', 8.3)
+            worksheet.set_column('D:D', 25, date_format)
+            worksheet.set_column('E:E', 8)
+            worksheet.set_column('F:F', 8)
+            worksheet.set_column('G:G', 25)
+            worksheet.set_column('H:H', 20)
+            worksheet.set_column('I:I', 25)
+            worksheet.set_column('J:J', 25)
+
+    # Close the workbook before sending the data.
+    workbook.close()
+
+    # Rewind the buffer.
+    output.seek(0)
+
+    # Set up the Http response.
+    today = datetime.today().strftime('%Y%m%d')
+    filename = f'검색로그(~{today}).xlsx'
+    response = HttpResponse(
+        output,
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+    response['Content-Disposition'] = "attachment; filename*=UTF-8''{}".format(
+        quote(filename.encode('utf-8')))  # 한글 제목 설정
+
+    return response
+from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
+from .models import *
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.contrib.auth import authenticate, login
+from django.db.models import Sum, Count, Q
+from django.db.models.functions import TruncMonth, TruncYear
+from django.http import Http404, HttpResponse
+from urllib.parse import quote
+import io
+import xlsxwriter
+import ast
+import pandas as pd
+from datetime import datetime, timedelta
+
+def makeBool(str):
+    if str is None:
+        return str
+    elif str.lower() == 'true':
+        return True
+    elif str.lower() == 'false':
+        return False
+    else:
+        return str
+
+def makeBoolFromYN(str):
+    if str is None:
+        return str
+    elif str.lower() == 'yes':
+        return True
+    elif str.lower() == 'no':
+        return False
+    elif str.lower() == 'no_white':
+        return False
+    else:
+        return str
+
+def listOrNone(var):
+    if type(var) == list:
+        return var
+    elif var is not None:
+        var = var.replace("''", "'").replace('"', '').replace(' ', '')
+        return ast.literal_eval(var)
+    else:
+        return None
+
+def listClean(l):
+    """
+    리스트를 받아 ,로 구분된 것으로 바꿔주는 코드
+    """
+    string = str(l)
+    string = string.replace(" ", "").replace("[", "").replace("]", "").replace("'", "").replace("None", "")
+    return string
+
+def REpostObjRevision(obj):
+    postObj = []
+    for post in obj:
+        if type(post) == int:
+            post = Posts.objects.get(pid=post)
+        pvurl = listOrNone(post.pvurl)
+        postObj.append([post, pvurl])
+    return postObj
+
+def QApostObjRevision(nprof, prof):
+    postObj = {}
+    for pid in prof:
+        tmp_obj = QnA.objects.get(pid_id=pid)
+        subject = tmp_obj.subject
+        prof = tmp_obj.prof
+        if type(pid) == int:
+            post = Posts.objects.get(pid=pid)
+        cdate = post.create_date
+        postObj[pid] = [post, cdate, subject, prof]
+    sorted_dict = sorted(postObj.items(), key=lambda item: item[1][1], reverse=True)
+    sorted_list1 = [[x[1][0], x[1][2], x[1][3]] for x in sorted_dict]  # [post object, post subject, prof bool]
+    postObj = {}
+
+    for pid in nprof:
+        tmp_obj = QnA.objects.get(pid_id=pid)
+        subject = tmp_obj.subject
+        prof = tmp_obj.prof
+        if type(pid) == int:
+            post = Posts.objects.get(pid=pid)
+        cdate = post.create_date
+        postObj[pid] = [post, cdate, subject, prof]
+    sorted_dict = sorted(postObj.items(), key=lambda item: item[1][1], reverse=True)
+    sorted_list2 = [[x[1][0], x[1][2], x[1][3]] for x in sorted_dict]  # [post object, post subject, prof bool]
+
+    postObj = sorted_list1 + sorted_list2
+    return postObj
+
+def _getSearchCount(results, criterion):
+    if type(results) == pd.core.frame.DataFrame:
+        # print(f'criterion: {criterion}')
+        total_df = results.sort_values(by=['score'], ascending=False)
+        df = total_df[total_df.score >= criterion]
+        # print(df)
+        results_pid = list(df['pid_id'])
+        count = len(df)
+    else:
+        results_pid = [q.pid for q in results]
+        count = results.count()
+    dict = {
+        'count': count,
+        'pid': results_pid,
+    }
+    return dict
+
+
+def getSearchCount(stage, log):
+    ### 중간 단계 확인!!
+    criterion_1 = [1000, 70, 40, 20, 0]  # clothes
+    criterion_2 = [2000, 140, 100, 70, 0]  # material
+
+    criterion_3 = [3000, 220, 160, 100, 0]  # issue
+    criterion_4 = [500, 0]  # issue_detail
+    criterion_5 = [10000, 0]  # luxury
+
+    criterion = 0
+
+    ### 1. 혼합세탁
+    mix = log.mix
+    mix_white = log.mix_white
+    results = Realexamples.objects.filter(mix=mix, mix_white=mix_white)
+    if stage == 'mix':
+        return _getSearchCount(results, criterion)
+
+    ### 2. 세탁물종류
+    clothes = listOrNone(log.clothes)
+    df = pd.DataFrame(list(results.values()))
+    df.insert(df.shape[1], 'score', 0)
+
+    def _Clothes(item):
+        score = 0
+        dct = {'상의': [], '하의': [], '원피스': [], '겉옷': [], '패딩': [], '가방': [], '신발': [], '모자': [], '한복': [], '침구류': [],
+               '기타': []}
+        for c in clothes:
+            if c in item:
+                dct[c].append(criterion_1[0])
+            if c == '겉옷':
+                if '패딩' in item: dct['패딩'].append(criterion_1[1])
+                if '상의' in item: dct['상의'].append(criterion_1[2])
+            elif c == '상의':
+                if '하의' in item: dct['하의'].append(criterion_1[1])
+                if '겉옷' in item: dct['겉옷'].append(criterion_1[2])
+            elif c == '하의':
             if col_num != 3:
                 worksheet.write(row_num + 2, col_num, cell_data)
             else:
