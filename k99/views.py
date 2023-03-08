@@ -13,6 +13,7 @@ import xlsxwriter
 import ast
 import pandas as pd
 from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
 
 def makeBool(str):
     if str is None:
@@ -378,7 +379,7 @@ def checkregular(customer):
                 else:
                     plus = kbuys_amount // 10
                     residual = kbuys_amount % 10
-                    customer.edate = customer.cdate + (2 + plus) * timedelta(days=182) # 365일 추가
+                    customer.edate = customer.cdate + (2 + plus) * relativedelta(months=+6) # 365일 추가
                     # if not residual:
                     #     residual = 20
                     customer.residual = residual
@@ -406,7 +407,7 @@ def checkregular(customer):
                     # customer.edate = customer.edate + timedelta(days=365) # 365일 추가
                     plus = kbuys_amount // 10
                     residual = kbuys_amount % 10
-                    customer.edate = datetime(2023, 12, 31) + plus * timedelta(days=182)  # 182일 추가
+                    customer.edate = datetime(2023, 12, 31) + plus * relativedelta(months=+6)  # 182일 추가
                     # if not residual:
                     #     residual = 0
                     customer.regular = True
@@ -421,7 +422,7 @@ def checkregular(customer):
     ####### 그리고, 연장이 되지 않은 사람 #######
     else:
         if not customer.edate:
-            customer.edate = cdate + timedelta(days=364) # 364일 추가
+            customer.edate = cdate + relativedelta(months=+12) # 364일 추가
         if customer.edate < cdate + timedelta(days=400):
             try:
                 kbuys = Buy.objects.filter(Q(kid=kid) & (Q(pid=4) | Q(pid=10))).order_by('-bdate') # 해당 번호 사람이 buy한 것들 중 마지막
@@ -433,7 +434,7 @@ def checkregular(customer):
                     # customer.edate = customer.cdate + timedelta(days=365) # 365일 추가
                     plus = kbuys_amount // 20
                     residual = kbuys_amount % 20
-                    customer.edate = customer.cdate + (1 + plus) * timedelta(days=365)
+                    customer.edate = customer.cdate + (1 + plus) * relativedelta(months=+12)
                     customer.regular = True
                     customer.residual = residual
 
@@ -454,7 +455,7 @@ def checkregular(customer):
                 else:
                     plus = kbuys_amount // 10
                     residual = kbuys_amount % 10
-                    customer.edate = customer.cdate + (2 + plus) * timedelta(days=182)  # 365일 추가
+                    customer.edate = customer.cdate + (2 + plus) * relativedelta(months=+6)  # 365일 추가
                     # if not residual:
                     #     residual = 0
                     customer.residual = residual
