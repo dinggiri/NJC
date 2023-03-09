@@ -500,6 +500,7 @@ def checkregular(customer):
 @login_required(login_url='common:login')
 def main(request):
     username = request.user.username
+    user = Customer.objects.get(username=username)
     admin_list = ['admin', '24566905', '40106905', '40426905']
     if username in admin_list:
         return render(request, 'k99/admin/main.html')
@@ -748,6 +749,7 @@ def revisecust(request):
         customer.cphone = request.POST['revcphone']
         customer.zipcode = request.POST['revzipcode']
         customer.regular = request.POST['revregular']
+        customer.failed_login_attempts = request.POST['revfailcnt']
         if request.POST['revedate']:
             customer.edate = datetime.strptime(request.POST['revedate'], '%Y-%m-%d')
         else:

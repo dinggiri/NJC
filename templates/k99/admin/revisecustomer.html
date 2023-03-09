@@ -39,6 +39,7 @@
             <div class="appendbox">
             <p class="rev_customer">회원 아이디 : </p><input class="productinput" type="text" name="revusername" value = "{{ customer.username }}">
             <p class="rev_customer">회원 비밀번호 : </p><input class="productinput" id="readonly" type="text" name="revpassword" value = "{{ customer.real_pw }}">
+            <p class="rev_customer">비밀번호 오류 횟수 (초기화 용) : </p><input class="productinput" type="text" name="revfailcnt" value = "{{ customer.failed_login_attempts }}"/><label></label>
             <p class="rev_customer">회원 번호 : </p><input class="productinput" id="readonly" type="text" name="revkid" value = "{{ customer.kid }}" readonly/><label>번</label>
             <p class="rev_customer">회원사 이름 : </p><input class="productinput" type="text" name="revkname" value = "{{ customer.kname }}" ><label></label>
             <p class="rev_customer">회원사 주소(도) : </p><input class="productinput" type="text" name="revdoe" value = "{{ customer.doe }}" ><label></label>
