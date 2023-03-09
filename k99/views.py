@@ -198,8 +198,8 @@ def getSearchCount(stage, log):
         if (not mix) and (clothes[0] != '가방'):
             material = listOrNone(log.material)
             df.insert(1, 'material', 0)
-            df['material_out'] = df['material_out'].apply(lambda x: x.split(',') if x != '없음' else [])
-            df['material_in'] = df['material_in'].apply(lambda x: x.split(',') if x != '없음' else [])
+            df['material_out'] = df['material_out'].apply(lambda x: x.split(',') if (x != '없음') and (x is not None) else [])
+            df['material_in'] = df['material_in'].apply(lambda x: x.split(',') if (x != '없음') and (x is not None) else [])
             df['material'] = df['material_out'] + df['material_in']
             # 혼방 점수 줄거면 여기서 len() > 1 이면 혼방취급
             df['material'] = df['material'].apply(lambda x: list(set(x)))
