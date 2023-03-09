@@ -65,6 +65,7 @@ class Customer(AbstractUser):
     regular = models.BooleanField(null=True)
     residual = models.IntegerField(null=True)
     real_pw = models.TextField(null=True)
+    failed_login_attempts = models.PositiveIntegerField(default=0)
     first_name = None
     last_name = None
 

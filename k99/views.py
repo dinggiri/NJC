@@ -14,6 +14,12 @@ import ast
 import pandas as pd
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
+from django.contrib.auth.views import LoginView
+from .forms import CustomAuthenticationForm
+
+class CustomLoginView(LoginView):
+    authentication_form = CustomAuthenticationForm
+
 
 def makeBool(str):
     if str is None:
@@ -131,179 +137,186 @@ def _getSearchCount(results, criterion):
     return dict
 
 def getSearchCount(stage, log):
-    ### 중간 단계 확인!!
-    criterion_1 = [1000, 70, 40, 20, 0]  # clothes
-    criterion_2 = [2000, 140, 100, 70, 0]  # material
-
-    criterion_3 = [3000, 220, 160, 100, 0]  # issue
-    criterion_4 = [500, 0]  # issue_detail
-    criterion_5 = [10000, 0]  # luxury
-
-    criterion = 0
-
-    ### 1. 혼합세탁
-    mix = log.mix
-    mix_white = log.mix_white
-    results = Realexamples.objects.filter(mix=mix, mix_white=mix_white)
-    if stage == 'mix':
-        return _getSearchCount(results, criterion)
-
-    ### 2. 세탁물종류
-    clothes = listOrNone(log.clothes)
-    df = pd.DataFrame(list(results.values()))
-    df.insert(df.shape[1], 'score', 0)
-
-    def _Clothes(item):
-        score = 0
-        dct = {'상의': [], '하의': [], '원피스': [], '겉옷': [], '패딩': [], '가방': [], '신발': [], '모자': [], '한복': [], '침구류': [],
-               '기타': []}
-        for c in clothes:
-            if c in item:
-                dct[c].append(criterion_1[0])
-            if c == '겉옷':
-                if '패딩' in item: dct['패딩'].append(criterion_1[1])
-                if '상의' in item: dct['상의'].append(criterion_1[2])
-            elif c == '상의':
-                if '하의' in item: dct['하의'].append(criterion_1[1])
-                if '겉옷' in item: dct['겉옷'].append(criterion_1[2])
-            elif c == '하의':
-                if '상의' in item: dct['상의'].append(criterion_1[1])
-            elif c == '한복':
-                if '원피스' in item: dct['원피스'].append(criterion_1[2])
-                if '상의' in item: dct['상의'].append(criterion_1[3])
-                if '하의' in item: dct['하의'].append(criterion_1[3])
-            elif c == '원피스':
-                if '상의' in item: dct['상의'].append(criterion_1[3])
-                if '하의' in item: dct['하의'].append(criterion_1[3])
-
-        for it, scores in dct.items():
-            if len(dct[it]) != 0:
-                score += max(dct[it])
-        return score
-
-    df['score'] += df['clothes'].apply(_Clothes)
-    criterion += criterion_1[0] * len(clothes) * 0.5
-
-    if stage == 'clothes':
-        return _getSearchCount(df, criterion)
-
-    ### 3. 소재
-    if (not mix) and (clothes[0] != '가방'):
-        material = listOrNone(log.material)
-        df.insert(1, 'material', 0)
-        df['material_out'] = df['material_out'].apply(lambda x: x.split(',') if x != '없음' else [])
-        df['material_in'] = df['material_in'].apply(lambda x: x.split(',') if x != '없음' else [])
-        df['material'] = df['material_out'] + df['material_in']
-        # 혼방 점수 줄거면 여기서 len() > 1 이면 혼방취급
-        df['material'] = df['material'].apply(lambda x: list(set(x)))
-
-        def _Material(item):
+    try:
+        ### 중간 단계 확인!!
+        criterion_1 = [1000, 70, 40, 20, 0]  # clothes
+        criterion_2 = [2000, 140, 100, 70, 0]  # material
+    
+        criterion_3 = [3000, 220, 160, 100, 0]  # issue
+        criterion_4 = [500, 0]  # issue_detail
+        criterion_5 = [10000, 0]  # luxury
+    
+        criterion = 0
+    
+        ### 1. 혼합세탁
+        mix = log.mix
+        mix_white = log.mix_white
+        results = Realexamples.objects.filter(mix=mix, mix_white=mix_white)
+        if stage == 'mix':
+            return _getSearchCount(results, criterion)
+    
+        ### 2. 세탁물종류
+        clothes = listOrNone(log.clothes)
+        df = pd.DataFrame(list(results.values()))
+        df.insert(df.shape[1], 'score', 0)
+    
+        def _Clothes(item):
             score = 0
-            dct = {'면': [], '린넨': [], '마': [], '레이온': [], '모달': [], '모': [], '실크': [], '나일론': [], '폴리에스테르': [],
-                   '아크릴': [], '아세테이트': [], '모피': [], '스웨이드': [], '동물털': [], '인조가죽': [], '폴리우레탄': [], '솜': [], '기타': [],
-                   '모름': []}
-            for m in material:
-                if m in item:
-                    if m == '모름':
-                        continue
-                    else:
-                        dct[m].append(criterion_2[0])
-                if '모름' in item:
-                    dct['모름'].append(criterion_2[3])
-
+            dct = {'상의': [], '하의': [], '원피스': [], '겉옷': [], '패딩': [], '가방': [], '신발': [], '모자': [], '한복': [], '침구류': [],
+                   '기타': []}
+            for c in clothes:
+                if c in item:
+                    dct[c].append(criterion_1[0])
+                if c == '겉옷':
+                    if '패딩' in item: dct['패딩'].append(criterion_1[1])
+                    if '상의' in item: dct['상의'].append(criterion_1[2])
+                elif c == '상의':
+                    if '하의' in item: dct['하의'].append(criterion_1[1])
+                    if '겉옷' in item: dct['겉옷'].append(criterion_1[2])
+                elif c == '하의':
+                    if '상의' in item: dct['상의'].append(criterion_1[1])
+                elif c == '한복':
+                    if '원피스' in item: dct['원피스'].append(criterion_1[2])
+                    if '상의' in item: dct['상의'].append(criterion_1[3])
+                    if '하의' in item: dct['하의'].append(criterion_1[3])
+                elif c == '원피스':
+                    if '상의' in item: dct['상의'].append(criterion_1[3])
+                    if '하의' in item: dct['하의'].append(criterion_1[3])
+    
             for it, scores in dct.items():
                 if len(dct[it]) != 0:
                     score += max(dct[it])
             return score
-
-        df['score'] += df['material'].apply(_Material)
-        material_cnt = len([x for x in material if x != '모름'])
-        criterion += criterion_2[0] * material_cnt * 0.8
-
-        if stage == 'material':
+    
+        df['score'] += df['clothes'].apply(_Clothes)
+        criterion += criterion_1[0] * len(clothes) * 0.5
+    
+        if stage == 'clothes':
             return _getSearchCount(df, criterion)
-
-
-    ### 4. 색상
-    if not mix:
-        total_color = listOrNone(log.color)
-        color = total_color[0]
-        if '배색' in total_color:
-            comb_colors = True
-        else:
-            comb_colors = False
-        if '프린팅' in total_color:
-            printing = True
-        else:
-            printing = False
-
-        # df['score'] += df['color'].apply(lambda x: criterion_1[0] if x == color else criterion_1[4])
-        df = df[df['color'] == color]
-        df['score'] += df['comb_colors'].apply(lambda x: criterion_1[0] if x == comb_colors else criterion_1[2])
-        df['score'] += df['printing'].apply(lambda x: criterion_1[0] if x == printing else criterion_1[2])
-        criterion += criterion_1[0]*2
-
-        if stage == 'color':
-            return _getSearchCount(df, criterion)
-
-    ### 5. 세탁사유
-    issue = listOrNone(log.issue)
-    issue_detail = listOrNone(log.issue_detail)  # [[유색오염],[생활얼룩],[기타]]
-
-    def _Issue(item):
-        score = 0
-        dct = {'이염': [], '유색오염': [], '음식물': [], '황변': [], '곰팡이': [], '기름': [], '생활얼룩': [], '변색': [], '탈색': [], '기타': [], '모름': [],
-               '없음': []}
-        for i in issue:
-            if i in item:
-                if i == '모름':
-                    continue
-                else:
-                    dct[i].append(criterion_3[0])
-            if '모름' in item:
-                dct['모름'].append(criterion_3[3])
-            if i == '유색오염':
-                if '생활얼룩' in item: dct['생활얼룩'].append(criterion_3[1])
-            elif i == '생활얼룩':
-                if '유색오염' in item: dct['유색오염'].append(criterion_3[1])
-
-        for it, scores in dct.items():
-            if len(dct[it]) != 0:
-                score += max(dct[it])
-        return score
-
-    def _IssueDetail(item):
-        score = 0
-        dct = {'잉크': [], '화장품': [], '페인트': [], '그을음': [], '염색약': [], '기타유색오염': [], '체액': [], '빗물': [], '녹물': [],
-               '접착제': [], '세제자국': [], '기타생활얼룩': [], '냄새': [], '복원': [], '보색': [], '기타': []}
-        if item is not None:
-            for iss in issue_detail:
-                if len(iss) != 0:
-                    for d in iss:
-                        if d in item:
-                            dct[d].append(criterion_4[0])
-
+    
+        ### 3. 소재
+        if (not mix) and (clothes[0] != '가방'):
+            material = listOrNone(log.material)
+            df.insert(1, 'material', 0)
+            df['material_out'] = df['material_out'].apply(lambda x: x.split(',') if x != '없음' else [])
+            df['material_in'] = df['material_in'].apply(lambda x: x.split(',') if x != '없음' else [])
+            df['material'] = df['material_out'] + df['material_in']
+            # 혼방 점수 줄거면 여기서 len() > 1 이면 혼방취급
+            df['material'] = df['material'].apply(lambda x: list(set(x)))
+    
+            def _Material(item):
+                score = 0
+                dct = {'면': [], '린넨': [], '마': [], '레이온': [], '모달': [], '모': [], '실크': [], '나일론': [], '폴리에스테르': [],
+                       '아크릴': [], '아세테이트': [], '모피': [], '스웨이드': [], '동물털': [], '인조가죽': [], '폴리우레탄': [], '솜': [], '기타': [],
+                       '모름': []}
+                for m in material:
+                    if m in item:
+                        if m == '모름':
+                            continue
+                        else:
+                            dct[m].append(criterion_2[0])
+                    if '모름' in item:
+                        dct['모름'].append(criterion_2[3])
+    
+                for it, scores in dct.items():
+                    if len(dct[it]) != 0:
+                        score += max(dct[it])
+                return score
+    
+            df['score'] += df['material'].apply(_Material)
+            material_cnt = len([x for x in material if x != '모름'])
+            criterion += criterion_2[0] * material_cnt * 0.8
+    
+            if stage == 'material':
+                return _getSearchCount(df, criterion)
+    
+    
+        ### 4. 색상
+        if not mix:
+            total_color = listOrNone(log.color)
+            color = total_color[0]
+            if '배색' in total_color:
+                comb_colors = True
+            else:
+                comb_colors = False
+            if '프린팅' in total_color:
+                printing = True
+            else:
+                printing = False
+    
+            # df['score'] += df['color'].apply(lambda x: criterion_1[0] if x == color else criterion_1[4])
+            df = df[df['color'] == color]
+            df['score'] += df['comb_colors'].apply(lambda x: criterion_1[0] if x == comb_colors else criterion_1[2])
+            df['score'] += df['printing'].apply(lambda x: criterion_1[0] if x == printing else criterion_1[2])
+            criterion += criterion_1[0]*2
+    
+            if stage == 'color':
+                return _getSearchCount(df, criterion)
+    
+        ### 5. 세탁사유
+        issue = listOrNone(log.issue)
+        issue_detail = listOrNone(log.issue_detail)  # [[유색오염],[생활얼룩],[기타]]
+    
+        def _Issue(item):
+            score = 0
+            dct = {'이염': [], '유색오염': [], '음식물': [], '황변': [], '곰팡이': [], '기름': [], '생활얼룩': [], '변색': [], '탈색': [], '기타': [], '모름': [],
+                   '없음': []}
+            for i in issue:
+                if i in item:
+                    if i == '모름':
+                        continue
+                    else:
+                        dct[i].append(criterion_3[0])
+                if '모름' in item:
+                    dct['모름'].append(criterion_3[3])
+                if i == '유색오염':
+                    if '생활얼룩' in item: dct['생활얼룩'].append(criterion_3[1])
+                elif i == '생활얼룩':
+                    if '유색오염' in item: dct['유색오염'].append(criterion_3[1])
+    
             for it, scores in dct.items():
                 if len(dct[it]) != 0:
                     score += max(dct[it])
-        return score
+            return score
+    
+        def _IssueDetail(item):
+            score = 0
+            dct = {'잉크': [], '화장품': [], '페인트': [], '그을음': [], '염색약': [], '기타유색오염': [], '체액': [], '빗물': [], '녹물': [],
+                   '접착제': [], '세제자국': [], '기타생활얼룩': [], '냄새': [], '복원': [], '보색': [], '기타': []}
+            if item is not None:
+                for iss in issue_detail:
+                    if len(iss) != 0:
+                        for d in iss:
+                            if d in item:
+                                dct[d].append(criterion_4[0])
+    
+                for it, scores in dct.items():
+                    if len(dct[it]) != 0:
+                        score += max(dct[it])
+            return score
+    
+        df['score'] += df['issue'].apply(_Issue)
+        df['score'] += df['issue_detail'].apply(_IssueDetail)
+        issue_cnt = len([x for x in issue if x != '모름'])
+        criterion += (criterion_3[0]*issue_cnt + criterion_4[0]*(len(issue_detail[0])+len(issue_detail[1])+len(issue_detail[2])))*0.8
+    
+        if stage == 'issue':
+            return _getSearchCount(df, criterion)
+    
+        ### 6. 명품
+        luxury = log.luxury
+        df = df[df['luxury'] == luxury]
+        # df['score'] += df['luxury'].apply(lambda x: criterion_5[0] if x == luxury else criterion_5[1])
+    
+        if stage == 'luxury':
+            # criterion += criterion_5[0]
+            return _getSearchCount(df, criterion)
 
-    df['score'] += df['issue'].apply(_Issue)
-    df['score'] += df['issue_detail'].apply(_IssueDetail)
-    issue_cnt = len([x for x in issue if x != '모름'])
-    criterion += (criterion_3[0]*issue_cnt + criterion_4[0]*(len(issue_detail[0])+len(issue_detail[1])+len(issue_detail[2])))*0.8
-
-    if stage == 'issue':
-        return _getSearchCount(df, criterion)
-
-    ### 6. 명품
-    luxury = log.luxury
-    df = df[df['luxury'] == luxury]
-    # df['score'] += df['luxury'].apply(lambda x: criterion_5[0] if x == luxury else criterion_5[1])
-
-    if stage == 'luxury':
-        # criterion += criterion_5[0]
-        return _getSearchCount(df, criterion)
+    except:
+        context = {
+            'username': '',
+        }
+        return render(request, 'k99/main.html', context)
 
 def _getQACount(df, namelist):
     tdf = df[df['category'].isin(namelist)]
@@ -1487,7 +1500,7 @@ def realexampleadd(request):
 def addpost(request):
     try:
         pvurl = request.POST.get("pvurlinput")
-        pvurls = pvurl.replace(" ", "").split(",")
+        pvurls = str(pvurl.replace(" ", "").split(","))
         Posts.objects.create(
             pid=request.POST.get("pidinput"),
             create_date = request.POST.get("create_dateinput"),
@@ -1596,7 +1609,7 @@ def qnaadd(request):
 def addpost_qna(request):
     try:
         pvurl = request.POST.get("pvurlinput")
-        pvurls = pvurl.replace(" ", "").split(",")
+        pvurls = str(pvurl.replace(" ", "").split(","))
         Posts.objects.create(
             pid=request.POST.get("pidinput"),
             create_date = request.POST.get("create_dateinput"),
