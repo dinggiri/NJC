@@ -5,7 +5,7 @@ from k99.models import Customer
 
 class CustomAuthenticationForm(AuthenticationForm):
     def clean(self):
-        admin_list = ['admin', '24566905', '40106905', '40426905']
+        admin_list = ['admin', '24566905', '40106905', '40426905', 'test']
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
         if username is not None and password:
