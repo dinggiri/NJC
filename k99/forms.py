@@ -17,12 +17,12 @@ class CustomAuthenticationForm(AuthenticationForm):
                         user.failed_login_attempts += 1
                     user.save()
                     if user.failed_login_attempts >= 5:
-                        raise ValidationError("비밀번호 입력 오류 5회 이상으로, 더 이상 사용하실 수 없습니다. 010-4010-6905으로 연락바랍니다.")
+                        raise ValidationError("비밀번호 입력 오류 5회 이상으로, 더 이상 사용하실 수 없습니다. 010-2456-6905으로 연락바랍니다.")
                 except Customer.DoesNotExist:
                     pass
             else:
                 if user.failed_login_attempts >= 5:
-                    raise ValidationError("비밀번호 입력 오류 5회 이상으로, 더 이상 사용하실 수 없습니다. 010-4010-6905으로 연락바랍니다.")
+                    raise ValidationError("비밀번호 입력 오류 5회 이상으로, 더 이상 사용하실 수 없습니다. 010-2456-6905으로 연락바랍니다.")
         return super().clean()
 
 
