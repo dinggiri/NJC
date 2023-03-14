@@ -738,6 +738,7 @@ def revisecustomer(request):
 def revisecust(request):
     if request.method == 'POST':
         customer = Customer.objects.get(kid=int(request.POST['revkid']))
+        customer.username= request.POST['revusername']
         customer.kname = request.POST['revkname']
         customer.set_password(request.POST['revpassword'].upper())
         customer.real_pw = request.POST['revpassword']
