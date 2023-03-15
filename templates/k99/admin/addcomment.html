@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>등록 선택</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}"
+</head>
+<body>
+    {% if error %}
+        <script type="text/javascript">
+            alert("{{ message|safe }}");
+            history.back();
+        </script>
+    {% else %}
+        {%  if message %}
+            <script type="text/javascript">
+            alert("{{ message|safe }}");
+            </script>
+        {%  endif %}
+        <a href="{% url 'k99:main' %}">
+          <img class="img" src="{% static 'K99.jpg' %}">
+        </a>
+        <h1>관리자님 반갑습니다.</h1>
+        <h3>아래에 포스트 번호와 추가할 코멘트를 입력해주세요.</h3><br>
+        <div class="div">
+            <form name="frm" action="{% url 'k99:addcomment' %}" method="POST" >
+            {% csrf_token %}
+                <div>
+                    <b class="realexample_description">포스트 번호</b><br>
+                    <input class="realexampleinput" type="text" id="pidinput" name="pidinput" placeholder="포스트 번호를 입력해주세요">
+                </div>
+                <div>
+                    <b class="realexample_description">추가할 코멘트</b><br>
+                    <input class="realexampleinput" type="text" id="commentinput" name="commentinput" placeholder="추가하실 코멘트를 입력해주세요.">
+                </div>
+            </form>
+        </div>
+
+    {% endif %}
+</body>
+</html>

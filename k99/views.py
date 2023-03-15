@@ -483,6 +483,7 @@ def checkregular(customer):
     if customer.edate < customer.cdate:
         customer.regular = False
         customer.save()
+
         return False
     if customer.edate < datetime.today():
         customer.regular = False
@@ -1777,3 +1778,17 @@ def log_export(request):
         quote(filename.encode('utf-8')))  # 한글 제목 설정
 
     return response
+
+def addcomment(request):
+    if request.method == 'POST':
+        try:
+            post = Posts.objects.get(pid=request.POST['pidinput'])
+        except:
+            context = {'error' : True, 'message' : '해당 포스트는 존재하지 않습니다.'}
+            return render(request, 'k99/admin/addcomment.html', context)
+        post.comment = request.POST.get('commentinput')
+        post.save()
+        context = {'error' : False, 'message' : "정상적으로 입력되었습니다."}
+        return render(request, 'k99/admin/addcomment.html', context)
+    context = {'error' : False, 'message' : None}
+    return render(request, 'k99/admin/addcomment.html', context)

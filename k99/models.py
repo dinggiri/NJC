@@ -97,6 +97,7 @@ class Posts(models.Model):
     content = models.TextField(null=True)
     tag = models.TextField(null=True)
     pvurl = models.TextField(null=True)
+    comment = models.TextField(null=True)
 
 class Realexamples(models.Model):
     pid = models.ForeignKey(Posts, on_delete=models.DO_NOTHING)

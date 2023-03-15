@@ -16,6 +16,8 @@ urlpatterns = [
     path('adding/qnamanage/add/', views.qnaadd, name = "qnaadd"),
     path('adding/qnamanage/adding/', views.addpost_qna, name = "addpost_qna"),
     path('adding/qnamanage/adding2/', views.addqna, name = "addqna"),
+    # 사례등록 - 코멘트 추가
+    path('adding/addcomment', views.addcomment, name = "addcomment"),
     # 로그 다운로드
     path('exportlog/', views.log_export, name='log_export'),  # 엑셀 파일 다운로드
     # product
