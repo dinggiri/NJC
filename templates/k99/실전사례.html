@@ -34,6 +34,7 @@
                 {{ post.0.comment }}
             </div>
             <article class="article">
+                <h3><b class="real-title">{{ post.0.title }}</b></h3>
                 <div class="post_img_wrapper">
                     {% for img in post.1 %}
                         <a href="{{ img }}" data-fancybox data-caption="{{ forloop.counter }}/{{ post.1|length }}">
