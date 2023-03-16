@@ -1787,6 +1787,7 @@ def addcomment(request):
             context = {'error' : True, 'message' : '해당 포스트는 존재하지 않습니다.'}
             return render(request, 'k99/admin/addcomment.html', context)
         post.comment = request.POST.get('commentinput')
+        post.title = request.POST.get('titleinput')
         post.save()
         context = {'error' : False, 'message' : "정상적으로 입력되었습니다."}
         return render(request, 'k99/admin/addcomment.html', context)
