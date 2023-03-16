@@ -6,6 +6,7 @@
     <title>K99</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 </head>
 <body>
@@ -27,6 +28,11 @@
     {% if post_list %}
     {% for post in post_list %}
         <section>
+            <br><br>
+            <div class="rgyPostIt">
+                <h4><b>AI 세탁법</b></h4>
+                {{ post.0.comment }}
+            </div>
             <article class="article">
                 <div class="post_img_wrapper">
                     {% for img in post.1 %}
