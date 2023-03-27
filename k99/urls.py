@@ -44,6 +44,7 @@ urlpatterns = [
     path('buy', views.write, name="write"),
     path('export', views.excel_export, name='excel_export'),  # 엑셀 파일 다운로드
 
+    path('recipetype/', views.recipetype, name='recipetype'),
     path('mix/', views.mix, name='mix'),
     path('clothes/', views.clothes, name='clothes'),
     path('material/', views.material, name='material'),

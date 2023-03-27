@@ -148,51 +148,24 @@ def getSearchCount(stage, log):
     
         criterion = 0
     
-        ### 1. 혼합세탁
-        mix = log.mix
-        mix_white = log.mix_white
-        results = Realexamples.objects.filter(mix=mix, mix_white=mix_white)
+        ### 혼합세탁
         if stage == 'mix':
+            mix = log.mix
+            mix_white = log.mix_white
+            results = Realexamples.objects.filter(mix=mix, mix_white=mix_white)
             return _getSearchCount(results, criterion)
     
-        ### 2. 세탁물종류
-        clothes = listOrNone(log.clothes)
-        df = pd.DataFrame(list(results.values()))
-        df.insert(df.shape[1], 'score', 0)
-    
-        def _Clothes(item):
-            score = 0
-            dct = {'상의': [], '하의': [], '원피스': [], '겉옷': [], '패딩': [], '가방': [], '신발': [], '모자': [], '한복': [], '침구류': [],
-                   '기타': []}
-            for c in clothes:
-                if c in item:
-                    dct[c].append(criterion_1[0])
-                if c == '겉옷':
-                    if '패딩' in item: dct['패딩'].append(criterion_1[1])
-                    if '상의' in item: dct['상의'].append(criterion_1[2])
-                elif c == '상의':
-                    if '하의' in item: dct['하의'].append(criterion_1[1])
-                    if '겉옷' in item: dct['겉옷'].append(criterion_1[2])
-                elif c == '하의':
-                    if '상의' in item: dct['상의'].append(criterion_1[1])
-                elif c == '한복':
-                    if '원피스' in item: dct['원피스'].append(criterion_1[2])
-                    if '상의' in item: dct['상의'].append(criterion_1[3])
-                    if '하의' in item: dct['하의'].append(criterion_1[3])
-                elif c == '원피스':
-                    if '상의' in item: dct['상의'].append(criterion_1[3])
-                    if '하의' in item: dct['하의'].append(criterion_1[3])
-    
-            for it, scores in dct.items():
-                if len(dct[it]) != 0:
-                    score += max(dct[it])
-            return score
-    
-        df['score'] += df['clothes'].apply(_Clothes)
-        criterion += criterion_1[0] * len(clothes) * 0.5
-    
-        if stage == 'clothes':
-            return _getSearchCount(df, criterion)
+        ### 명품세탁
+        elif stage == 'clothes':
+            clothes = log.clothes
+            clothes = clothes[2:-2]
+            if clothes == '옷':
+                results = Realexamples.objects.filter(luxury=True)
+                results = results.exclude(clothes='가방')
+                results = results.exclude(clothes='신발')
+            else:
+                results = Realexamples.objects.filter(luxury=True, clothes=clothes)
+            return _getSearchCount(results, criterion)
     
         ### 3. 소재
         if (not mix) and (clothes[0] != '가방'):
@@ -496,21 +469,6 @@ def checkregular(customer):
 
     return True
 
-
-### views.index 합치기
-@login_required(login_url='common:login')
-def main(request):
-    username = request.user.username
-    user = Customer.objects.get(username=username)
-    admin_list = ['admin', '24566905', '40106905', '40426905']
-    if username in admin_list:
-        return render(request, 'k99/admin/main.html')
-        #return render(request, 'k99/main.html')
-    else:
-        context = {
-            'username': username,
-        }
-        return render(request, 'k99/main.html', context)
 
 @login_required(login_url='common:login')
 def select_year(request):
@@ -1151,39 +1109,51 @@ def excel_export(request):
     return response
 
 
+### views.index 합치기
 @login_required(login_url='common:login')
-def mix(request):
+def main(request):
+    username = request.user.username
+    user = Customer.objects.get(username=username)
+    admin_list = ['admin', '24566905', '40106905', '40426905']
+    if username in admin_list:
+        return render(request, 'k99/admin/main.html')
+        #return render(request, 'k99/main.html')
+    else:
+        context = {
+            'username': username,
+        }
+        return render(request, 'k99/main.html', context)
+
+@login_required(login_url='common:login')
+def recipetype(request):
     username = request.user.username
     user = Customer.objects.get(username=username)
     kid = user.kid
     regular = user.regular
     if request.method == 'GET':
         if regular:
-            return render(request, 'k99/1혼합세탁.html', {'username': username})
+            return render(request, 'k99/new_0세탁타입.html', {'username': username})
         else:
             user_log = Searchlog.objects.filter(kid=kid, finish=True)
             user_count = user_log.count()
             if user_count >= 2:
                 return render(request, 'k99/0회원가입안내.html', {'username': username})
             else:
-                return render(request, 'k99/1혼합세탁.html', {'username': username})
+                return render(request, 'k99/new_0세탁타입.html', {'username': username})
+
+@login_required(login_url='common:login')
+def mix(request):
+    username = request.user.username
+    user = Customer.objects.get(username=username)
+    kid = user.kid
+    if request.method == 'GET':
+            return render(request, 'k99/1혼합세탁.html', {'username': username})
     elif request.method == 'POST':
-        ### SAVE: Next button in 'mix'
-        if 'next' in request.POST:
-            log = Searchlog(kid=kid, mix=makeBool(request.POST.get('mix')), mix_white=makeBool(request.POST.get('mix_white')), date=timezone.now(), stage='mix')
-            log.save()
-            return redirect('k99:clothes')
         ### SAVE: Search button in 'mix'
-        elif 'mid-search' in request.POST:
+        if 'mid-search' in request.POST:
             log = Searchlog(kid=kid, mix=makeBool(request.POST.get('mix')), mix_white=makeBool(request.POST.get('mix_white')), date=timezone.now(), stage='mix')
             log.save()
             return redirect('k99:recipe')
-        ### Prev button in 'clothes'
-        elif 'prev' in request.POST:
-            sid = Searchlog.objects.filter(kid=kid).latest('sid').sid
-            log = get_object_or_404(Searchlog, pk=sid)
-            log.delete()
-            return render(request, 'k99/1혼합세탁.html', {'username': username})
         else:
             return redirect('k99:main')
 
@@ -1191,43 +1161,14 @@ def mix(request):
 def clothes(request):
     username = request.user.username
     kid = Customer.objects.get(username=username).kid
-    sid = Searchlog.objects.filter(kid=kid).latest('sid').sid
-    log = get_object_or_404(Searchlog, pk=sid)
     if request.method == 'GET':
-        count = getSearchCount('mix', log)
-        count['username'] = username
-        if log.mix:
-            return render(request, 'k99/2세탁물 종류(중복).html', count)
-        else:
-            return render(request, 'k99/2세탁물 종류.html', count)
+        return render(request, 'k99/new_0세탁물 종류.html', {'username': username})
     elif request.method == 'POST':
-        ### SAVE: Next button in 'clothes'
-        if 'next' in request.POST:
-            log.clothes = request.POST.getlist('type')
-            log.stage = 'clothes'
-            log.save()
-            if log.mix:
-                return redirect('k99:issue')
-            else:
-                if log.clothes[0] == '가방':
-                    return redirect('k99:color')
-                else:
-                    return redirect('k99:material')
         ### SAVE: Search button in 'clothes'
-        elif 'mid-search' in request.POST:
-            log.clothes = request.POST.getlist('type')
-            log.stage = 'clothes'
+        if 'mid-search' in request.POST:
+            log = Searchlog(kid=kid, clothes=request.POST.getlist('type'), date=timezone.now(), stage='clothes')
             log.save()
             return redirect('k99:recipe')
-        ### Prev button in 'material' or 'issue'
-        elif 'prev_m' in request.POST:
-            count = getSearchCount('mix', log)
-            count['username'] = username
-            return render(request, 'k99/2세탁물 종류.html', count)
-        elif 'prev' in request.POST:
-            count = getSearchCount('mix', log)
-            count['username'] = username
-            return render(request, 'k99/2세탁물 종류(중복).html', count)
         else:
             return redirect('k99:main')
 

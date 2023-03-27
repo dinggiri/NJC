@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>K99</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="top">
+            <a href="{% url 'k99:main' %}">
+              <img class="img" src="{% static 'K99.jpg' %}" >
+            </a><br>
+            <div>
+                <span class="hello">{{ username }}님 안녕하세요!</span>
+              <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
+            </div>
+        </div><br>
+        <div class="menu_top">
+            <button class="실전사례" type="button" onclick="window.open('{% url 'k99:recipetype' %}', '_self')">세탁방법</button>
+            <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
+            <button class="guide">사용법 안내</button>
+        </div>
+
+    <h3>원하시는 태그를 선택해 주세요</h3>
+    <br>
+    <form id="main-form">
+      {% csrf_token %}
+      <div>
+        <button class="실전사례" type="button" onclick="location.href='mix/'">&nbsp;&nbsp;일반세탁&nbsp;&nbsp;</button><br><br>
+        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:clothes' %}', '_self')">&nbsp;&nbsp;명품세탁&nbsp;&nbsp;</button><br><br>
+        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">&nbsp;&nbsp;혼합세탁&nbsp;&nbsp;</button>
+      </div>
+      <br>
+      <button class="main_logout" type="button" onclick="location.href={% url 'common:logout' %}">로그아웃</button>
+    </form>
+  </body>
+</html>
