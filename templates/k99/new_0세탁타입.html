@@ -22,18 +22,17 @@
             <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
             <button class="guide">사용법 안내</button>
         </div>
-
-    <h3>원하시는 태그를 선택해 주세요</h3>
+    <br><br><br>
+    <h3 style="font-size: 50px;">원하시는 태그를 선택해 주세요</h3>
     <br>
     <form id="main-form">
       {% csrf_token %}
       <div>
-        <button class="실전사례" type="button" onclick="location.href='mix/'">&nbsp;&nbsp;일반세탁&nbsp;&nbsp;</button><br><br>
-        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:clothes' %}', '_self')">&nbsp;&nbsp;명품세탁&nbsp;&nbsp;</button><br><br>
-        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">&nbsp;&nbsp;혼합세탁&nbsp;&nbsp;</button>
+        <br>
+        <button class="세탁종류" type="button" onclick="window.open('{% url 'k99:issue' %}', '_self')" style="border: 15px solid #3DB6E4;">&nbsp;&nbsp;일반세탁&nbsp;&nbsp;</button><br><br>
+        <button class="세탁종류" type="button" onclick="window.open('{% url 'k99:clothes' %}', '_self')" style="border: 15px solid #FF8849;">&nbsp;&nbsp;명품세탁&nbsp;&nbsp;</button><br><br>
+        <button class="세탁종류" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')" style="border: 15px solid #69BE28;">&nbsp;&nbsp;혼합세탁&nbsp;&nbsp;</button>
       </div>
-      <br>
-      <button class="main_logout" type="button" onclick="location.href={% url 'common:logout' %}">로그아웃</button>
     </form>
   </body>
 </html>

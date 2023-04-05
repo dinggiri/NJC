@@ -150,9 +150,8 @@ def getSearchCount(stage, log):
     
         ### 혼합세탁
         if stage == 'mix':
-            mix = log.mix
             mix_white = log.mix_white
-            results = Realexamples.objects.filter(mix=mix, mix_white=mix_white)
+            results = Realexamples.objects.filter(mix=True, mix_white=mix_white)
             return _getSearchCount(results, criterion)
     
         ### 명품세탁
@@ -166,124 +165,99 @@ def getSearchCount(stage, log):
             else:
                 results = Realexamples.objects.filter(luxury=True, clothes=clothes)
             return _getSearchCount(results, criterion)
-    
-        ### 3. 소재
-        if (not mix) and (clothes[0] != '가방'):
-            material = listOrNone(log.material)
-            df.insert(1, 'material', 0)
-            df['material_out'] = df['material_out'].apply(lambda x: x.split(',') if (x != '없음') and (x is not None) else [])
-            df['material_in'] = df['material_in'].apply(lambda x: x.split(',') if (x != '없음') and (x is not None) else [])
-            df['material'] = df['material_out'] + df['material_in']
-            # 혼방 점수 줄거면 여기서 len() > 1 이면 혼방취급
-            df['material'] = df['material'].apply(lambda x: list(set(x)))
-    
-            def _Material(item):
+
+        ### 일반세탁
+        # - 세탁사유
+        if (stage == 'issue') or (stage == 'material'):
+            issue = listOrNone(log.issue)
+            issue_detail = listOrNone(log.issue_detail)  # [[생활얼룩],[기타]]
+
+            def _Issue(item):
                 score = 0
-                dct = {'면': [], '린넨': [], '마': [], '레이온': [], '모달': [], '모': [], '실크': [], '나일론': [], '폴리에스테르': [],
-                       '아크릴': [], '아세테이트': [], '모피': [], '스웨이드': [], '동물털': [], '인조가죽': [], '폴리우레탄': [], '솜': [], '기타': [],
-                       '모름': []}
-                for m in material:
-                    if m in item:
-                        if m == '모름':
+                dct = {'이염': [], '황변': [], '곰팡이': [], '기름': [], '생활얼룩': [], '기타': [], '모름': []}
+                for i in issue:
+                    if i in item:
+                        if i == '모름':
                             continue
                         else:
-                            dct[m].append(criterion_2[0])
+                            dct[i].append(criterion_3[0])
                     if '모름' in item:
-                        dct['모름'].append(criterion_2[3])
-    
+                        dct['모름'].append(criterion_3[3])
+
                 for it, scores in dct.items():
                     if len(dct[it]) != 0:
                         score += max(dct[it])
                 return score
-    
-            df['score'] += df['material'].apply(_Material)
-            material_cnt = len([x for x in material if x != '모름'])
-            criterion += criterion_2[0] * material_cnt * 0.8
-    
+
+            def _IssueDetail(item):
+                score = 0
+                dct = {'체액': [], '빗물': [], '녹물': [], '접착제': [], '찌든때': [], '세제자국': [], '음식물': [],
+                       '잉크': [], '화장품': [], '페인트': [], '그을음': [], '염색약': [], '기타생활얼룩': [],
+                       '냄새': [], '복원': [], '기타': []}
+                if item is not None:
+                    for iss in issue_detail:
+                        if len(iss) != 0:
+                            for d in iss:
+                                if d in item:
+                                    dct[d].append(criterion_4[0])
+
+                    for it, scores in dct.items():
+                        if len(dct[it]) != 0:
+                            score += max(dct[it])
+                return score
+
             if stage == 'material':
-                return _getSearchCount(df, criterion)
-    
-    
-        ### 4. 색상
-        if not mix:
-            total_color = listOrNone(log.color)
-            color = total_color[0]
-            if '배색' in total_color:
-                comb_colors = True
+                clothes = log.clothes
+                clothes = clothes[2:-2]
+                results = Realexamples.objects.filter(luxury=False, clothes=clothes)
             else:
-                comb_colors = False
-            if '프린팅' in total_color:
-                printing = True
-            else:
-                printing = False
-    
-            # df['score'] += df['color'].apply(lambda x: criterion_1[0] if x == color else criterion_1[4])
-            df = df[df['color'] == color]
-            df['score'] += df['comb_colors'].apply(lambda x: criterion_1[0] if x == comb_colors else criterion_1[2])
-            df['score'] += df['printing'].apply(lambda x: criterion_1[0] if x == printing else criterion_1[2])
-            criterion += criterion_1[0]*2
-    
-            if stage == 'color':
+                results = Realexamples.objects.filter(luxury=False)
+
+            df = pd.DataFrame(list(results.values()))
+            df.insert(df.shape[1], 'score', 0)
+            df['score'] += df['issue'].apply(_Issue)
+            df['score'] += df['issue_detail'].apply(_IssueDetail)
+            issue_cnt = len([x for x in issue if x != '모름'])
+            criterion += (criterion_3[0] * issue_cnt + criterion_4[0] * (
+                        len(issue_detail[0]) + len(issue_detail[1]))) * 0.8
+
+            if stage != 'material':
                 return _getSearchCount(df, criterion)
-    
-        ### 5. 세탁사유
-        issue = listOrNone(log.issue)
-        issue_detail = listOrNone(log.issue_detail)  # [[유색오염],[생활얼룩],[기타]]
-    
-        def _Issue(item):
-            score = 0
-            dct = {'이염': [], '유색오염': [], '음식물': [], '황변': [], '곰팡이': [], '기름': [], '생활얼룩': [], '변색': [], '탈색': [], '기타': [], '모름': [],
-                   '없음': []}
-            for i in issue:
-                if i in item:
-                    if i == '모름':
-                        continue
-                    else:
-                        dct[i].append(criterion_3[0])
-                if '모름' in item:
-                    dct['모름'].append(criterion_3[3])
-                if i == '유색오염':
-                    if '생활얼룩' in item: dct['생활얼룩'].append(criterion_3[1])
-                elif i == '생활얼룩':
-                    if '유색오염' in item: dct['유색오염'].append(criterion_3[1])
-    
-            for it, scores in dct.items():
-                if len(dct[it]) != 0:
-                    score += max(dct[it])
-            return score
-    
-        def _IssueDetail(item):
-            score = 0
-            dct = {'잉크': [], '화장품': [], '페인트': [], '그을음': [], '염색약': [], '기타유색오염': [], '체액': [], '빗물': [], '녹물': [],
-                   '접착제': [], '세제자국': [], '기타생활얼룩': [], '냄새': [], '복원': [], '보색': [], '기타': []}
-            if item is not None:
-                for iss in issue_detail:
-                    if len(iss) != 0:
-                        for d in iss:
-                            if d in item:
-                                dct[d].append(criterion_4[0])
-    
-                for it, scores in dct.items():
-                    if len(dct[it]) != 0:
-                        score += max(dct[it])
-            return score
-    
-        df['score'] += df['issue'].apply(_Issue)
-        df['score'] += df['issue_detail'].apply(_IssueDetail)
-        issue_cnt = len([x for x in issue if x != '모름'])
-        criterion += (criterion_3[0]*issue_cnt + criterion_4[0]*(len(issue_detail[0])+len(issue_detail[1])+len(issue_detail[2])))*0.8
-    
-        if stage == 'issue':
-            return _getSearchCount(df, criterion)
-    
-        ### 6. 명품
-        luxury = log.luxury
-        df = df[df['luxury'] == luxury]
-        # df['score'] += df['luxury'].apply(lambda x: criterion_5[0] if x == luxury else criterion_5[1])
-    
-        if stage == 'luxury':
-            # criterion += criterion_5[0]
-            return _getSearchCount(df, criterion)
+
+            # - 소재 & 세탁물종류
+            else:
+                material = listOrNone(log.material)
+
+                df.insert(1, 'material', 0)
+                df['material_out'] = df['material_out'].apply(lambda x: x.split(',') if (x != '없음') and (x is not None) else [])
+                df['material_in'] = df['material_in'].apply(lambda x: x.split(',') if (x != '없음') and (x is not None) else [])
+                df['material'] = df['material_out'] + df['material_in']
+                # 혼방 점수 줄거면 여기서 len() > 1 이면 혼방취급
+                df['material'] = df['material'].apply(lambda x: list(set(x)))
+
+                def _Material(item):
+                    score = 0
+                    dct = {'면': [], '마': [], '레이온': [], '모': [], '실크': [], '나일론': [], '폴리에스테르': [],
+                           '아크릴': [], '아세테이트': [], '모피': [], '폴리우레탄': [], '기타': [], '모름': []}
+                    for m in material:
+                        if m in item:
+                            if m == '모름':
+                                continue
+                            else:
+                                dct[m].append(criterion_2[0])
+                        if '모름' in item:
+                            dct['모름'].append(criterion_2[3])
+
+                    for it, scores in dct.items():
+                        if len(dct[it]) != 0:
+                            score += max(dct[it])
+                    return score
+
+                df['score'] += df['material'].apply(_Material)
+                material_cnt = len([x for x in material if x != '모름'])
+                criterion += criterion_2[0] * material_cnt * 0.8
+
+                return _getSearchCount(df, criterion)
 
     except:
         context = {
@@ -1147,11 +1121,11 @@ def mix(request):
     user = Customer.objects.get(username=username)
     kid = user.kid
     if request.method == 'GET':
-            return render(request, 'k99/1혼합세탁.html', {'username': username})
+        return render(request, 'k99/1혼합세탁.html', {'username': username})
     elif request.method == 'POST':
         ### SAVE: Search button in 'mix'
         if 'mid-search' in request.POST:
-            log = Searchlog(kid=kid, mix=makeBool(request.POST.get('mix')), mix_white=makeBool(request.POST.get('mix_white')), date=timezone.now(), stage='mix')
+            log = Searchlog(kid=kid, mix=True, mix_white=makeBool(request.POST.get('mix_white')), date=timezone.now(), stage='mix')
             log.save()
             return redirect('k99:recipe')
         else:
@@ -1173,40 +1147,54 @@ def clothes(request):
             return redirect('k99:main')
 
 @login_required(login_url='common:login')
-def material(request):
+def issue(request):
+    username = request.user.username
+    kid = Customer.objects.get(username=username).kid
+    if request.method == 'GET':
+        return render(request, 'k99/new_1일반_1얼룩.html', {'username': username})
+    elif request.method == 'POST':
+        ### SAVE: Next button in 'issue'
+        if 'next' in request.POST:
+            issue_detail = [request.POST.getlist('생활얼룩'), request.POST.getlist('기타')]
+            log = Searchlog(kid=kid, issue=request.POST.getlist('reason'),
+                            issue_detail=issue_detail, date=timezone.now(), stage='issue')
+            log.save()
+            return redirect('k99:materialType')
+        ### SAVE: Search button in 'issue'
+        elif 'mid-search' in request.POST:
+            issue_detail = [request.POST.getlist('생활얼룩'), request.POST.getlist('기타')]
+            log = Searchlog(kid=kid, issue=request.POST.getlist('reason'),
+                            issue_detail=issue_detail, date=timezone.now(), stage='issue')
+            log.save()
+            return redirect('k99:recipe')
+        ### Prev button in 'material'
+        elif 'prev' in request.POST:
+            return render(request, 'k99/new_1일반_1얼룩.html', {'username': username})
+        else:
+            return redirect('k99:main')
+
+@login_required(login_url='common:login')
+def materialType(request):
     username = request.user.username
     kid = Customer.objects.get(username=username).kid
     sid = Searchlog.objects.filter(kid=kid).latest('sid').sid
     log = get_object_or_404(Searchlog, pk=sid)
     if request.method == 'GET':
-        count = getSearchCount('clothes', log)
+        count = getSearchCount('issue', log)
         count['username'] = username
-        if log.clothes[2:-2] == '신발':
-            return render(request, 'k99/3.1신발.html', count)
-        else:
-            return render(request, 'k99/3소재.html', count)
+        return render(request, 'k99/new_1일반_2소재.html', count)
     elif request.method == 'POST':
-        ### SAVE: Next button in 'material'
-        if 'next' in request.POST:
-            log.material = request.POST.getlist('material')
-            log.stage = 'material'
-            log.save()
-            return redirect('k99:color')
         ### SAVE: Search button in 'material'
-        elif 'mid-search' in request.POST:
-            log.material = request.POST.getlist('material')
+        if 'mid-search' in request.POST:
+            material = request.POST.getlist('material')
+            clothes = request.POST.getlist('type')
+            log.material = material
+            log.clothes = clothes
             log.stage = 'material'
             log.save()
             return redirect('k99:recipe')
-        ### Prev button in 'color'
-        elif log.clothes[2:-2] == '신발':
-            count = getSearchCount('clothes', log)
-            count['username'] = username
-            return render(request, 'k99/3.1신발.html', count)
         else:
-            count = getSearchCount('clothes', log)
-            count['username'] = username
-            return render(request, 'k99/3소재.html', count)
+            return redirect('k99:main')
 
 @login_required(login_url='common:login')
 def color(request):
@@ -1245,65 +1233,6 @@ def color(request):
             count = getSearchCount('material', log)
             count['username'] = username
             return render(request, 'k99/4색상.html', count)
-
-@login_required(login_url='common:login')
-def issue(request):
-    username = request.user.username
-    kid = Customer.objects.get(username=username).kid
-    sid = Searchlog.objects.filter(kid=kid).latest('sid').sid
-    log = get_object_or_404(Searchlog, pk=sid)
-    if request.method == 'GET':
-        if log.mix:
-            count = getSearchCount('clothes', log)
-            data = {
-                'data': True, # 2
-                'count': count['count'],
-                'username': username,
-            }
-            return render(request, 'k99/5세탁 사유.html', data)
-        else:
-            count = getSearchCount('color', log)
-            data = {
-                'data': False, # 4
-                'count': count['count'],
-                'username': username,
-            }
-            return render(request, 'k99/5세탁 사유.html', data)
-    elif request.method == 'POST':
-        ### SAVE: Next button in 'issue'
-        if 'next' in request.POST:
-            log.issue = request.POST.getlist('reason')
-            log.issue_detail = [request.POST.getlist('유색오염'), request.POST.getlist('생활얼룩'), request.POST.getlist('기타')]
-            log.stage = 'issue'
-            log.save()
-            return redirect('k99:luxury')
-        ### SAVE: Search button in 'issue'
-        elif 'mid-search' in request.POST:
-            log.issue = request.POST.getlist('reason')
-            log.issue_detail = [request.POST.getlist('유색오염'), request.POST.getlist('생활얼룩'), request.POST.getlist('기타')]
-            log.stage = 'issue'
-            log.save()
-            return redirect('k99:recipe')
-        ### Prev button in 'luxury'
-        elif 'prev' in request.POST:
-            if log.mix:
-                count = getSearchCount('clothes', log)
-                data = {
-                    'data': True,  # 2
-                    'count': count['count'],
-                    'username': username,
-                }
-                return render(request, 'k99/5세탁 사유.html', data)
-            else:
-                count = getSearchCount('color', log)
-                data = {
-                    'data': False,  # 4
-                    'count': count['count'],
-                    'username': username,
-                }
-                return render(request, 'k99/5세탁 사유.html', data)
-        else:
-            return redirect('k99:main')
 
 @login_required(login_url='common:login')
 def luxury(request):

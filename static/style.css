@@ -38,7 +38,7 @@ font-family : Pretendard;
 }
 
 .show_info {
-    background-color: #0B6DB7;
+    background-color: #36659F;
 	border-radius: 4px;
 	cursor: pointer;
 	color: white;
@@ -50,7 +50,7 @@ font-family : Pretendard;
 
 .show_info:hover {
     font-weight: bold;
-    background-color: rebeccapurple;
+    /* background-color: rebeccapurple; */
 }
 
 .info_page {
@@ -140,18 +140,18 @@ font-family : Pretendard;
 #login-form > input[type="submit"]{
     color: #fff;
     font-size: 20px;
-    background-color: #0B6DB7;
+    background-color: #36659F;
     margin-top: 5px;
     cursor: pointer;
 }
 
 #login-form > input[type="submit"]:hover{
     font-weight: bold;
-    background-color: rebeccapurple;
+    /* background-color: rebeccapurple; */
 }
 
 #login-form > button[type="button"] {
-	background-color: #0B6DB7;
+	background-color: #36659F;
 	border-radius: 6px;
 	cursor: pointer;
 	color: #ffffff;
@@ -162,7 +162,7 @@ font-family : Pretendard;
 
 #login-form > button[type="button"]:hover{
     font-weight: bold;
-    background-color: rebeccapurple;
+    /* background-color: rebeccapurple; */
 }
 
 #login-form > label{
@@ -208,7 +208,7 @@ hr {
 .sign_up{
     width: 330px;
     height: 40px;
-    background: #0B6DB7;
+    background: #36659F;
     border: 1px solid green;
     border-radius: 5px;
     transition: 0.25s;
@@ -234,21 +234,30 @@ hr {
 }
 
 #main-form > div > button {
-    background-color: #0B6DB7;
+    background-color: #36659F;
 	border-radius: 6px;
 	cursor: pointer;
 	color: #ffffff;
-	font-size: 50px;
+	font-size: 70px;
     width: auto;
-    height: 80px;
+    height: 100px;
 }
 
 #main-form > div > button.질문답변 {
-    background-color: #009347;
+    background-color: #6D2946;
+}
+
+#main-form > div > button.세탁종류 {
+    background-color: #202121;
+    font-size: 90px;
+    height: 150px;
+    border: 10px solid red;
+    border-radius: 40px;
+    margin: 10px 0 10px 0;
 }
 
 #main-form > div > button:hover {
-    background-color: rebeccapurple;
+    /* background-color: rebeccapurple; */
     font-weight: bold;
 }
 
@@ -273,7 +282,7 @@ hr {
 }
 
 .main_logout:hover {
-    background-color: #3D3F49;
+    /* background-color: #3D3F49; */
     color: white;
     font-weight: bold;
 }
@@ -343,7 +352,7 @@ hr {
 }
 
 .menu_top .실전사례 {
-    background-color: #0B6DB7;
+    background-color: #36659F;
 	border-radius: 6px;
 	cursor: pointer;
 	color: white;
@@ -357,7 +366,7 @@ hr {
 }
 
 .menu_top .질문답변 {
-    background-color: #009347;
+    background-color: #6D2946;
 	border-radius: 6px;
 	cursor: pointer;
 	color: white;
@@ -467,7 +476,7 @@ div.rgyPostIt > p > a {
 
 .article {
     width: 80%;
-    border: 3px solid #0B6DB7;
+    border: 3px solid #36659F;
     margin-top: 50px;
     margin-left: 50%;
     margin-bottom: 50px;
@@ -537,12 +546,13 @@ div.rgyPostIt > p > a {
 
 /* 실전사례 검색 공통 */
 .category {
+    /* background-color: rgb(1, 44, 124); */
     background-color: rgb(1, 44, 124);
     color: white;
     text-align: center;
     width: 60%;
     display: block;
-    padding: 1%;
+    padding: 18px 0 18px 0;
     border-radius: 10px;
     font-size: 100px;
     margin: 7% auto 3% auto;
@@ -569,7 +579,7 @@ div.rgyPostIt > p > a {
 }
 
 .혼합_next {
-    background-color: #0B6DB7;
+    background-color: #36659F;
 	border-radius: 15px;
 	cursor: pointer;
 	color: white;
@@ -727,7 +737,7 @@ div.rgyPostIt > p > a {
     margin-left: 30%;
 }
 
-.checkbox3 > li> label {
+.checkbox3 > li > label {
     font-size: 400%;
     font-weight: bold;
 }
@@ -737,6 +747,40 @@ div.rgyPostIt > p > a {
     width: 4em;
     height: 4em;
 }
+
+.material_wrapper > li > label {
+    font-size: 330%;
+    font-weight: bold;
+    display:inline-block;
+    width:850px;
+    line-height:90px;
+}
+
+.material_wrapper > li > label > input {
+    border-radius: 50%;
+    width: 4em;
+    height: 4em;
+}
+
+.clothe_wrapper > li {
+    margin-left: 3%;
+}
+
+.clothe_wrapper > li > label {
+    font-size: 330%;
+    font-weight: bold;
+    display:inline-block;
+    width:500px;
+    line-height:90px;
+}
+
+.clothe_wrapper > li > label > input {
+    border-radius: 50%;
+    width: 4em;
+    height: 4em;
+}
+
+
 
 .dup_possible {
     text-align: center;
@@ -909,7 +953,7 @@ div.rgyPostIt > p > a {
 }
 
 .QA .menu_top .실전사례 {
-    background-color: #0B6DB7;
+    background-color: #36659F;
 	border-radius: 6px;
 	cursor: pointer;
 	color: white;
@@ -923,7 +967,7 @@ div.rgyPostIt > p > a {
 }
 
 .QA .menu_top .질문답변 {
-    background-color: #009347;
+    background-color: #6D2946;
 	border-radius: 6px;
 	cursor: pointer;
 	color: white;
@@ -939,7 +983,7 @@ div.rgyPostIt > p > a {
 .search_wrapper {
     height: 45px;
     width: 600px;
-    border: 2px solid #0B6DB7;
+    border: 2px solid #36659F;
     margin-top: 5%;
     margin-left: 25%;
 }
@@ -957,7 +1001,7 @@ div.rgyPostIt > p > a {
     width: 100px;
     height: 100%;
     border: 0px;
-    background: #0B6DB7;
+    background: #36659F;
     outline: none;
     float: right;
     color: white;
@@ -992,7 +1036,7 @@ div.rgyPostIt > p > a {
 
 .QA_category > button:hover{
     font-weight: bold;
-    background-color: #A9A9A9;
+    /* background-color: #A9A9A9; */
 }
 
 /* 회원가입안내 */
@@ -1006,7 +1050,7 @@ div.rgyPostIt > p > a {
 }
 
 .join_guide .menu_top .실전사례 {
-    background-color: #0B6DB7;
+    background-color: #36659F;
 	border-radius: 6px;
 	cursor: pointer;
 	color: white;
@@ -1020,7 +1064,7 @@ div.rgyPostIt > p > a {
 }
 
 .join_guide .menu_top .질문답변 {
-    background-color: #009347;
+    background-color: #6D2946;
 	border-radius: 6px;
 	cursor: pointer;
 	color: white;
@@ -1048,20 +1092,20 @@ div.rgyPostIt > p > a {
 
 /* 사용법 가이드*/
 .guide {
-    background-color: #C9CBD0;/* #0B6DB7; */
+    background-color: #C9CBD0;/* #36659F; */
 	border-radius: 10px;
 	cursor: pointer;
 	color: black;
 	width:46%;
-    height: 100px;
-    font-size: 60px;
+    height: 80px;
+    font-size: 55px;
     margin: 1% auto;
 }
 
 .guide:hover {
     font-weight: bold;
     color: white;
-    background-color: #3D3F49;
+    /* background-color: #3D3F49; */
 }
 
 .guide_page {
@@ -1127,7 +1171,7 @@ div.rgyPostIt > p > a {
 
 
 #main-form > li > button:hover {
-    background-color: rebeccapurple;
+    /* background-color: rebeccapurple; */
 }
 
 .div {
@@ -1480,7 +1524,7 @@ span.detailans {
 }
 
 .exbutton {
-    background-color: #0B6DB7;
+    background-color: #36659F;
 	border-radius: 6px;
 	cursor: pointer;
 	color: #ffffff;

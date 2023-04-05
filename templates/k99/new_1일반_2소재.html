@@ -6,6 +6,35 @@
     <title>K99</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style type="text/css">
+        .category {
+            font-size: 57px;
+            width: auto;
+            margin: 7% 8% 10% 8%;
+            padding-top: 13px;
+            padding-bottom: 13px;
+        }
+        .big_wrapper {
+          width: 90%;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+        }
+        .material_wrapper {
+          width: 50%;
+          position: relative;
+          margin-bottom: 20px;
+        }
+        .clothe_wrapper {
+          width: 50%;
+          position: relative;
+          margin-bottom: 20px;
+        }
+       li {
+          list-style-type: none;
+       }
+    </style>
 </head>
 <body>
     <div class="top">
@@ -18,45 +47,49 @@
         </div>
     </div><br>
     <div class="menu_top">
-        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
+        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:recipetype' %}', '_self')">세탁방법</button>
         <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
         <button class="guide">사용법 안내</button>
     </div>
-    <p class="mid-num_post">총 {{ count }}건의 검색결과</p>
-    <div class="category">왼쪽 오른쪽 각각 하나 이상 선택해주세요.</div>
+    <p class="mid-num_post">총 {{ count }}건의 검색결과</p><br>
+    <p class="mid-num_post">왼쪽 오른쪽 각각 하나 이상 선택해주세요.</p>
     <form class="checkbox3" method="post">
         {% csrf_token %}
         <br>
-        <div class="material_wrapper">
-            <li class="material"><label>&emsp;면,솜,린넨,모달(텐셀,리오셀) <input type="checkbox" name="material" value="면" unchecked></label></li>
-            <li class="material"><label>&emsp;마(삼베, 모시) <input type="checkbox" name="material" value="마" unchecked></label></li>
-            <li class="material"><label>&emsp;(비스코스)레이온 <input type="checkbox" name="material" value="레이온" unchecked></label></li>
-            <li class="material"><label>&emsp;모(울, 울론) <input type="checkbox" name="material" value="모" unchecked></label></li>
-            <li class="material"><label>&emsp;실크(견) <input type="checkbox" name="material" value="실크" unchecked></label></li>
-            <li class="material"><label>&emsp;나일론 <input type="checkbox" name="material" value="나일론" unchecked></label></li>
-            <li class="material"><label>&emsp;폴리에스테르 <input type="checkbox" name="material" value="폴리에스테르" unchecked></label></li>
-            <li class="material"><label>&emsp;아크릴 <input type="checkbox" name="material" value="아크릴" unchecked></label></li>
-            <li class="material"><label>&emsp;아세테이트 <input type="checkbox" name="material" value="아세테이트" unchecked></label></li>
-            <li class="material"><label>&emsp;모피(동물털,스웨이드,인조가죽 등) <input type="checkbox" name="material" value="모피" unchecked></label></li>
-            <li class="material"><label>&emsp;폴리우레탄(엘라스탄, 스판덱스) <input type="checkbox" name="material" value="폴리우레탄" unchecked></label></li>
-            <li class="material"><label>&emsp;기타 <input type="checkbox" name="material" value="기타" unchecked></label></li>
-            <li class="material"><label>&emsp;모름 <input type="checkbox" name="material" value="모름" unchecked></label></li>
-        </div>
-        <div class="clothe_wrapper">
-            <li class="clothe"><label>&emsp;상하의&emsp;&emsp;<input type="checkbox" name="type" value="상하의" unchecked></label></li>
-            <li class="clothe"><label>&emsp;패딩&emsp;&emsp;<input type="checkbox" name="type" value="패딩" unchecked></label></li>
-            <li class="clothe"><label>&emsp;가방&emsp;&emsp;<input type="checkbox" name="type" value="가방" unchecked></label></li>
-            <li class="clothe"><label>&emsp;신발&emsp;&emsp;<input type="checkbox" name="type" value="신발" unchecked></label></li>
-            <li class="clothe"><label>&emsp;기타(침구류)&emsp;&emsp;<input type="checkbox" name="type" value="기타" unchecked></label></li>
+        <div class="big_wrapper">
+            <div class="material_wrapper">
+                <div class="category">소재</div>
+                <li class="material"><label>&emsp;면,솜,린넨,모달  <input type="checkbox" name="material" value="면" unchecked></label></li>
+                <li class="material"><label>&emsp;마(삼베, 모시)  <input type="checkbox" name="material" value="마" unchecked></label></li>
+                <li class="material"><label>&emsp;(비스코스)레이온  <input type="checkbox" name="material" value="레이온" unchecked></label></li>
+                <li class="material"><label>&emsp;모(울, 울론)  <input type="checkbox" name="material" value="모" unchecked></label></li>
+                <li class="material"><label>&emsp;실크(견)  <input type="checkbox" name="material" value="실크" unchecked></label></li>
+                <li class="material"><label>&emsp;나일론  <input type="checkbox" name="material" value="나일론" unchecked></label></li>
+                <li class="material"><label>&emsp;폴리에스테르  <input type="checkbox" name="material" value="폴리에스테르" unchecked></label></li>
+                <li class="material"><label>&emsp;아크릴  <input type="checkbox" name="material" value="아크릴" unchecked></label></li>
+                <li class="material"><label>&emsp;아세테이트  <input type="checkbox" name="material" value="아세테이트" unchecked></label></li>
+                <li class="material"><label>&emsp;모피(동물털,스웨이드,인조가죽 등)  <input type="checkbox" name="material" value="모피" unchecked></label></li>
+                <li class="material"><label>&emsp;폴리우레탄(엘라스탄, 스판덱스)  <input type="checkbox" name="material" value="폴리우레탄" unchecked></label></li>
+                <li class="material"><label>&emsp;기타  <input type="checkbox" name="material" value="기타" unchecked></label></li>
+                <li class="material"><label>&emsp;모름  <input type="checkbox" name="material" value="모름" unchecked></label></li>
+            </div>
+            <div class="clothe_wrapper">
+                <div class="category">세탁물 종류</div>
+                <li class="clothe"><label>&emsp;상하의  <input type="radio" name="type" value="상하의" unchecked></label></li>
+                <li class="clothe"><label>&emsp;패딩  <input type="radio" name="type" value="패딩" unchecked></label></li>
+                <li class="clothe"><label>&emsp;가방  <input type="radio" name="type" value="가방" unchecked></label></li>
+                <li class="clothe"><label>&emsp;신발  <input type="radio" name="type" value="신발" unchecked></label></li>
+                <li class="clothe"><label>&emsp;기타(침구류)  <input type="radio" name="type" value="기타" unchecked></label></li>
+            </div>
         </div>
         <div class="move">
-            <button class="prev" type="submit" name="prev_m" formaction="{% url 'k99:clothes' %}">이전</button>
+            <br><br><br><br><br><br><br>
             <button class="mid-search" name="mid-search" type="submit">조회</button>
-            <button class="next" type="submit" name="next" formaction="{% url 'k99:material' %}">다음</button>
+            <button class="prev" type="submit" name="prev" formaction="{% url 'k99:issue' %}">이전</button>
         </div>
     </form>
 
-<script type="text/javascript" src="{% static '3 소재.js' %}"></script>
+<script type="text/javascript" src="{% static 'new_1일반_2소재.js' %}"></script>
     <section class="guide_page">
         <div class="guide_wrapper">
             <img class="guide_img" src="{% static '소재가이드.png' %}" alt="소재 가이드">

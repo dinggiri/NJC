@@ -18,11 +18,10 @@
         </div>
     </div><br>
     <div class="menu_top">
-        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:mix' %}', '_self')">세탁방법</button>
+        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:recipetype' %}', '_self')">세탁방법</button>
         <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
         <button class="guide">사용법 안내</button>
     </div>
-    <p class="mid-num_post">총 {{ count }}건의 검색결과</p>
     <div class="category">세탁 사유</div>
     <form class="checkbox5" method="post">
         {% csrf_token %}
@@ -57,13 +56,9 @@
             <label>&emsp;기타 <input type="checkbox" name="기타" value="기타"></label>
         </div>
         <div class="move">
-            {% if data %}
-                <button class="prev" type="submit" name="prev" formaction="{% url 'k99:clothes' %}">이전</button>
-            {% else %}
-                <button class="prev" type="submit" name="prev" formaction="{% url 'k99:color' %}">이전</button>
-            {% endif %}
-            <button class="mid-search" name="mid-search" type="submit">조회</button>
+            <br><br><br><br><br><br><br><br>
             <button class="next" type="submit" name="next" formaction="{% url 'k99:issue' %}">다음</button>
+            <button class="mid-search" name="mid-search" type="submit">조회</button>
         </div>
     </form>
 
