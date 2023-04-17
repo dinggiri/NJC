@@ -168,7 +168,7 @@ def getSearchCount(stage, log):
 
         ### 일반세탁
         # - 세탁사유
-        if (stage == 'issue') or (stage == 'material'):
+        elif (stage == 'issue') or (stage == 'material'):
             issue = listOrNone(log.issue)
             issue_detail = listOrNone(log.issue_detail)  # [[생활얼룩],[기타]]
 
@@ -209,9 +209,9 @@ def getSearchCount(stage, log):
             if stage == 'material':
                 clothes = log.clothes
                 clothes = clothes[2:-2]
-                results = Realexamples.objects.filter(luxury=False, clothes=clothes)
+                results = Realexamples.objects.filter(mix=False, luxury=False, clothes=clothes)
             else:
-                results = Realexamples.objects.filter(luxury=False)
+                results = Realexamples.objects.filter(mix=False, luxury=False)
 
             df = pd.DataFrame(list(results.values()))
             df.insert(df.shape[1], 'score', 0)
@@ -232,13 +232,13 @@ def getSearchCount(stage, log):
                 df['material_out'] = df['material_out'].apply(lambda x: x.split(',') if (x != '없음') and (x is not None) else [])
                 df['material_in'] = df['material_in'].apply(lambda x: x.split(',') if (x != '없음') and (x is not None) else [])
                 df['material'] = df['material_out'] + df['material_in']
-                # 혼방 점수 줄거면 여기서 len() > 1 이면 혼방취급
+                # 혼방 점수 줄거면 여기서 len() > 1 이면 혼방 취급
                 df['material'] = df['material'].apply(lambda x: list(set(x)))
 
                 def _Material(item):
                     score = 0
                     dct = {'면': [], '마': [], '레이온': [], '모': [], '실크': [], '나일론': [], '폴리에스테르': [],
-                           '아크릴': [], '아세테이트': [], '모피': [], '폴리우레탄': [], '기타': [], '모름': []}
+                           '아크릴': [], '아세테이트': [], '모피': [], '기타': [], '모름': []}
                     for m in material:
                         if m in item:
                             if m == '모름':
@@ -1288,7 +1288,7 @@ def qna(request):
         else:
             user_log = Searchlog.objects.filter(kid=kid, finish=True)
             user_count = user_log.count()
-            if user_count >= 3:
+            if user_count >= 2:
                 return render(request, 'k99/0회원가입안내.html', {'username': username})
             else:
                 return render(request, 'k99/질문답변.html', {'username': username})
