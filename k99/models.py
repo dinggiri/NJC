@@ -134,5 +134,6 @@ class Searchlog(models.Model):
     issue = models.TextField(null=True)
     issue_detail = models.TextField(null=True)
     luxury = models.BooleanField(null=True)
+    keyword = models.TextField(null=True)
     stage = models.TextField(null=True)
     finish = models.BooleanField(null=True, default=False)

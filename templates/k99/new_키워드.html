@@ -1,0 +1,39 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>K99</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="top">
+        <a href="{% url 'k99:main' %}">
+          <img class="img" src="{% static 'K99.jpg' %}" >
+        </a><br>
+        <div>
+            <span class="hello">{{ username }}님 안녕하세요!</span>
+          <button class="logout" type="button" onclick="window.open('{% url 'common:logout' %}', '_self')">로그아웃</button>
+        </div>
+    </div><br>
+    <div class="menu_top">
+        <button class="실전사례" type="button" onclick="window.open('{% url 'k99:recipetype' %}', '_self')">세탁방법</button>
+        <button class="질문답변" type="button" onclick="window.open('{% url 'k99:qna' %}', '_self')">Q & A</button>
+        <button class="guide">사용법 안내</button>
+    </div>
+    <div class="category">키워드 검색</div>
+    <form class="checkbox2" method="post">
+        {% csrf_token %}
+        <div class="appendbox">
+            <p class="buy_customer">키워드 검색 :</p><input class="productinput" type="text" name="keyword" placeholder="키워드 입력"><label></label>
+
+            <div class="move">
+                <br><br><br><br><br><br><br><br>
+                <button class="mid-search" name="mid-search" type="submit">조회</button>
+            </div>
+
+        </div>
+    </form>
+</body>
+</html>

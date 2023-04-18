@@ -53,7 +53,9 @@ urlpatterns = [
     path('color/', views.color, name='color'),
     path('issue/', views.issue, name='issue'),
     path('luxury/', views.luxury, name='luxury'),
+    path('keyword/', views.keyword, name='keyword'),
     path('recipe/', views.recipe, name='recipe'),
+
     path('qna/', views.qna, name='qna'),
     path('qna/category/', views.qnaCategory, name='qna_category'),
     path('qna/category/<int:qna_id>/', views.detail, name='qna_detail'),

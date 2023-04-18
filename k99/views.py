@@ -136,6 +136,23 @@ def _getSearchCount(results, criterion):
     }
     return dict
 
+def _getKeywordSearchCount(results):
+    if type(results) == pd.core.frame.DataFrame:
+        # print(f'criterion: {criterion}')
+        total_df = results.sort_values(by=['score'], ascending=False)
+        # df = total_df[total_df.score >= criterion]
+        # print(df)
+        results_pid = list(total_df['pid_id'])
+        count = len(total_df)
+    else:
+        results_pid = [q.pid for q in results]
+        count = results.count()
+    dict = {
+        'count': count,
+        'pid': results_pid,
+    }
+    return dict
+
 def getSearchCount(stage, log):
     try:
         ### 중간 단계 확인!!
@@ -165,6 +182,13 @@ def getSearchCount(stage, log):
             else:
                 results = Realexamples.objects.filter(luxury=True, clothes=clothes)
             return _getSearchCount(results, criterion)
+
+        ### 키워드
+        elif stage == 'keyword':
+            keyword = log.keyword
+            post_results = Posts.objects.filter(title__icontains=keyword)
+            results = Realexamples.objects.filter(pid_id__in = post_results.values("pid"))
+            return _getKeywordSearchCount(results)
 
         ### 일반세탁
         # - 세탁사유
@@ -1149,7 +1173,7 @@ def excel_export(request):
 ### views.index 합치기
 @login_required(login_url='common:login')
 def main(request):
-    
+
     username = request.user.username
     user = Customer.objects.get(username=username)
     admin_list = ['admin', '24566905', '40106905', '40426905']
@@ -1178,6 +1202,24 @@ def recipetype(request):
                 return render(request, 'k99/0회원가입안내.html', {'username': username})
             else:
                 return render(request, 'k99/new_0세탁타입.html', {'username': username})
+
+@login_required(login_url='common:login')
+def keyword(request):
+    username = request.user.username
+    kid = Customer.objects.get(username=username).kid
+    if request.method == 'GET':
+        return render(request, 'k99/new_키워드.html', {'username': username})
+    elif request.method == 'POST':
+        ### SAVE: Search button in 'keyword'
+        if 'mid-search' in request.POST:
+            log = Searchlog(kid=kid, keyword=request.POST.get('keyword'), date=timezone.now(), stage='keyword')
+            log.save()
+            return redirect('k99:recipe')
+        else:
+            return redirect('k99:main')
+    # context = {"username" : username,
+    #            "kid" : kid}
+    # return render(request, "k99/new_키워드.html", )
 
 @login_required(login_url='common:login')
 def mix(request):
@@ -1323,7 +1365,7 @@ def recipe(request):
     sid = Searchlog.objects.filter(kid=kid).latest('sid').sid
     log = get_object_or_404(Searchlog, pk=sid)
     if request.method == 'GET':
-        count = getSearchCount(log.stage, log)
+        count = getSearchCount(log.stage, log) #count, pid의 요소를 가지는 딕셔너리
         log.finish = True
         log.save()
         page = request.GET.get('page', '1')
