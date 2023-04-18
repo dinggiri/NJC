@@ -1149,7 +1149,7 @@ def excel_export(request):
 ### views.index 합치기
 @login_required(login_url='common:login')
 def main(request):
-    print(request.user.username)
+    
     username = request.user.username
     user = Customer.objects.get(username=username)
     admin_list = ['admin', '24566905', '40106905', '40426905']
