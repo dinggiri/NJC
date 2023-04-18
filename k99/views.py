@@ -1639,7 +1639,7 @@ def log_export(request):
 
     title = f'검색로그(~{today})'
     today = datetime.today()
-    worksheet.set_column('A:N', 12)
+    worksheet.set_column('A:O', 12)
     worksheet.set_row(0, 57)  # 행 너비 조절
     # 타이틀 스타일 설정
     merge_format = workbook.add_format({
@@ -1647,12 +1647,12 @@ def log_export(request):
         'border': 1,
         'align': 'center',
         'valign': 'vcenter'})
-    worksheet.merge_range('A1:N1', title, merge_format)  # 행 합치기
+    worksheet.merge_range('A1:O1', title, merge_format)  # 행 합치기
 
     # 헤더 생성
     row_num = 1
     col_names = ['검색id', 'K번호', '이름', '검색일시', '혼합세탁여부', '혼합세탁_흰색포함여부',
-                 '세탁물종류', '소재', '세탁사유', '세탁세부사유', '유색/무색', '배색여부', '프린팅여부', '명품여부']
+                 '세탁물종류', '소재', '세탁사유', '세탁세부사유', '유색/무색', '배색여부', '프린팅여부', '명품여부', '키워드']
 
     # 헤더 스타일 설정
     header_format = workbook.add_format()
@@ -1714,7 +1714,8 @@ def log_export(request):
             tmp.append(False)
         # luxury
         tmp.append(searchlog.luxury)
-
+        # keyword
+        tmp.append(searchlog.keyword)
         #### tmp 튜플 전체를 추가
         data.append(tmp)
 
@@ -1736,6 +1737,7 @@ def log_export(request):
             worksheet.set_column('H:H', 20)
             worksheet.set_column('I:I', 25)
             worksheet.set_column('J:J', 25)
+            worksheet.set_column('O:O', 25)
 
     # Close the workbook before sending the data.
     workbook.close()

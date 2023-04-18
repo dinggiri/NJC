@@ -1561,3 +1561,28 @@ span.detailans {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
+
+.keyword_input{
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 50px;
+    margin: 10px auto;
+}
+
+.keywordinput  {
+    display:inline-block;
+    font-family: 'Do Hyeon', sans-serif;
+    width: 500px;
+    height: 100px;
+    background: #d3d3d3;
+    border: none;
+    font-size: 13pt;
+    color: #63717f;
+
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.keywordinput::placeholder {
+  font-size: 25px;
+}

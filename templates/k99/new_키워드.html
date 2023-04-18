@@ -23,10 +23,12 @@
         <button class="guide">사용법 안내</button>
     </div>
     <div class="category">키워드 검색</div>
+    <h3>세탁 소재나, 세탁 사유 등 키워드를 입력하세요.</h3>
+    <h3>최대한 간결하게 입력해주세요(예시 : 커피얼룩(X), 커피(O)).</h3>
     <form class="checkbox2" method="post">
         {% csrf_token %}
         <div class="appendbox">
-            <p class="buy_customer">키워드 검색 :</p><input class="productinput" type="text" name="keyword" placeholder="키워드 입력"><label></label>
+            <p class="keyword_input">키워드 검색 :</p><input class="keywordinput" type="text" name="keyword" placeholder="   키워드 입력"><label></label>
 
             <div class="move">
                 <br><br><br><br><br><br><br><br>
