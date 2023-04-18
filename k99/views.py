@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.utils import timezone
 from .models import *
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login
 from django.db.models import Sum, Count, Q
@@ -16,6 +16,11 @@ from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 from django.contrib.auth.views import LoginView
 from .forms import CustomAuthenticationForm
+
+
+###########################################################################
+################################ 기본 함수들 ################################
+###########################################################################
 
 class CustomLoginView(LoginView):
     authentication_form = CustomAuthenticationForm
@@ -467,8 +472,23 @@ def checkregular(customer):
 
     return True
 
+def superuser_required(view_func):
+    """
+    Decorator to restrict access to superusers only.
+    """
+    def _wrapped_view(request, *args, **kwargs):
+        if not request.user.is_authenticated or not request.user.is_superuser:
+            # Redirect non-superusers to a custom login page URL
+            return redirect('k99:main')
+        return view_func(request, *args, **kwargs)
+    return _wrapped_view
+
+###########################################################################
+############################# 관리자만 접근 가능 #############################
+###########################################################################
 
 @login_required(login_url='common:login')
+@superuser_required
 def select_year(request):
     """
     연도 선택 홈페이지입니다. 여기서 연도를 선택한 뒤, 상품을 선택하고 통계를 볼 수 있습니다.
@@ -483,6 +503,7 @@ def select_year(request):
 
 #### Product
 @login_required(login_url='common:login')
+@superuser_required
 def product(request, year):
     """
     상품 선택 페이지입니다. 선택된 연도에 대해 상품을 선택할 수 있습니다.
@@ -497,6 +518,7 @@ def product(request, year):
     return render(request, 'k99/admin/product.html', context)
 
 @login_required(login_url='common:login')
+@superuser_required
 def allyearproduct(request):
     """
     전체 년도 상품 선택 페이지입니다. 전체 연도 통계 분석을 보기 위해 상품을 선택할 수 있습니다.
@@ -509,6 +531,7 @@ def allyearproduct(request):
     return render(request, 'k99/admin/product.html', context)
 
 @login_required(login_url='common:login')
+@superuser_required
 def eachyeardetail(request, year, product_id):
     specific_product = Product.objects.get(pid=product_id)
     buy_month = Buy.objects.filter(pid=product_id, bdate__year=year)\
@@ -530,6 +553,7 @@ def eachyeardetail(request, year, product_id):
     return render(request, 'k99/admin/product_detail.html', context)
 
 @login_required(login_url='common:login')
+@superuser_required
 def allyeardetail(request, product_id):
     specific_product = Product.objects.get(pid=product_id)
     all_year = Buy.objects.filter(pid=product_id) \
@@ -554,11 +578,13 @@ def allyeardetail(request, product_id):
 #### Manage
 
 @login_required(login_url='common:login')
+@superuser_required
 def manage(request):
     context = {}
     return render(request, 'k99/admin/manage.html', context)
 
 @login_required(login_url='common:login')
+@superuser_required
 def manageproduct(request):
     if request.method == 'POST':
         try:
@@ -579,6 +605,7 @@ def manageproduct(request):
     return render(request, 'k99/admin/manageproduct.html', context)
 
 @login_required(login_url='common:login')
+@superuser_required
 def allproduct(request):
     products = Product.objects.order_by('pid')
     context = {
@@ -587,6 +614,7 @@ def allproduct(request):
     return render(request, 'k99/admin/allproduct.html', context)
 
 @login_required(login_url='common:login')
+@user_passes_test(lambda u: u.is_superuser)
 def reviseproduct(request):
     try:
         product = Product.objects.get(pid = int(request.POST['rev_productid']))
@@ -604,6 +632,7 @@ def reviseproduct(request):
     return render(request, 'k99/admin/reviseproduct.html', context)
 
 @login_required(login_url='common:login')
+@superuser_required
 def revise(request):
     if request.method == 'POST':
         product = Product.objects.get(pid=int(request.POST['revproductid']))
@@ -617,6 +646,7 @@ def revise(request):
     return render(request, 'k99/admin/allproduct.html', context)
 
 @login_required(login_url='common:login')
+@superuser_required
 def managecustomer(request):
     if request.method == "GET":
         customer = Customer.objects.all()
@@ -664,6 +694,7 @@ def managecustomer(request):
     return render(request, 'k99/admin/managecustomer.html', context)
 
 @login_required(login_url='common:login')
+@superuser_required
 def allcustomer(request):
     customers = Customer.objects.order_by('kid')
     for customer in customers:
@@ -675,6 +706,7 @@ def allcustomer(request):
     return render(request, 'k99/admin/allcustomer.html', context)
 
 @login_required(login_url='common:login')
+@superuser_required
 def revisecustomer(request):
     try:
         customer = Customer.objects.get(kid = int(request.POST['rev_customerid']))
@@ -692,6 +724,7 @@ def revisecustomer(request):
     return render(request, 'k99/admin/revisecustomer.html', context)
 
 @login_required(login_url='common:login')
+@superuser_required
 def revisecust(request):
     if request.method == 'POST':
         customer = Customer.objects.get(kid=int(request.POST['revkid']))
@@ -726,6 +759,7 @@ def revisecust(request):
     return render(request, 'k99/admin/allcustomer.html', context)
 
 @login_required(login_url='common:login')
+@superuser_required
 def deletecustomer(request):
     if request.method == 'POST':
         try:
@@ -743,6 +777,7 @@ def deletecustomer(request):
     return render(request, 'k99/admin/allcustomer.html', context)
 
 @login_required(login_url='common:login')
+@superuser_required
 def searchcust(request):
     customers = Customer.objects.all()
     all_year = Buy.objects.filter() \
@@ -757,6 +792,7 @@ def searchcust(request):
     return render(request, 'k99/admin/searchcust.html', context)
 
 @login_required(login_url='common:login')
+@superuser_required
 def search(request):
     if request.method == 'POST':
         #### POST에서 갖고옴 ###
@@ -885,6 +921,7 @@ def search(request):
     return render(request, 'k99/admin/searched.html', context)
 
 @login_required(login_url='common:login')
+@superuser_required
 def write(request):
     context = {}
     if request.method == 'POST' and request.POST['buykid']:
@@ -985,10 +1022,15 @@ def write(request):
         }
 
     return render(request, 'k99/admin/buy.html', context)
+
+@login_required(login_url='common:login')
+@superuser_required
 def deletebuy(request):
     context = {}
     return render(request, 'k99/admin/deletebuy.html', context)
 
+@login_required(login_url='common:login')
+@superuser_required
 def _deletebuy(request):
     deletebid = request.POST.get('deletebid')
     deletebuy = Buy.objects.get(bid=deletebid)
@@ -1022,6 +1064,7 @@ def _deletebuy(request):
     return render(request, 'k99/admin/buy.html', context)
 
 @login_required(login_url='common:login')
+@superuser_required
 def excel_export(request):
     # Create an in-memory output file for the new workbook.
     output = io.BytesIO()
@@ -1169,6 +1212,334 @@ def excel_export(request):
 
     return response
 
+@login_required(login_url='common:login')
+@superuser_required
+def adding(request):
+    context = {}
+    return render(request, 'k99/admin/adding.html', context)
+
+@login_required(login_url="common:login")
+@superuser_required
+def realexamplemanage(request):
+    context = {}
+    return render(request, 'k99/admin/manangerealexample.html', context)
+
+@login_required(login_url="common:login")
+@superuser_required
+def realexampleadd(request):
+    context = {}
+    return render(request, 'k99/admin/addingrealexample.html', context)
+
+@login_required(login_url="common:login")
+@superuser_required
+def addpost(request):
+    try:
+        pvurl = request.POST.get("pvurlinput")
+        pvurls = str(pvurl.replace(" ", "").split(","))
+        Posts.objects.create(
+            pid=request.POST.get("pidinput"),
+            create_date = request.POST.get("create_dateinput"),
+            content = request.POST.get("contentinput"),
+            tag ="#실전사례",
+            pvurl = pvurls,
+            kid_id = request.POST.get("kidinput")
+        )
+        context = {"error" : False,
+                   "message" : None,
+                   "pid" : request.POST.get("pidinput")}
+    except Exception as e:
+        context = {"error" : True,
+                   "message" : "이미 등록된 포스트거나 존재하지 않는 k번호입니다.",
+                   "pid" : None}
+    return render(request, 'k99/admin/addrealexample.html', context)
+
+@login_required(login_url="common:login")
+@superuser_required
+def addrealexample(request):
+    # id
+    add_id = Realexamples.objects.order_by('-pk')[0].id + 1
+    # 소재
+    add_material = listClean(request.POST.getlist('material'))
+    # 혼합세탁 여부
+    add_mix = makeBoolFromYN(request.POST.get('mix'))
+    if add_mix:
+        add_mix_white = makeBoolFromYN(listClean(["yes" if request.POST.get('흰색유무')=="white" else "no"]))
+    else:
+        add_mix_white = None
+    # 세탁사유
+    add_reason = listClean(request.POST.getlist('reason'))
+    # 세탁세부사유 - 유색오염
+    tmp = []
+    # if "유색오염" in request.POST.keys():
+    #     try:
+    #         tmp.append(listClean(request.POST.getlist("유색오염")))
+    #     except:
+    #         tmp.append("없음")
+    if "생활얼룩" in request.POST.keys():
+        try:
+            tmp.append(listClean(request.POST.getlist("생활얼룩")))
+        except:
+            tmp.append("없음")
+    if "기타" in request.POST.keys():
+        try:
+            tmp.append(listClean(request.POST.getlist("기타")))
+        except:
+            tmp.append("없음")
+    if tmp:
+        add_issue_detail = listClean(tmp)
+    else:
+        add_issue_detail = None
+    # 유색
+    if "유색" in request.POST.getlist('reason'):
+        add_color =  "유색"
+    elif "흰색" in request.POST.getlist('reason'):
+        add_color = "흰색"
+    else:
+        add_color = "유색"
+    # 배색, 프린팅
+    if "배색" in request.POST.getlist('reason'):
+        add_comb_colors = True
+    else:
+        add_comb_colors = False
+    if "프린팅" in request.POST.getlist('reason'):
+        add_printing = True
+    else:
+        add_printing = False
+    # 옷종류
+    add_type = listClean(request.POST.getlist('type'))
+    # 명품
+    add_named = makeBoolFromYN(request.POST.get('named'))
+    # post id
+    add_pid_id = request.POST.get('pid')
+    Realexamples.objects.create(
+        id = add_id,
+        material_out = add_material,
+        material_in = "없음",
+        issue = add_reason,
+        issue_detail = add_issue_detail,
+        color = add_color,
+        comb_colors = add_comb_colors,
+        printing = add_printing,
+        clothes = add_type,
+        luxury = add_named,
+        mix = add_mix,
+        mix_white = add_mix_white,
+        pid_id = add_pid_id
+    )
+    context = {}
+    return render(request, 'k99/admin/addingrealexample.html', context)
+# qna
+
+@login_required(login_url="common:login")
+@superuser_required
+def qnamanage(request):
+    context = {}
+    return render(request, 'k99/admin/manageqna.html', context)
+
+@login_required(login_url="common:login")
+@superuser_required
+def qnaadd(request):
+    context = {}
+    return render(request, 'k99/admin/addingqna.html', context)
+
+@login_required(login_url="common:login")
+@superuser_required
+def addpost_qna(request):
+    try:
+        pvurl = request.POST.get("pvurlinput")
+        pvurls = str(pvurl.replace(" ", "").split(","))
+        Posts.objects.create(
+            pid=request.POST.get("pidinput"),
+            create_date = request.POST.get("create_dateinput"),
+            content = request.POST.get("contentinput"),
+            tag ="#질문답변",
+            pvurl = pvurls,
+            kid_id = request.POST.get("kidinput")
+        )
+        context = {"error" : False,
+                   "message" : None,
+                   "pid" : request.POST.get("pidinput")}
+    except Exception as e:
+        context = {"error" : True,
+                   "message" : "이미 등록된 포스트거나 존재하지 않는 k번호입니다.",
+                   "pid" : None}
+    return render(request, 'k99/admin/addqna.html', context)
+
+@login_required(login_url='common:login')
+@superuser_required
+def addqna(request):
+    # id
+    add_id = QnA.objects.order_by('-pk')[0].id + 1
+    # 카테고리
+    add_category = request.POST.get('category')
+    # 제목
+    add_subject = request.POST.get('subjectinput')
+    # 교수님 답변 여부
+    add_prof = makeBoolFromYN(request.POST.get('prof'))
+    # pid
+    add_pid_id = request.POST.get('pid')
+    QnA.objects.create(
+        id = add_id,
+        category = add_category,
+        subject = add_subject,
+        prof = add_prof,
+        pid_id = add_pid_id
+    )
+    context = {}
+    return render(request, 'k99/admin/addingqna.html', context)
+
+@login_required(login_url='common:login')
+@superuser_required
+def log_export(request):
+    # Create an in-memory output file for the new workbook.
+    output = io.BytesIO()
+
+    workbook = xlsxwriter.Workbook(output)
+    worksheet = workbook.add_worksheet()
+    today = datetime.today().strftime('%Y%m%d')
+
+    title = f'검색로그(~{today})'
+    today = datetime.today()
+    worksheet.set_column('A:O', 12)
+    worksheet.set_row(0, 57)  # 행 너비 조절
+    # 타이틀 스타일 설정
+    merge_format = workbook.add_format({
+        'bold': 1,
+        'border': 1,
+        'align': 'center',
+        'valign': 'vcenter'})
+    worksheet.merge_range('A1:O1', title, merge_format)  # 행 합치기
+
+    # 헤더 생성
+    row_num = 1
+    col_names = ['검색id', 'K번호', '이름', '검색일시', '혼합세탁여부', '혼합세탁_흰색포함여부',
+                 '세탁물종류', '소재', '세탁사유', '세탁세부사유', '유색/무색', '배색여부', '프린팅여부', '명품여부', '키워드']
+
+    # 헤더 스타일 설정
+    header_format = workbook.add_format()
+    header_format.set_bg_color('#D9E1F2')
+
+    # 헤더 데이터 삽입
+    for idx, col_name in enumerate(col_names):
+        worksheet.write(row_num, idx, col_name, header_format)
+
+    date_format = workbook.add_format({'num_format': 'yyyy-mm-dd hh:mm:ss AM/PM'})
+    # 내용 데이터 생성
+    allsearchlog = Searchlog.objects.all()
+    data = []
+    for searchlog in allsearchlog:
+        tmp = []
+        # sid
+        tmp.append(searchlog.sid)
+        # kid
+        kid = searchlog.kid
+        tmp.append(kid)
+        # kname
+        try:
+            kname = Customer.objects.get(kid=kid).kname
+        except:
+            kname = " "
+        tmp.append(kname)
+        # date
+        # t = searchlog.date.replace(tzinfo=None)
+        tmp.append(searchlog.date)
+        # mix
+        tmp.append(searchlog.mix)
+        # mix_whites
+        tmp.append(searchlog.mix_white)
+        # clothes
+        tmp.append(listClean(searchlog.clothes))
+        # material
+        tmp.append(listClean(searchlog.material))
+        # issue
+        tmp.append(listClean(searchlog.issue))
+        # issue_detail
+        tmp.append(listClean(searchlog.issue_detail))
+        colors = listClean(searchlog.color)
+        # clorol
+        if "유색" in colors:
+            tmp.append("유색")
+        elif "흰색" in colors:
+            tmp.append("흰색")
+        else:
+            tmp.append("None")
+        # comb_color
+        if "배색" in colors:
+            tmp.append(True)
+        else:
+            tmp.append(False)
+        # printing
+        if "프린팅" in colors:
+            tmp.append(True)
+        else:
+            tmp.append(False)
+        # luxury
+        tmp.append(searchlog.luxury)
+        # keyword
+        tmp.append(searchlog.keyword)
+        #### tmp 튜플 전체를 추가
+        data.append(tmp)
+
+    # 내용 데이터 삽입
+    for row_num, columns in enumerate(data):
+        for col_num, cell_data in enumerate(columns):
+            if col_num != 3:
+                worksheet.write(row_num + 2, col_num, cell_data)
+            else:
+                worksheet.write_datetime(row_num + 2, col_num, cell_data, date_format)
+            worksheet.write(row_num + 2, 5, '')
+            worksheet.set_column('A:A', 8)
+            worksheet.set_column('B:B', 8)
+            worksheet.set_column('C:C', 8.3)
+            worksheet.set_column('D:D', 25, date_format)
+            worksheet.set_column('E:E', 8)
+            worksheet.set_column('F:F', 8)
+            worksheet.set_column('G:G', 25)
+            worksheet.set_column('H:H', 20)
+            worksheet.set_column('I:I', 25)
+            worksheet.set_column('J:J', 25)
+            worksheet.set_column('O:O', 25)
+
+    # Close the workbook before sending the data.
+    workbook.close()
+
+    # Rewind the buffer.
+    output.seek(0)
+
+    # Set up the Http response.
+    today = datetime.today().strftime('%Y%m%d')
+    filename = f'검색로그(~{today}).xlsx'
+    response = HttpResponse(
+        output,
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+    response['Content-Disposition'] = "attachment; filename*=UTF-8''{}".format(
+        quote(filename.encode('utf-8')))  # 한글 제목 설정
+
+    return response
+
+@login_required(login_url='common:login')
+@superuser_required
+def addcomment(request):
+    if request.method == 'POST':
+        try:
+            post = Posts.objects.get(pid=request.POST['pidinput'])
+        except:
+            context = {'error' : True, 'message' : '해당 포스트는 존재하지 않습니다.'}
+            return render(request, 'k99/admin/addcomment.html', context)
+        post.comment = request.POST.get('commentinput')
+        post.title = request.POST.get('titleinput')
+        post.save()
+        context = {'error' : False, 'message' : "정상적으로 입력되었습니다."}
+        return render(request, 'k99/admin/addcomment.html', context)
+    context = {'error' : False, 'message' : None}
+    return render(request, 'k99/admin/addcomment.html', context)
+
+
+
+###########################################################################
+############################## 고객 접근 가능 ###############################
+###########################################################################
 
 ### views.index 합치기
 @login_required(login_url='common:login')
@@ -1461,313 +1832,3 @@ def detail(request, qna_id):
     }
     return render(request, 'k99/질문답변_detail.html', context)
 
-@login_required(login_url='common:login')
-def adding(request):
-    context = {}
-    return render(request, 'k99/admin/adding.html', context)
-
-@login_required(login_url="common:login")
-def realexamplemanage(request):
-    context = {}
-    return render(request, 'k99/admin/manangerealexample.html', context)
-
-@login_required(login_url="common:login")
-def realexampleadd(request):
-    context = {}
-    return render(request, 'k99/admin/addingrealexample.html', context)
-
-@login_required(login_url="common:login")
-def addpost(request):
-    try:
-        pvurl = request.POST.get("pvurlinput")
-        pvurls = str(pvurl.replace(" ", "").split(","))
-        Posts.objects.create(
-            pid=request.POST.get("pidinput"),
-            create_date = request.POST.get("create_dateinput"),
-            content = request.POST.get("contentinput"),
-            tag ="#실전사례",
-            pvurl = pvurls,
-            kid_id = request.POST.get("kidinput")
-        )
-        context = {"error" : False,
-                   "message" : None,
-                   "pid" : request.POST.get("pidinput")}
-    except Exception as e:
-        context = {"error" : True,
-                   "message" : "이미 등록된 포스트거나 존재하지 않는 k번호입니다.",
-                   "pid" : None}
-    return render(request, 'k99/admin/addrealexample.html', context)
-
-@login_required(login_url="common:login")
-def addrealexample(request):
-    # id
-    add_id = Realexamples.objects.order_by('-pk')[0].id + 1
-    # 소재
-    add_material = listClean(request.POST.getlist('material'))
-    # 혼합세탁 여부
-    add_mix = makeBoolFromYN(request.POST.get('mix'))
-    if add_mix:
-        add_mix_white = makeBoolFromYN(listClean(["yes" if request.POST.get('흰색유무')=="white" else "no"]))
-    else:
-        add_mix_white = None
-    # 세탁사유
-    add_reason = listClean(request.POST.getlist('reason'))
-    # 세탁세부사유 - 유색오염
-    tmp = []
-    if "유색오염" in request.POST.keys():
-        try:
-            tmp.append(listClean(request.POST.getlist("유색오염")))
-        except:
-            tmp.append("없음")
-    if "생활얼룩" in request.POST.keys():
-        try:
-            tmp.append(listClean(request.POST.getlist("생활얼룩")))
-        except:
-            tmp.append("없음")
-    if "기타" in request.POST.keys():
-        try:
-            tmp.append(listClean(request.POST.getlist("기타")))
-        except:
-            tmp.append("없음")
-    if tmp:
-        add_issue_detail = listClean(tmp)
-    else:
-        add_issue_detail = None
-    # 유색
-    if "유색" in request.POST.getlist('reason'):
-        add_color =  "유색"
-    elif "흰색" in request.POST.getlist('reason'):
-        add_color = "흰색"
-    else:
-        add_color = "유색"
-    # 배색, 프린팅
-    if "배색" in request.POST.getlist('reason'):
-        add_comb_colors = True
-    else:
-        add_comb_colors = False
-    if "프린팅" in request.POST.getlist('reason'):
-        add_printing = True
-    else:
-        add_printing = False
-    # 옷종류
-    add_type = listClean(request.POST.getlist('type'))
-    # 명품
-    add_named = makeBoolFromYN(request.POST.get('named'))
-    # post id
-    add_pid_id = request.POST.get('pid')
-    Realexamples.objects.create(
-        id = add_id,
-        material_out = add_material,
-        material_in = "없음",
-        issue = add_reason,
-        issue_detail = add_issue_detail,
-        color = add_color,
-        comb_colors = add_comb_colors,
-        printing = add_printing,
-        clothes = add_type,
-        luxury = add_named,
-        mix = add_mix,
-        mix_white = add_mix_white,
-        pid_id = add_pid_id
-    )
-    context = {}
-    return render(request, 'k99/admin/addingrealexample.html', context)
-# qna
-
-
-@login_required(login_url="common:login")
-def qnamanage(request):
-    context = {}
-    return render(request, 'k99/admin/manageqna.html', context)
-
-@login_required(login_url="common:login")
-def qnaadd(request):
-    context = {}
-    return render(request, 'k99/admin/addingqna.html', context)
-
-@login_required(login_url="common:login")
-def addpost_qna(request):
-    try:
-        pvurl = request.POST.get("pvurlinput")
-        pvurls = str(pvurl.replace(" ", "").split(","))
-        Posts.objects.create(
-            pid=request.POST.get("pidinput"),
-            create_date = request.POST.get("create_dateinput"),
-            content = request.POST.get("contentinput"),
-            tag ="#질문답변",
-            pvurl = pvurls,
-            kid_id = request.POST.get("kidinput")
-        )
-        context = {"error" : False,
-                   "message" : None,
-                   "pid" : request.POST.get("pidinput")}
-    except Exception as e:
-        context = {"error" : True,
-                   "message" : "이미 등록된 포스트거나 존재하지 않는 k번호입니다.",
-                   "pid" : None}
-    return render(request, 'k99/admin/addqna.html', context)
-
-def addqna(request):
-    # id
-    add_id = QnA.objects.order_by('-pk')[0].id + 1
-    # 카테고리
-    add_category = request.POST.get('category')
-    # 제목
-    add_subject = request.POST.get('subjectinput')
-    # 교수님 답변 여부
-    add_prof = makeBoolFromYN(request.POST.get('prof'))
-    # pid
-    add_pid_id = request.POST.get('pid')
-    QnA.objects.create(
-        id = add_id,
-        category = add_category,
-        subject = add_subject,
-        prof = add_prof,
-        pid_id = add_pid_id
-    )
-    context = {}
-    return render(request, 'k99/admin/addingqna.html', context)
-
-@login_required(login_url='common:login')
-def log_export(request):
-    # Create an in-memory output file for the new workbook.
-    output = io.BytesIO()
-
-    workbook = xlsxwriter.Workbook(output)
-    worksheet = workbook.add_worksheet()
-    today = datetime.today().strftime('%Y%m%d')
-
-    title = f'검색로그(~{today})'
-    today = datetime.today()
-    worksheet.set_column('A:O', 12)
-    worksheet.set_row(0, 57)  # 행 너비 조절
-    # 타이틀 스타일 설정
-    merge_format = workbook.add_format({
-        'bold': 1,
-        'border': 1,
-        'align': 'center',
-        'valign': 'vcenter'})
-    worksheet.merge_range('A1:O1', title, merge_format)  # 행 합치기
-
-    # 헤더 생성
-    row_num = 1
-    col_names = ['검색id', 'K번호', '이름', '검색일시', '혼합세탁여부', '혼합세탁_흰색포함여부',
-                 '세탁물종류', '소재', '세탁사유', '세탁세부사유', '유색/무색', '배색여부', '프린팅여부', '명품여부', '키워드']
-
-    # 헤더 스타일 설정
-    header_format = workbook.add_format()
-    header_format.set_bg_color('#D9E1F2')
-
-    # 헤더 데이터 삽입
-    for idx, col_name in enumerate(col_names):
-        worksheet.write(row_num, idx, col_name, header_format)
-
-    date_format = workbook.add_format({'num_format': 'yyyy-mm-dd hh:mm:ss AM/PM'})
-    # 내용 데이터 생성
-    allsearchlog = Searchlog.objects.all()
-    data = []
-    for searchlog in allsearchlog:
-        tmp = []
-        # sid
-        tmp.append(searchlog.sid)
-        # kid
-        kid = searchlog.kid
-        tmp.append(kid)
-        # kname
-        try:
-            kname = Customer.objects.get(kid=kid).kname
-        except:
-            kname = " "
-        tmp.append(kname)
-        # date
-        # t = searchlog.date.replace(tzinfo=None)
-        tmp.append(searchlog.date)
-        # mix
-        tmp.append(searchlog.mix)
-        # mix_whites
-        tmp.append(searchlog.mix_white)
-        # clothes
-        tmp.append(listClean(searchlog.clothes))
-        # material
-        tmp.append(listClean(searchlog.material))
-        # issue
-        tmp.append(listClean(searchlog.issue))
-        # issue_detail
-        tmp.append(listClean(searchlog.issue_detail))
-        colors = listClean(searchlog.color)
-        # clorol
-        if "유색" in colors:
-            tmp.append("유색")
-        elif "흰색" in colors:
-            tmp.append("흰색")
-        else:
-            tmp.append("None")
-        # comb_color
-        if "배색" in colors:
-            tmp.append(True)
-        else:
-            tmp.append(False)
-        # printing
-        if "프린팅" in colors:
-            tmp.append(True)
-        else:
-            tmp.append(False)
-        # luxury
-        tmp.append(searchlog.luxury)
-        # keyword
-        tmp.append(searchlog.keyword)
-        #### tmp 튜플 전체를 추가
-        data.append(tmp)
-
-    # 내용 데이터 삽입
-    for row_num, columns in enumerate(data):
-        for col_num, cell_data in enumerate(columns):
-            if col_num != 3:
-                worksheet.write(row_num + 2, col_num, cell_data)
-            else:
-                worksheet.write_datetime(row_num + 2, col_num, cell_data, date_format)
-            worksheet.write(row_num + 2, 5, '')
-            worksheet.set_column('A:A', 8)
-            worksheet.set_column('B:B', 8)
-            worksheet.set_column('C:C', 8.3)
-            worksheet.set_column('D:D', 25, date_format)
-            worksheet.set_column('E:E', 8)
-            worksheet.set_column('F:F', 8)
-            worksheet.set_column('G:G', 25)
-            worksheet.set_column('H:H', 20)
-            worksheet.set_column('I:I', 25)
-            worksheet.set_column('J:J', 25)
-            worksheet.set_column('O:O', 25)
-
-    # Close the workbook before sending the data.
-    workbook.close()
-
-    # Rewind the buffer.
-    output.seek(0)
-
-    # Set up the Http response.
-    today = datetime.today().strftime('%Y%m%d')
-    filename = f'검색로그(~{today}).xlsx'
-    response = HttpResponse(
-        output,
-        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    )
-    response['Content-Disposition'] = "attachment; filename*=UTF-8''{}".format(
-        quote(filename.encode('utf-8')))  # 한글 제목 설정
-
-    return response
-
-def addcomment(request):
-    if request.method == 'POST':
-        try:
-            post = Posts.objects.get(pid=request.POST['pidinput'])
-        except:
-            context = {'error' : True, 'message' : '해당 포스트는 존재하지 않습니다.'}
-            return render(request, 'k99/admin/addcomment.html', context)
-        post.comment = request.POST.get('commentinput')
-        post.title = request.POST.get('titleinput')
-        post.save()
-        context = {'error' : False, 'message' : "정상적으로 입력되었습니다."}
-        return render(request, 'k99/admin/addcomment.html', context)
-    context = {'error' : False, 'message' : None}
-    return render(request, 'k99/admin/addcomment.html', context)

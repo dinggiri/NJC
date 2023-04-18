@@ -1508,6 +1508,10 @@ span.detailans {
     font-size : 15px;
     font-weight : bold;
 }
+.addblemish_item > span.detailans{
+    font-family: 'Do Hyeon', sans-serif;
+    font-weight : bold;
+}
 
 .sub {
     font-family: 'Do Hyeon', sans-serif;
