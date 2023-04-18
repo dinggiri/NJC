@@ -42,6 +42,8 @@ urlpatterns = [
     path('customer/search', views.search, name='search'),
     # 구매내역입력
     path('buy', views.write, name="write"),
+    path('deletebuy', views.deletebuy, name="deletebuy"),
+    path('_deletebuy', views._deletebuy, name="_deletebuy"),
     path('export', views.excel_export, name='excel_export'),  # 엑셀 파일 다운로드
 
     path('recipetype/', views.recipetype, name='recipetype'),

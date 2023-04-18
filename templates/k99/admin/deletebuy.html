@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>k99 구매내역 삭제</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="menu_top">
+      <a href="{% url 'k99:main' %}">
+        <img class="img" src="{% static 'K99.jpg' %}" >
+      </a><br></div>
+    <h1>관리자님 환영합니다.</h1>
+    <h3>삭제할 구매 내역의 주문 번호를 입력해주세요.</h3>
+    <form id="buy" name="buy" method ="POST" action = "{% url 'k99:_deletebuy' %}">
+        {% csrf_token %}
+        <div class="appendbox">
+            <p class="buy_customer">주문 번호 : </p><input class="productinput" type="text" name="deletebid" placeholder="삭제할 주문번호 입력"><label>번</label>
+            <div>
+            <button class="appendsubmit" type="submit">구매내역 삭제</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

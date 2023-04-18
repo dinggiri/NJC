@@ -961,6 +961,43 @@ def write(request):
         }
 
     return render(request, 'k99/admin/buy.html', context)
+def deletebuy(request):
+    context = {}
+    return render(request, 'k99/admin/deletebuy.html', context)
+
+def _deletebuy(request):
+    deletebid = request.POST.get('deletebid')
+    deletebuy = Buy.objects.get(bid=deletebid)
+    deletebuy.delete()
+
+    today = datetime.today()
+    start_date = datetime.strptime(str(today.year) + " " + str(today.month) + " " + str(today.day), '%Y %m %d')
+    end_date = datetime.strptime(str(today.year) + " " + str(today.month) + " " + str(today.day) + " 23:59",
+                                 '%Y %m %d %H:%M')
+    try:
+        todaybuy = Buy.objects.filter(bdate__range=[start_date, end_date])  # 오늘 하루의 데이터 가져옴
+        # 모두 진행될 시 Context에 넣고 진행
+        context = {
+            'todaybuy': todaybuy,
+            'customer': None,
+            'product': None,
+            'bamount': None,
+            'error': False,
+            'message': None
+        }
+    except:
+
+        context = {
+            'todaybuy': None,
+            'customer': None,
+            'product': None,
+            'bamount': None,
+            'error': True,
+            'message': "오늘 조회된 상품이 없습니다."
+        }
+
+    return render(request, 'k99/admin/buy.html', context)
+    # return render(request, 'k99/admin/main.html', context)
 
 @login_required(login_url='common:login')
 def excel_export(request):

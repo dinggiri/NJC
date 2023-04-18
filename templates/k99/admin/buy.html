@@ -42,8 +42,11 @@
     <h1>관리자님 환영합니다.</h1>
     <h3>구매 내역을 입력해주세요.</h3>
     <h4>구매 내역 입력 후, 새로고침은 하지 말아주세요.</h4>
+    <h4>구매내역 삭제를 원하시면 아래 주문내역삭제 버튼을 눌러주세요.</h4>
+    <div class="div">
+        <button class="appendsubmit" onclick="location.href='deletebuy'" >구매내역 삭제</button>
+    </div>
     <form id="buy" name="buy" method ="POST" action = "{% url 'k99:write' %}">
-
         {% csrf_token %}
         <div class="appendbox">
             <p class="buy_customer">회원 번호 : </p><input class="productinput" type="text" name="buykid" placeholder="K번호 입력"><label>번</label>
@@ -53,29 +56,36 @@
             <button class="appendsubmit" type="submit">구매내역 입력</button>
             </div>
         </div>
-    <div class="div">
-        <table class="appendbox">
-            <label class="labeltable">아래 표는 오늘의 주문 내역입니다.</label>
-            <tr>
-                <th>구매자 k번호</th>
-{#                <th>구매자 이름</th>#}
-                <th>상품 번호</th>
-{#                <th>상품 이름</th>#}
-                <th>상품 수량</th>
-            </tr>
-            {% for tb in todaybuy %}
-            <tr>
-                <td>{{ tb.kid_id }}</td>
-{#                <td>{{ Customer.objects.get(kid = tb.kid_id).kname }}</td>#}
-                <td>{{ tb.pid_id }}</td>
-{#                <td>{{ Product.objects.get(pid = tb.pid_id) }}</td>#}
-                <td>{{ tb.bamount }}</td>
+        <div class="div">
+            <table class="appendbox">
+                <label class="labeltable">아래 표는 오늘의 주문 내역입니다.</label>
 
-            </tr>
-            {% endfor %}
+                <tr>
+                    <th>주문번호</th>
+                    <th>구매자 k번호</th>
+    {#                <th>구매자 이름</th>#}
+                    <th>상품 번호</th>
+    {#                <th>상품 이름</th>#}
+                    <th>상품 수량</th>
+                </tr>
+                {% for tb in todaybuy %}
+                <tr>
+                    <td>{{ tb.bid }}</td>
+                    <td>{{ tb.kid_id }}</td>
+    {#                <td>{{ Customer.objects.get(kid = tb.kid_id).kname }}</td>#}
+                    <td>{{ tb.pid_id }}</td>
+    {#                <td>{{ Product.objects.get(pid = tb.pid_id) }}</td>#}
+                    <td>{{ tb.bamount }}</td>
+                </tr>
+                {% endfor %}
         </div>
+
     </form>
 
+
+
+
 {% endif %}
+
 </body>
 </html>
