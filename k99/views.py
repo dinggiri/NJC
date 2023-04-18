@@ -986,7 +986,6 @@ def _deletebuy(request):
             'message': None
         }
     except:
-
         context = {
             'todaybuy': None,
             'customer': None,
@@ -997,7 +996,6 @@ def _deletebuy(request):
         }
 
     return render(request, 'k99/admin/buy.html', context)
-    # return render(request, 'k99/admin/main.html', context)
 
 @login_required(login_url='common:login')
 def excel_export(request):
@@ -1012,7 +1010,7 @@ def excel_export(request):
 
     title = f'{today} 주문 일지'
     today = datetime.today()
-    worksheet.set_column('A:L', 12)
+    worksheet.set_column('A:N', 12)
     # worksheet.set_row(0, 57)  # 행 너비 조절
     # # 타이틀 스타일 설정
     # merge_format = workbook.add_format({
@@ -1024,7 +1022,7 @@ def excel_export(request):
 
     # 헤더 생성
     row_num = 0
-    col_names = ['K번호', '우편번호', '도착영업소', '받는분', '전화번호', '기타전화번호', '주소', '상세주소', '품목명', '수량', '제품명', '포장(kg)']
+    col_names = ['K번호', '우편번호', '도착영업소', '받는분', '전화번호', '기타전화번호', '주소', '상세주소', '품목명', '수량', '제품명', '포장(kg)', '운임가격', '운임구분']
 
 
     # 헤더 스타일 설정
@@ -1082,8 +1080,36 @@ def excel_export(request):
         tmp.append(pname)
         # 포장(kg)
         tmp.append(tb[2])
+        # 운임가격
+        kg2 = tb[2]
+        try:
+            if kg2 == 5:
+                b_price = 3800
+            elif kg2 == 10:
+                b_price = 4400
+            else:
+                if kg2 == 20:
+                    b_price = 5500
+                else:
+                    if kg2 > 20:
+                        num_20 = kg2 // 20
+                        b_price_20 = num_20 * 5500
+                        num_10 = (kg2 - 20 * num_20) // 10
+                        b_price_10 = num_10 * 4800
+                        num_5 = (kg2 - (20 * num_20 + 10 * num_10)) // 5
+                        b_price_5 = num_5 * 3800
+                        b_price = b_price_20 + b_price_10 + b_price_5
+                    else:
+                        b_price = 0
+        except:
+            b_price = 0
+        tmp.append(b_price)
+        # 운임구분
+        tmp.append("선불")
         #### tmp 튜플 전체를 추가
         data.append(tmp)
+
+
 
     # 내용 데이터 삽입
     for row_num, columns in enumerate(data):
@@ -1123,6 +1149,7 @@ def excel_export(request):
 ### views.index 합치기
 @login_required(login_url='common:login')
 def main(request):
+    print(request.user.username)
     username = request.user.username
     user = Customer.objects.get(username=username)
     admin_list = ['admin', '24566905', '40106905', '40426905']
