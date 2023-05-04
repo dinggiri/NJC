@@ -558,6 +558,10 @@ div.rgyPostIt > p > a {
     margin: 7% auto 3% auto;
 }
 
+.tmp1234 > h3 {
+    font-size : 50px;
+}
+
 .move {
     text-align: center
 }
