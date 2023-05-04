@@ -1398,7 +1398,11 @@ def log_export(request):
     worksheet = workbook.add_worksheet()
     today = datetime.today().strftime('%Y%m%d')
 
-    title = f'검색로그(~{today})'
+    last_searchlog = Searchlog.objects.last()
+    first_day = Searchlog.objects.first().date.strftime('%Y%m%d')
+    last_day = Searchlog.objects.last().date.strftime('%Y%m%d')
+
+    title = f'검색로그({first_day}~{last_day})'
     today = datetime.today()
     worksheet.set_column('A:O', 12)
     worksheet.set_row(0, 57)  # 행 너비 조절
@@ -1424,8 +1428,10 @@ def log_export(request):
         worksheet.write(row_num, idx, col_name, header_format)
 
     date_format = workbook.add_format({'num_format': 'yyyy-mm-dd hh:mm:ss AM/PM'})
+
     # 내용 데이터 생성
-    allsearchlog = Searchlog.objects.all()
+
+    allsearchlog = Searchlog.objects.exclude(sid=last_searchlog.sid)
     data = []
     for searchlog in allsearchlog:
         tmp = []
@@ -1500,6 +1506,9 @@ def log_export(request):
             worksheet.set_column('J:J', 25)
             worksheet.set_column('O:O', 25)
 
+    # delete
+    allsearchlog.delete()
+
     # Close the workbook before sending the data.
     workbook.close()
 
@@ -1508,7 +1517,7 @@ def log_export(request):
 
     # Set up the Http response.
     today = datetime.today().strftime('%Y%m%d')
-    filename = f'검색로그(~{today}).xlsx'
+    filename = f'검색로그({first_day}~{last_day}).xlsx'
     response = HttpResponse(
         output,
         content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
